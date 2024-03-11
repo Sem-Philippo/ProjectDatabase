@@ -13,7 +13,7 @@ namespace SomerenUI
         {
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration. //test push
-            ApplicationConfiguration.Initialize();
+            ApplicationConfiguration.Initialize();          //testing
             Application.Run(new SomerenUI());
         }
     }
