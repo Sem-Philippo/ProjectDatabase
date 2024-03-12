@@ -3,6 +3,7 @@ using SomerenModel;
 using System.Windows.Forms;
 using System.Collections.Generic;
 using System;
+using System.Drawing;
 
 namespace SomerenUI
 {
@@ -52,11 +53,12 @@ namespace SomerenUI
         private void DisplayStudents(List<Student> students)
         {
             // clear the listview before filling it
-            listViewStudents.Clear();
+            listViewStudents.Items.Clear();
 
             foreach (Student student in students)
             {
-                ListViewItem li = new ListViewItem(student.Name);
+                string[] subItems = new string[5] { student.Name, student.Number.ToString(), student.Class, student.PhoneNumber, student.RoomNumber.ToString() };
+                ListViewItem li = new ListViewItem(subItems);
                 li.Tag = student;   // link student object to listview item
                 listViewStudents.Items.Add(li);
             }
