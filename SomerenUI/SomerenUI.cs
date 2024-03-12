@@ -18,6 +18,7 @@ namespace SomerenUI
         {
             // hide all other panels
             pnlStudents.Hide();
+            pnlDrinks.Hide();
 
             // show dashboard
             pnlDashboard.Show();
@@ -27,6 +28,7 @@ namespace SomerenUI
         {
             // hide all other panels
             pnlDashboard.Hide();
+            pnlDrinks.Hide();
 
             // show students
             pnlStudents.Show();
@@ -42,12 +44,50 @@ namespace SomerenUI
                 MessageBox.Show("Something went wrong while loading the students: " + e.Message);
             }
         }
+        private void ShowDrinksPanel()
+        {
+            // hide all other panels
+            pnlDashboard.Hide();
+            pnlStudents.Hide();
+
+            // show drinks
+            pnlDrinks.Show();
+            try
+            {
+                //get and display all drinks
+                List<Drink> drinks = GetDrinks();
+                DisplayDrinks(drinks);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Something went wrong while loading the drinks: " + e.Message);
+            }
+        }
+        private List<Drink> GetDrinks()
+        {
+            DrinkService drinkService = new DrinkService();
+            List<Drink> drinks = drinkService.GetDrinks();
+            return drinks;
+        }
 
         private List<Student> GetStudents()
         {
             StudentService studentService = new StudentService();
             List<Student> students = studentService.GetStudents();
             return students;
+        }
+        private void DisplayDrinks(List<Drink> drinks)
+        {
+            // clear the listview before filling it
+            listViewDrinks.Items.Clear();
+
+            foreach (Drink drink in drinks)
+            {
+                string[] subItems = new string[5] { drink.Name, drink.Stock.ToString(), drink.Price.ToString(), drink.Alcoholic.ToString(), drink.VAT.ToString("00.00") };
+                ListViewItem li = new ListViewItem(subItems);
+                li.Tag = drink;   // link student object to listview item
+                listViewDrinks.Items.Add(li);
+            }
         }
 
         private void DisplayStudents(List<Student> students)
@@ -77,6 +117,11 @@ namespace SomerenUI
         private void studentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShowStudentsPanel();
+        }
+
+        private void drinksToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowDrinksPanel();
         }
     }
 }
