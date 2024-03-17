@@ -50,6 +50,7 @@
             RoomNumber = new System.Windows.Forms.ColumnHeader();
             label1 = new System.Windows.Forms.Label();
             pnlDrinks = new System.Windows.Forms.Panel();
+            btnEditDrinks = new System.Windows.Forms.Button();
             pictureBox2 = new System.Windows.Forms.PictureBox();
             listViewDrinks = new System.Windows.Forms.ListView();
             DrinkName = new System.Windows.Forms.ColumnHeader();
@@ -59,7 +60,6 @@
             Alcoholic = new System.Windows.Forms.ColumnHeader();
             VAT = new System.Windows.Forms.ColumnHeader();
             lblDrinks = new System.Windows.Forms.Label();
-            btnEditDrinks = new System.Windows.Forms.Button();
             menuStrip1.SuspendLayout();
             pnlDashboard.SuspendLayout();
             pnlStudents.SuspendLayout();
@@ -230,6 +230,17 @@
             pnlDrinks.Size = new System.Drawing.Size(1072, 621);
             pnlDrinks.TabIndex = 3;
             // 
+            // btnEditDrinks
+            // 
+            btnEditDrinks.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            btnEditDrinks.Location = new System.Drawing.Point(18, 493);
+            btnEditDrinks.Name = "btnEditDrinks";
+            btnEditDrinks.Size = new System.Drawing.Size(147, 106);
+            btnEditDrinks.TabIndex = 3;
+            btnEditDrinks.Text = "Edit Drinks";
+            btnEditDrinks.UseVisualStyleBackColor = true;
+            btnEditDrinks.Click += btnEditDrinks_Click;
+            // 
             // pictureBox2
             // 
             pictureBox2.Image = (System.Drawing.Image)resources.GetObject("pictureBox2.Image");
@@ -289,17 +300,6 @@
             lblDrinks.Size = new System.Drawing.Size(101, 41);
             lblDrinks.TabIndex = 0;
             lblDrinks.Text = "Drinks";
-            // 
-            // btnEditDrinks
-            // 
-            btnEditDrinks.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            btnEditDrinks.Location = new System.Drawing.Point(18, 493);
-            btnEditDrinks.Name = "btnEditDrinks";
-            btnEditDrinks.Size = new System.Drawing.Size(147, 106);
-            btnEditDrinks.TabIndex = 3;
-            btnEditDrinks.Text = "Edit Drinks";
-            btnEditDrinks.UseVisualStyleBackColor = true;
-            btnEditDrinks.Click += btnEditDrinks_Click;
             // 
             // SomerenUI
             // 

@@ -72,6 +72,8 @@ namespace SomerenUI
                 else { drink.Alcoholic = false; }
                 drink.Price = float.Parse(txtDrinkPrice.Text);
                 drinkDao.SaveExistingDrink(drink);
+                MessageBox.Show("Drink succesfully updated");
+                this.Close();
             }
             catch (Exception ex)
             {
@@ -94,6 +96,7 @@ namespace SomerenUI
             drink.Price = float.Parse(txtDrinkPrice.Text);
             drinkDao.DeleteExistingDrink(drink);
             MessageBox.Show($"{drink.Name} succesfully deleted.");
+            this.Close();
         }
 
         private void btnSaveNewDrink_Click(object sender, EventArgs e)

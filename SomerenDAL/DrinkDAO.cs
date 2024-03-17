@@ -30,6 +30,8 @@ namespace SomerenDAL
         public void DeleteExistingDrink(Drink drink)
         {
             string query = $"DELETE FROM Drink WHERE DrinkId = {drink.Id}";
+            SqlParameter[] sqlParameters = new SqlParameter[0];
+            ExecuteEditQuery(query, sqlParameters);
         }
 
         private List<Drink> ReadTables(DataTable dataTable)

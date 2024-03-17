@@ -136,5 +136,6 @@ namespace SomerenUI
             DrinkEditForm drinkEditForm = new DrinkEditForm();
             drinkEditForm.ShowDialog();
         }
+
     }
 }
