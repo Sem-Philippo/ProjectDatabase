@@ -8,7 +8,26 @@ namespace SomerenModel
 {
     public class Drink
     {
-        public int Stock { get; set; }
+        private const int sufficientStock = 10;
+        public int StockAmount { get; set; }
+        public Stock StockGrade
+        {
+            get
+            {
+                if (StockAmount >= sufficientStock)
+                {
+                    return Stock.Sufficient;
+                }
+                else if (StockAmount > 0)
+                {
+                    return Stock.Nearly_Depleted;
+                }
+                else
+                {
+                    return Stock.Empty;
+                }
+            }
+        }
         public int Id { get; set; }
         public string Name { get; set; }
         public bool Alcoholic { get; set; }
@@ -27,6 +46,9 @@ namespace SomerenModel
                 }
             } 
         }
-        
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

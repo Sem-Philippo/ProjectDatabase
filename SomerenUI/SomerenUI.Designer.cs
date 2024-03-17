@@ -54,10 +54,12 @@
             listViewDrinks = new System.Windows.Forms.ListView();
             DrinkName = new System.Windows.Forms.ColumnHeader();
             Stock = new System.Windows.Forms.ColumnHeader();
+            StockStatus = new System.Windows.Forms.ColumnHeader();
             Price = new System.Windows.Forms.ColumnHeader();
             Alcoholic = new System.Windows.Forms.ColumnHeader();
             VAT = new System.Windows.Forms.ColumnHeader();
             lblDrinks = new System.Windows.Forms.Label();
+            btnEditDrinks = new System.Windows.Forms.Button();
             menuStrip1.SuspendLayout();
             pnlDashboard.SuspendLayout();
             pnlStudents.SuspendLayout();
@@ -218,6 +220,7 @@
             // 
             // pnlDrinks
             // 
+            pnlDrinks.Controls.Add(btnEditDrinks);
             pnlDrinks.Controls.Add(pictureBox2);
             pnlDrinks.Controls.Add(listViewDrinks);
             pnlDrinks.Controls.Add(lblDrinks);
@@ -239,7 +242,7 @@
             // 
             // listViewDrinks
             // 
-            listViewDrinks.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { DrinkName, Stock, Price, Alcoholic, VAT });
+            listViewDrinks.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { DrinkName, Stock, StockStatus, Price, Alcoholic, VAT });
             listViewDrinks.Location = new System.Drawing.Point(18, 56);
             listViewDrinks.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             listViewDrinks.Name = "listViewDrinks";
@@ -257,6 +260,11 @@
             // 
             Stock.Text = "Stock";
             Stock.Width = 120;
+            // 
+            // StockStatus
+            // 
+            StockStatus.Text = "Stock Status";
+            StockStatus.Width = 200;
             // 
             // Price
             // 
@@ -281,6 +289,17 @@
             lblDrinks.Size = new System.Drawing.Size(101, 41);
             lblDrinks.TabIndex = 0;
             lblDrinks.Text = "Drinks";
+            // 
+            // btnEditDrinks
+            // 
+            btnEditDrinks.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            btnEditDrinks.Location = new System.Drawing.Point(18, 493);
+            btnEditDrinks.Name = "btnEditDrinks";
+            btnEditDrinks.Size = new System.Drawing.Size(147, 106);
+            btnEditDrinks.TabIndex = 3;
+            btnEditDrinks.Text = "Edit Drinks";
+            btnEditDrinks.UseVisualStyleBackColor = true;
+            btnEditDrinks.Click += btnEditDrinks_Click;
             // 
             // SomerenUI
             // 
@@ -340,5 +359,7 @@
         private System.Windows.Forms.ColumnHeader Alcoholic;
         private System.Windows.Forms.ColumnHeader VAT;
         private System.Windows.Forms.Label lblDrinks;
+        private System.Windows.Forms.ColumnHeader StockStatus;
+        private System.Windows.Forms.Button btnEditDrinks;
     }
 }

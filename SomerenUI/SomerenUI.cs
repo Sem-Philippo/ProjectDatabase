@@ -13,12 +13,21 @@ namespace SomerenUI
         {
             InitializeComponent();
         }
+        private void HideAllPanels()
+        {
+            pnlStudents.Hide();
+            pnlDashboard.Hide();
+            //RoomPanel here
+            //LecturerPanel here
+            //activity panel here
+            pnlDrinks.Hide();
+            //any other panels here
+        }
 
         private void ShowDashboardPanel()
         {
             // hide all other panels
-            pnlStudents.Hide();
-            pnlDrinks.Hide();
+            HideAllPanels();
 
             // show dashboard
             pnlDashboard.Show();
@@ -27,8 +36,7 @@ namespace SomerenUI
         private void ShowStudentsPanel()
         {
             // hide all other panels
-            pnlDashboard.Hide();
-            pnlDrinks.Hide();
+            HideAllPanels();
 
             // show students
             pnlStudents.Show();
@@ -47,8 +55,7 @@ namespace SomerenUI
         private void ShowDrinksPanel()
         {
             // hide all other panels
-            pnlDashboard.Hide();
-            pnlStudents.Hide();
+            HideAllPanels();
 
             // show drinks
             pnlDrinks.Show();
@@ -83,7 +90,7 @@ namespace SomerenUI
 
             foreach (Drink drink in drinks)
             {
-                string[] subItems = new string[5] { drink.Name, drink.Stock.ToString(), drink.Price.ToString(), drink.Alcoholic.ToString(), drink.VAT.ToString("00.00") };
+                string[] subItems = new string[6] { drink.Name, drink.StockAmount.ToString(), "Stock " + drink.StockGrade.ToString().Replace("_", " "), drink.Price.ToString("00.00"), drink.Alcoholic.ToString(), drink.VAT.ToString("00.00") };
                 ListViewItem li = new ListViewItem(subItems);
                 li.Tag = drink;   // link student object to listview item
                 listViewDrinks.Items.Add(li);
@@ -122,6 +129,12 @@ namespace SomerenUI
         private void drinksToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShowDrinksPanel();
+        }
+
+        private void btnEditDrinks_Click(object sender, EventArgs e)
+        {
+            DrinkEditForm drinkEditForm = new DrinkEditForm();
+            drinkEditForm.ShowDialog();
         }
     }
 }
