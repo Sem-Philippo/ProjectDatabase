@@ -43,11 +43,10 @@
             pnlStudents = new System.Windows.Forms.Panel();
             pictureBox1 = new System.Windows.Forms.PictureBox();
             listViewStudents = new System.Windows.Forms.ListView();
-            StudentName = new System.Windows.Forms.ColumnHeader();
             StudentNumber = new System.Windows.Forms.ColumnHeader();
+            StudentName = new System.Windows.Forms.ColumnHeader();
             Class = new System.Windows.Forms.ColumnHeader();
             PhoneNumber = new System.Windows.Forms.ColumnHeader();
-            RoomNumber = new System.Windows.Forms.ColumnHeader();
             label1 = new System.Windows.Forms.Label();
             pnlDrinks = new System.Windows.Forms.Panel();
             btnEditDrinks = new System.Windows.Forms.Button();
@@ -59,6 +58,7 @@
             Price = new System.Windows.Forms.ColumnHeader();
             Alcoholic = new System.Windows.Forms.ColumnHeader();
             VAT = new System.Windows.Forms.ColumnHeader();
+            Sales = new System.Windows.Forms.ColumnHeader();
             lblDrinks = new System.Windows.Forms.Label();
             menuStrip1.SuspendLayout();
             pnlDashboard.SuspendLayout();
@@ -128,8 +128,8 @@
             // drinksToolStripMenuItem
             // 
             drinksToolStripMenuItem.Name = "drinksToolStripMenuItem";
-            drinksToolStripMenuItem.Size = new System.Drawing.Size(64, 24);
-            drinksToolStripMenuItem.Text = "Drinks";
+            drinksToolStripMenuItem.Size = new System.Drawing.Size(124, 24);
+            drinksToolStripMenuItem.Text = "Drinks Supplies";
             drinksToolStripMenuItem.Click += drinksToolStripMenuItem_Click;
             // 
             // pnlDashboard
@@ -173,7 +173,8 @@
             // 
             // listViewStudents
             // 
-            listViewStudents.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { StudentName, StudentNumber, Class, PhoneNumber, RoomNumber });
+            listViewStudents.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { StudentNumber, StudentName, Class, PhoneNumber });
+            listViewStudents.FullRowSelect = true;
             listViewStudents.Location = new System.Drawing.Point(18, 56);
             listViewStudents.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             listViewStudents.Name = "listViewStudents";
@@ -181,16 +182,17 @@
             listViewStudents.TabIndex = 1;
             listViewStudents.UseCompatibleStateImageBehavior = false;
             listViewStudents.View = System.Windows.Forms.View.Details;
+            listViewStudents.SelectedIndexChanged += listViewStudents_SelectedIndexChanged;
+            // 
+            // StudentNumber
+            // 
+            StudentNumber.Text = "Student Number";
+            StudentNumber.Width = 200;
             // 
             // StudentName
             // 
             StudentName.Text = "Name";
             StudentName.Width = 150;
-            // 
-            // StudentNumber
-            // 
-            StudentNumber.Text = "StudentNumber";
-            StudentNumber.Width = 120;
             // 
             // Class
             // 
@@ -198,15 +200,8 @@
             // 
             // PhoneNumber
             // 
-            PhoneNumber.DisplayIndex = 4;
-            PhoneNumber.Text = "PhoneNumber";
+            PhoneNumber.Text = "Phone Number";
             PhoneNumber.Width = 150;
-            // 
-            // RoomNumber
-            // 
-            RoomNumber.DisplayIndex = 3;
-            RoomNumber.Text = "RoomNumber";
-            RoomNumber.Width = 120;
             // 
             // label1
             // 
@@ -253,7 +248,8 @@
             // 
             // listViewDrinks
             // 
-            listViewDrinks.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { DrinkName, Stock, StockStatus, Price, Alcoholic, VAT });
+            listViewDrinks.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { DrinkName, Stock, StockStatus, Price, Alcoholic, VAT, Sales });
+            listViewDrinks.FullRowSelect = true;
             listViewDrinks.Location = new System.Drawing.Point(18, 56);
             listViewDrinks.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             listViewDrinks.Name = "listViewDrinks";
@@ -275,7 +271,7 @@
             // StockStatus
             // 
             StockStatus.Text = "Stock Status";
-            StockStatus.Width = 200;
+            StockStatus.Width = 170;
             // 
             // Price
             // 
@@ -290,6 +286,11 @@
             // 
             VAT.Text = "VAT";
             VAT.Width = 120;
+            // 
+            // Sales
+            // 
+            Sales.Text = "Sales";
+            Sales.Width = 100;
             // 
             // lblDrinks
             // 
@@ -306,10 +307,10 @@
             AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(1099, 673);
-            Controls.Add(pnlDrinks);
             Controls.Add(menuStrip1);
             Controls.Add(pnlStudents);
             Controls.Add(pnlDashboard);
+            Controls.Add(pnlDrinks);
             MainMenuStrip = menuStrip1;
             Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             Name = "SomerenUI";
@@ -347,7 +348,6 @@
         private System.Windows.Forms.ColumnHeader StudentName;
         private System.Windows.Forms.ColumnHeader StudentNumber;
         private System.Windows.Forms.ColumnHeader Class;
-        private System.Windows.Forms.ColumnHeader RoomNumber;
         private System.Windows.Forms.ColumnHeader PhoneNumber;
         private System.Windows.Forms.ToolStripMenuItem drinksToolStripMenuItem;
         private System.Windows.Forms.Panel pnlDrinks;
@@ -361,5 +361,6 @@
         private System.Windows.Forms.Label lblDrinks;
         private System.Windows.Forms.ColumnHeader StockStatus;
         private System.Windows.Forms.Button btnEditDrinks;
+        private System.Windows.Forms.ColumnHeader Sales;
     }
 }

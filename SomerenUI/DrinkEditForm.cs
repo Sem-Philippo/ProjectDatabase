@@ -87,7 +87,7 @@ namespace SomerenUI
             Drink drink = new Drink();
             drink.Name = txtDrinkName.Text;
             drink.StockAmount = (int)numStock.Value;
-            drink.Id = DrinkSelectBox.SelectedIndex;
+            drink.Id = ((Drink)DrinkSelectBox.Items[DrinkSelectBox.SelectedIndex]).Id;
             if (ComboBoxAlcoholic.SelectedIndex == 0)
             {
                 drink.Alcoholic = true;

@@ -23,23 +23,21 @@ namespace SomerenUI
             pnlDrinks.Hide();
             //any other panels here
         }
+        private void ShowPanel(Panel panel)
+        {
+            //hide all panels 
+            HideAllPanels();
+            panel.Show();
+        }
 
         private void ShowDashboardPanel()
         {
-            // hide all other panels
-            HideAllPanels();
-
-            // show dashboard
-            pnlDashboard.Show();
+            ShowPanel(pnlDashboard);
         }
 
         private void ShowStudentsPanel()
         {
-            // hide all other panels
-            HideAllPanels();
-
-            // show students
-            pnlStudents.Show();
+            ShowPanel(pnlStudents);
 
             try
             {
@@ -54,11 +52,7 @@ namespace SomerenUI
         }
         private void ShowDrinksPanel()
         {
-            // hide all other panels
-            HideAllPanels();
-
-            // show drinks
-            pnlDrinks.Show();
+            ShowPanel(pnlDrinks);
             try
             {
                 //get and display all drinks
@@ -90,8 +84,15 @@ namespace SomerenUI
 
             foreach (Drink drink in drinks)
             {
-                string[] subItems = new string[6] { drink.Name, drink.StockAmount.ToString(), "Stock " + drink.IsSufficient.ToString().Replace("_", " "), drink.Price.ToString("00.00"), drink.Alcoholic.ToString(), drink.VAT.ToString("00.00") };
+                string[] subItems = new string[6] { drink.Name,
+                    drink.StockAmount.ToString(),
+                    //Gets IsSufficient, which is an enum, In the case of Nearly_Depleted, the _ is replaced with a space
+                    "Stock " + drink.IsSufficient.ToString().Replace("_", " "),
+                    drink.Price.ToString("0.00"),
+                    drink.Alcoholic.ToString(),
+                    drink.VAT.ToString("0.00") };
                 ListViewItem li = new ListViewItem(subItems);
+                li.SubItems.Add(drink.Price.ToString("0.00"));
                 li.Tag = drink;   // link student object to listview item
                 listViewDrinks.Items.Add(li);
             }
@@ -104,7 +105,8 @@ namespace SomerenUI
 
             foreach (Student student in students)
             {
-                string[] subItems = new string[5] { student.Name, student.Number.ToString(), student.Class, student.PhoneNumber, student.RoomNumber.ToString() };
+                string[] subItems = new string[4] { student.Number.ToString(), student.Name,
+                    student.Class, student.PhoneNumber };
                 ListViewItem li = new ListViewItem(subItems);
                 li.Tag = student;   // link student object to listview item
                 listViewStudents.Items.Add(li);
@@ -138,5 +140,9 @@ namespace SomerenUI
             ShowDrinksPanel();
         }
 
+        private void listViewStudents_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
