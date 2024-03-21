@@ -55,8 +55,8 @@
             columnHeader2 = new System.Windows.Forms.ColumnHeader();
             columnHeader3 = new System.Windows.Forms.ColumnHeader();
             columnHeader4 = new System.Windows.Forms.ColumnHeader();
-            RoomsText = new System.Windows.Forms.Label();
             columnHeader5 = new System.Windows.Forms.ColumnHeader();
+            RoomsText = new System.Windows.Forms.Label();
             menuStrip1.SuspendLayout();
             pnlDashboard.SuspendLayout();
             pnlStudents.SuspendLayout();
@@ -252,6 +252,10 @@
             columnHeader4.Text = "Beds (the amount of them)";
             columnHeader4.Width = 150;
             // 
+            // columnHeader5
+            // 
+            columnHeader5.Text = "Type";
+            // 
             // RoomsText
             // 
             RoomsText.AutoSize = true;
@@ -261,10 +265,6 @@
             RoomsText.Size = new System.Drawing.Size(86, 32);
             RoomsText.TabIndex = 0;
             RoomsText.Text = "Rooms";
-            // 
-            // columnHeader5
-            // 
-            columnHeader5.Text = "Type";
             // 
             // SomerenUI
             // 
