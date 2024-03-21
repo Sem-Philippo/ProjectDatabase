@@ -12,6 +12,8 @@ namespace SomerenUI
         public SomerenUI()
         {
             InitializeComponent();
+            //testing stuff
+            ShowDashboardPanel();
         }
         private void HideAllPanels()
         {
