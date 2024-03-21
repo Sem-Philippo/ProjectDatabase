@@ -19,4 +19,19 @@ namespace SomerenService
             return students;
         }
     }
+    public class RoomService
+    {
+        private RoomDao roomdb;
+
+        public RoomService()
+        {
+            roomdb = new RoomDao();
+        }
+
+        public List<Room> GetRooms()
+        {
+            List<Room> rooms = roomdb.GetAllRooms();
+            return rooms;
+        }
+    }
 }
