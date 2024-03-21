@@ -8,13 +8,15 @@ namespace SomerenModel
 {
     public class Drink
     {
-        private const int sufficientStock = 10;
+        //SufficientStock is the required stock for a drink's stock to be considered as sufficient in the application
+        private const int SufficientStock = 10;
         public int StockAmount { get; set; }
-        public Stock StockGrade
+        //IsSufficient is whether the stock is sufficient, nearly depleted or empty 
+        public Stock IsSufficient
         {
             get
             {
-                if (StockAmount >= sufficientStock)
+                if (StockAmount >= SufficientStock)
                 {
                     return Stock.Sufficient;
                 }

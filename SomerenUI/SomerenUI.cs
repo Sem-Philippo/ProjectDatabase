@@ -90,7 +90,7 @@ namespace SomerenUI
 
             foreach (Drink drink in drinks)
             {
-                string[] subItems = new string[6] { drink.Name, drink.StockAmount.ToString(), "Stock " + drink.StockGrade.ToString().Replace("_", " "), drink.Price.ToString("00.00"), drink.Alcoholic.ToString(), drink.VAT.ToString("00.00") };
+                string[] subItems = new string[6] { drink.Name, drink.StockAmount.ToString(), "Stock " + drink.IsSufficient.ToString().Replace("_", " "), drink.Price.ToString("00.00"), drink.Alcoholic.ToString(), drink.VAT.ToString("00.00") };
                 ListViewItem li = new ListViewItem(subItems);
                 li.Tag = drink;   // link student object to listview item
                 listViewDrinks.Items.Add(li);
@@ -135,6 +135,7 @@ namespace SomerenUI
         {
             DrinkEditForm drinkEditForm = new DrinkEditForm();
             drinkEditForm.ShowDialog();
+            ShowDrinksPanel();
         }
 
     }

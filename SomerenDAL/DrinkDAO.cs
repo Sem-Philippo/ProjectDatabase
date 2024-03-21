@@ -11,7 +11,7 @@ namespace SomerenDAL
     {
         public List<Drink> GetAllDrinks()
         {
-            string query = "SELECT * FROM Drink";
+            string query = "SELECT DrinkId, Name, Alcoholic, Price, Stock FROM Drink";
             SqlParameter[] sqlParameters = new SqlParameter[0];
             return ReadTables(ExecuteSelectQuery(query, sqlParameters));
         }
@@ -23,6 +23,7 @@ namespace SomerenDAL
         }
         public void SaveNewDrink(Drink drink)
         {
+            //This insertion code is practically copied from the programming 3 week 4 scripts
             string query = $"SET IDENTITY_INSERT [dbo].[Drink] ON INSERT [dbo].[Drink] ([Name], [Price], [Stock], [DrinkID], [Alcoholic], [VAT]) VALUES ('{drink.Name}', {(decimal)(double)drink.Price:0.00}, {drink.StockAmount}, {drink.Id}, '{drink.Alcoholic}', {drink.VAT})";
             SqlParameter[] sqlParameters = new SqlParameter[0];
             ExecuteEditQuery(query, sqlParameters);
