@@ -44,7 +44,7 @@
             listViewStudents = new System.Windows.Forms.ListView();
             label1 = new System.Windows.Forms.Label();
             panelLecturers = new System.Windows.Forms.Panel();
-            pictureBox2 = new System.Windows.Forms.PictureBox();
+            pictureBoxLecturers = new System.Windows.Forms.PictureBox();
             listViewLecturers = new System.Windows.Forms.ListView();
             columnTeacherName = new System.Windows.Forms.ColumnHeader();
             columnLecturerAge = new System.Windows.Forms.ColumnHeader();
@@ -55,7 +55,7 @@
             pnlStudents.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panelLecturers.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxLecturers).BeginInit();
             SuspendLayout();
             // 
             // menuStrip1
@@ -176,7 +176,7 @@
             // 
             // panelLecturers
             // 
-            panelLecturers.Controls.Add(pictureBox2);
+            panelLecturers.Controls.Add(pictureBoxLecturers);
             panelLecturers.Controls.Add(listViewLecturers);
             panelLecturers.Controls.Add(labelLecturers);
             panelLecturers.Location = new System.Drawing.Point(13, 26);
@@ -185,15 +185,15 @@
             panelLecturers.Size = new System.Drawing.Size(1072, 621);
             panelLecturers.TabIndex = 3;
             // 
-            // pictureBox2
+            // pictureBoxLecturers
             // 
-            pictureBox2.Image = (System.Drawing.Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new System.Drawing.Point(920, 0);
-            pictureBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new System.Drawing.Size(149, 164);
-            pictureBox2.TabIndex = 2;
-            pictureBox2.TabStop = false;
+            pictureBoxLecturers.Image = (System.Drawing.Image)resources.GetObject("pictureBoxLecturers.Image");
+            pictureBoxLecturers.Location = new System.Drawing.Point(920, 0);
+            pictureBoxLecturers.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            pictureBoxLecturers.Name = "pictureBoxLecturers";
+            pictureBoxLecturers.Size = new System.Drawing.Size(149, 164);
+            pictureBoxLecturers.TabIndex = 2;
+            pictureBoxLecturers.TabStop = false;
             // 
             // listViewLecturers
             // 
@@ -253,7 +253,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panelLecturers.ResumeLayout(false);
             panelLecturers.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxLecturers).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -275,7 +275,7 @@
         private System.Windows.Forms.ListView listViewStudents;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panelLecturers;
-        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pictureBoxLecturers;
         private System.Windows.Forms.ListView listViewLecturers;
         private System.Windows.Forms.Label labelLecturers;
         private System.Windows.Forms.ColumnHeader columnTeacherName;
