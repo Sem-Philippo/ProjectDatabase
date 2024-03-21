@@ -124,12 +124,7 @@ namespace SomerenUI
 
         private void ShowLecturersPanel()
         {
-            // hide all other panels
-            pnlDashboard.Hide();
-            pnlStudents.Hide();
-
-            // show lecturers
-            panelLecturers.Show();
+            ShowPanel(panelLecturers);
 
             try
             {
@@ -157,12 +152,12 @@ namespace SomerenUI
 
             foreach (Teacher lecturer in lecturers)
             {
-                ListViewItem li = CreateListViewItem(lecturer);
+                ListViewItem li = CreateLecturerListViewItem(lecturer);
                 listViewLecturers.Items.Add(li);
             }
         }
 
-        private ListViewItem CreateListViewItem(Teacher lecturer)
+        private ListViewItem CreateLecturerListViewItem(Teacher lecturer)
         {
             ListViewItem li = new ListViewItem(lecturer.Name);
             //li.SubItems.Add(lecturer.Name);
