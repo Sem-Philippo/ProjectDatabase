@@ -60,11 +60,22 @@
             VAT = new System.Windows.Forms.ColumnHeader();
             Sales = new System.Windows.Forms.ColumnHeader();
             lblDrinks = new System.Windows.Forms.Label();
+            RoomsPanel = new System.Windows.Forms.Panel();
+            pictureBox2 = new System.Windows.Forms.PictureBox();
+            listViewRooms = new System.Windows.Forms.ListView();
+            columnHeader1 = new System.Windows.Forms.ColumnHeader();
+            columnHeader2 = new System.Windows.Forms.ColumnHeader();
+            columnHeader3 = new System.Windows.Forms.ColumnHeader();
+            columnHeader4 = new System.Windows.Forms.ColumnHeader();
+            RoomsText = new System.Windows.Forms.Label();
+            columnHeader5 = new System.Windows.Forms.ColumnHeader();
             menuStrip1.SuspendLayout();
             pnlDashboard.SuspendLayout();
             pnlStudents.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             pnlDrinks.SuspendLayout();
+            panelLecturers.SuspendLayout();
+            RoomsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
             // 
@@ -112,6 +123,7 @@
             lecturersToolStripMenuItem.Name = "lecturersToolStripMenuItem";
             lecturersToolStripMenuItem.Size = new System.Drawing.Size(82, 24);
             lecturersToolStripMenuItem.Text = "Lecturers";
+            lecturersToolStripMenuItem.Click += lecturersToolStripMenuItem_Click;
             // 
             // activitiesToolStripMenuItem
             // 
@@ -122,8 +134,9 @@
             // roomsToolStripMenuItem
             // 
             roomsToolStripMenuItem.Name = "roomsToolStripMenuItem";
-            roomsToolStripMenuItem.Size = new System.Drawing.Size(69, 24);
+            roomsToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
             roomsToolStripMenuItem.Text = "Rooms";
+            roomsToolStripMenuItem.Click += roomsToolStripMenuItem_Click;
             // 
             // drinksToolStripMenuItem
             // 
@@ -178,7 +191,7 @@
             listViewStudents.Location = new System.Drawing.Point(18, 56);
             listViewStudents.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             listViewStudents.Name = "listViewStudents";
-            listViewStudents.Size = new System.Drawing.Size(875, 408);
+            listViewStudents.Size = new System.Drawing.Size(766, 307);
             listViewStudents.TabIndex = 1;
             listViewStudents.UseCompatibleStateImageBehavior = false;
             listViewStudents.View = System.Windows.Forms.View.Details;
@@ -234,6 +247,16 @@
             btnEditDrinks.Text = "Edit Drinks";
             btnEditDrinks.UseVisualStyleBackColor = true;
             btnEditDrinks.Click += btnEditDrinks_Click;
+            // panelLecturers
+            // 
+            panelLecturers.Controls.Add(pictureBox2);
+            panelLecturers.Controls.Add(listViewLecturers);
+            panelLecturers.Controls.Add(labelLecturers);
+            panelLecturers.Location = new System.Drawing.Point(13, 26);
+            panelLecturers.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            panelLecturers.Name = "panelLecturers";
+            panelLecturers.Size = new System.Drawing.Size(1072, 621);
+            panelLecturers.TabIndex = 3;
             // 
             // pictureBox2
             // 
@@ -300,12 +323,122 @@
             lblDrinks.Size = new System.Drawing.Size(101, 41);
             lblDrinks.TabIndex = 0;
             lblDrinks.Text = "Drinks";
+            // listViewLecturers
+            // 
+            listViewLecturers.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { columnTeacherName, columnLecturerAge, columnTeacherPhoneNr });
+            listViewLecturers.FullRowSelect = true;
+            listViewLecturers.Location = new System.Drawing.Point(18, 56);
+            listViewLecturers.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            listViewLecturers.Name = "listViewLecturers";
+            listViewLecturers.Size = new System.Drawing.Size(875, 408);
+            listViewLecturers.TabIndex = 1;
+            listViewLecturers.UseCompatibleStateImageBehavior = false;
+            listViewLecturers.View = System.Windows.Forms.View.Details;
+            // 
+            // columnTeacherName
+            // 
+            columnTeacherName.Text = "Name";
+            columnTeacherName.Width = 170;
+            // 
+            // columnLecturerAge
+            // 
+            columnLecturerAge.Text = "Age";
+            // 
+            // columnTeacherPhoneNr
+            // 
+            columnTeacherPhoneNr.Text = "Phone Number";
+            columnTeacherPhoneNr.Width = 120;
+            // 
+            // labelLecturers
+            // 
+            labelLecturers.AutoSize = true;
+            labelLecturers.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            labelLecturers.Location = new System.Drawing.Point(15, 9);
+            labelLecturers.Name = "labelLecturers";
+            labelLecturers.Size = new System.Drawing.Size(138, 41);
+            labelLecturers.TabIndex = 0;
+            labelLecturers.Text = "Lecturers";
             // 
             // SomerenUI
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(1099, 673);
+            Controls.Add(panelLecturers);
+            label1.Location = new System.Drawing.Point(13, 7);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(107, 32);
+            label1.TabIndex = 0;
+            label1.Text = "Students";
+            // 
+            // RoomsPanel
+            // 
+            RoomsPanel.Controls.Add(pictureBox2);
+            RoomsPanel.Controls.Add(listViewRooms);
+            RoomsPanel.Controls.Add(RoomsText);
+            RoomsPanel.Location = new System.Drawing.Point(12, 24);
+            RoomsPanel.Name = "RoomsPanel";
+            RoomsPanel.Size = new System.Drawing.Size(938, 466);
+            RoomsPanel.TabIndex = 3;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Image = (System.Drawing.Image)resources.GetObject("pictureBox2.Image");
+            pictureBox2.Location = new System.Drawing.Point(805, 0);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new System.Drawing.Size(130, 123);
+            pictureBox2.TabIndex = 2;
+            pictureBox2.TabStop = false;
+            // 
+            // listViewRooms
+            // 
+            listViewRooms.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3, columnHeader4, columnHeader5 });
+            listViewRooms.Location = new System.Drawing.Point(16, 42);
+            listViewRooms.Name = "listViewRooms";
+            listViewRooms.Size = new System.Drawing.Size(766, 307);
+            listViewRooms.TabIndex = 1;
+            listViewRooms.UseCompatibleStateImageBehavior = false;
+            listViewRooms.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            columnHeader1.Text = "Number";
+            columnHeader1.Width = 150;
+            // 
+            // columnHeader2
+            // 
+            columnHeader2.Text = "Floor";
+            columnHeader2.Width = 120;
+            // 
+            // columnHeader3
+            // 
+            columnHeader3.Text = "Building";
+            // 
+            // columnHeader4
+            // 
+            columnHeader4.Text = "Beds (the amount of them)";
+            columnHeader4.Width = 150;
+            // 
+            // RoomsText
+            // 
+            RoomsText.AutoSize = true;
+            RoomsText.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            RoomsText.Location = new System.Drawing.Point(13, 7);
+            RoomsText.Name = "RoomsText";
+            RoomsText.Size = new System.Drawing.Size(86, 32);
+            RoomsText.TabIndex = 0;
+            RoomsText.Text = "Rooms";
+            // 
+            // columnHeader5
+            // 
+            columnHeader5.Text = "Type";
+            // 
+            // SomerenUI
+            // 
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            ClientSize = new System.Drawing.Size(962, 505);
+            Controls.Add(RoomsPanel);
             Controls.Add(menuStrip1);
             Controls.Add(pnlStudents);
             Controls.Add(pnlDashboard);
@@ -323,6 +456,10 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             pnlDrinks.ResumeLayout(false);
             pnlDrinks.PerformLayout();
+            panelLecturers.ResumeLayout(false);
+            panelLecturers.PerformLayout();
+            RoomsPanel.ResumeLayout(false);
+            RoomsPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -344,6 +481,13 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ListView listViewStudents;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel panelLecturers;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.ListView listViewLecturers;
+        private System.Windows.Forms.Label labelLecturers;
+        private System.Windows.Forms.ColumnHeader columnTeacherName;
+        private System.Windows.Forms.ColumnHeader columnLecturerAge;
+        private System.Windows.Forms.ColumnHeader columnTeacherPhoneNr;
         private System.Windows.Forms.ColumnHeader StudentName;
         private System.Windows.Forms.ColumnHeader StudentNumber;
         private System.Windows.Forms.ColumnHeader Class;
@@ -361,5 +505,14 @@
         private System.Windows.Forms.ColumnHeader StockStatus;
         private System.Windows.Forms.Button btnEditDrinks;
         private System.Windows.Forms.ColumnHeader Sales;
+        private System.Windows.Forms.Panel RoomsPanel;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.ListView listViewRooms;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.Label RoomsText;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
     }
 }
