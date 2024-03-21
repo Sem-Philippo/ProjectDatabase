@@ -11,7 +11,6 @@ namespace SomerenUI
         public SomerenUI()
         {
             InitializeComponent();
-            //quick test
             ShowDashboardPanel();
         }
         private void HideAllPanels()
@@ -100,7 +99,7 @@ namespace SomerenUI
                     drink.Alcoholic.ToString(),
                     drink.VAT.ToString("0.00") };
             ListViewItem li = new ListViewItem(subItems);
-            li.Tag = drink;   // link student object to listview item
+            li.Tag = drink;   // link drink object to listview item
             return li;
         }
         private ListViewItem CreateStudentListViewItem(Student student)

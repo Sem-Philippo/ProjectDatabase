@@ -61,16 +61,7 @@ namespace SomerenUI
             try
             {
                 DrinkDao drinkDao = new DrinkDao();
-                Drink drink = new Drink();
-                drink.Name = txtDrinkName.Text;
-                drink.StockAmount = (int)numStock.Value;
-                drink.Id = DrinkSelectBox.SelectedIndex;
-                if (ComboBoxAlcoholic.SelectedIndex == 0)
-                {
-                    drink.Alcoholic = true;
-                }
-                else { drink.Alcoholic = false; }
-                drink.Price = float.Parse(txtDrinkPrice.Text);
+                Drink drink = GetExistingDrink();
                 drinkDao.SaveExistingDrink(drink);
                 MessageBox.Show("Drink succesfully updated");
                 this.Close();
@@ -80,20 +71,23 @@ namespace SomerenUI
                 MessageBox.Show("An error occured while updating the selected drink: " + ex.Message);
             }
         }
+        private Drink GetExistingDrink()
+        {
+            Drink drink = new Drink()
+            {
+                Name = txtDrinkName.Text,
+                StockAmount = (int)numStock.Value,
+                Id = ((Drink)DrinkSelectBox.Items[DrinkSelectBox.SelectedIndex]).Id,
+                Alcoholic = ComboBoxAlcoholic.SelectedIndex == 0, //if option 1 on index 0 is selected (Alcoholic), make drink alcoholic
+                Price = float.Parse(txtDrinkPrice.Text)
+            };
+            return drink;
+        }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
             DrinkDao drinkDao = new DrinkDao();
-            Drink drink = new Drink();
-            drink.Name = txtDrinkName.Text;
-            drink.StockAmount = (int)numStock.Value;
-            drink.Id = ((Drink)DrinkSelectBox.Items[DrinkSelectBox.SelectedIndex]).Id;
-            if (ComboBoxAlcoholic.SelectedIndex == 0)
-            {
-                drink.Alcoholic = true;
-            }
-            else { drink.Alcoholic = false; }
-            drink.Price = float.Parse(txtDrinkPrice.Text);
+            Drink drink = GetExistingDrink();
             drinkDao.DeleteExistingDrink(drink);
             MessageBox.Show($"{drink.Name} succesfully deleted.");
             this.Close();

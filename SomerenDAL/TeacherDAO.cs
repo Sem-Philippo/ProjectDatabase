@@ -21,15 +21,18 @@ namespace SomerenDAL
 
             foreach (DataRow dr in dataTable.Rows)
             {
-                Teacher teacher = new Teacher()
-                {
-                    Name = dr["lecturerName"].ToString(),
-                    AgeInYears = ((int)dr["age"]),
-                    PhoneNumber = (string)dr["phoneNumber"],
-                };
-                teachers.Add(teacher);
+                teachers.Add(ReadTeacher(dr));
             }
             return teachers;
+        }
+        private Teacher ReadTeacher(DataRow dr)
+        {
+            return new Teacher()
+            {
+                Name = dr["lecturerName"].ToString(),
+                AgeInYears = ((int)dr["age"]),
+                PhoneNumber = (string)dr["phoneNumber"],
+            };
         }
 
     }
