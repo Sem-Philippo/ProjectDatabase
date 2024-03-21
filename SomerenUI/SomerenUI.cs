@@ -27,6 +27,7 @@ namespace SomerenUI
         {
             //hide all panels 
             HideAllPanels();
+            //show the panel that should be shown
             panel.Show();
         }
 
@@ -41,7 +42,7 @@ namespace SomerenUI
 
             try
             {
-                // get and display all students
+                //get and display all students
                 List<Student> students = GetStudents();
                 DisplayStudents(students);
             }
@@ -79,25 +80,35 @@ namespace SomerenUI
         }
         private void DisplayDrinks(List<Drink> drinks)
         {
-            // clear the listview before filling it
+            //clear the listview before filling it
             listViewDrinks.Items.Clear();
 
             foreach (Drink drink in drinks)
-            {
-                string[] subItems = new string[6] { drink.Name,
+            { 
+                listViewDrinks.Items.Add(CreateDrinkListViewItem(drink));
+            }
+        }
+        private ListViewItem CreateDrinkListViewItem(Drink drink)
+        {
+            string[] subItems = new string[6] { 
+                    drink.Name,
                     drink.StockAmount.ToString(),
-                    //Gets IsSufficient, which is an enum, In the case of Nearly_Depleted, the _ is replaced with a space
                     "Stock " + drink.IsSufficient.ToString().Replace("_", " "),
                     drink.Price.ToString("0.00"),
                     drink.Alcoholic.ToString(),
                     drink.VAT.ToString("0.00") };
-                ListViewItem li = new ListViewItem(subItems);
-                li.SubItems.Add(drink.Price.ToString("0.00"));
-                li.Tag = drink;   // link student object to listview item
-                listViewDrinks.Items.Add(li);
-            }
+            ListViewItem li = new ListViewItem(subItems);
+            li.Tag = drink;   // link student object to listview item
+            return li;
         }
-
+        private ListViewItem CreateStudentListViewItem(Student student)
+        {
+            string[] subItems = new string[4] { student.Number.ToString(), student.Name,
+                    student.Class, student.PhoneNumber };
+            ListViewItem li = new ListViewItem(subItems);
+            li.Tag = student;   // link student object to listview item
+            return li;
+        }
         private void DisplayStudents(List<Student> students)
         {
             // clear the listview before filling it
@@ -105,11 +116,7 @@ namespace SomerenUI
 
             foreach (Student student in students)
             {
-                string[] subItems = new string[4] { student.Number.ToString(), student.Name,
-                    student.Class, student.PhoneNumber };
-                ListViewItem li = new ListViewItem(subItems);
-                li.Tag = student;   // link student object to listview item
-                listViewStudents.Items.Add(li);
+                listViewStudents.Items.Add(CreateStudentListViewItem(student));
             }
         }
 

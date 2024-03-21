@@ -48,17 +48,20 @@ namespace SomerenDAL
 
             foreach (DataRow dr in dataTable.Rows)
             {
-                Drink drink = new Drink()
-                {
-                    Id = (int)dr["DrinkId"],
-                    Name = (string)dr["Name"],
-                    Alcoholic = (bool)dr["Alcoholic"],
-                    Price = (float)(double)dr["Price"],
-                    StockAmount = (int)dr["Stock"],
-                };
-                drinks.Add(drink);
+                drinks.Add(ReadDrink(dr));
             }
             return drinks;
+        }
+        private Drink ReadDrink (DataRow dr)
+        {
+            return new Drink()
+            {
+                Id = (int)dr["DrinkId"],
+                Name = (string)dr["Name"],
+                Alcoholic = (bool)dr["Alcoholic"],
+                Price = (float)(double)dr["Price"],
+                StockAmount = (int)dr["Stock"],
+            };
         }
     }
 }
