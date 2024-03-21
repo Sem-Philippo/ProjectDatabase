@@ -11,7 +11,6 @@ namespace SomerenUI
         public SomerenUI()
         {
             InitializeComponent();
-            //quick test
             ShowDashboardPanel();
         }
         private void HideAllPanels()
@@ -19,16 +18,6 @@ namespace SomerenUI
             pnlStudents.Hide();
             pnlDashboard.Hide();
             RoomsPanel.Hide();
-            //LecturerPanel here
-            //activity panel here
-            //drink panel here
-            //any other panels here
-        }
-        private void HideAllPanels()
-        {
-            pnlStudents.Hide();
-            pnlDashboard.Hide();
-            //RoomPanel here
             panelLecturers.Hide();
             //activity panel here
             pnlDrinks.Hide();
@@ -75,9 +64,7 @@ namespace SomerenUI
         }
         private void ShowRoomsPanel()
         {
-            HideAllPanels();
-
-            RoomsPanel.Show();
+            ShowPanel(RoomsPanel);
 
             try
             {
