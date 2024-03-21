@@ -73,6 +73,8 @@
             ((System.ComponentModel.ISupportInitialize)pictureBoxStudents).BeginInit();
             pnlDrinks.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxDrinks).BeginInit();
+            panelLecturers.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxLecturers).BeginInit();
             SuspendLayout();
             // 
             // menuStrip1
@@ -171,51 +173,16 @@
             // 
             // pictureBoxStudents
             // 
-            // panelLecturers
-            // 
-            panelLecturers.Controls.Add(pictureBoxLecturers);
-            panelLecturers.Controls.Add(listViewLecturers);
-            panelLecturers.Controls.Add(labelLecturers);
-            panelLecturers.Location = new System.Drawing.Point(13, 26);
-            panelLecturers.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            panelLecturers.Name = "panelLecturers";
-            panelLecturers.Size = new System.Drawing.Size(1072, 621);
-            panelLecturers.TabIndex = 3;
-            // 
-            // pictureBoxLecturers
-            // 
-            pictureBoxLecturers.Image = (System.Drawing.Image)resources.GetObject("pictureBoxLecturers.Image");
-            pictureBoxLecturers.Location = new System.Drawing.Point(920, 0);
-            pictureBoxLecturers.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            pictureBoxLecturers.Name = "pictureBoxLecturers";
-            pictureBoxLecturers.Size = new System.Drawing.Size(149, 164);
-            pictureBoxLecturers.TabIndex = 2;
-            pictureBoxLecturers.TabStop = false;
-            // 
-            // listViewLecturers
-            // 
-            listViewLecturers.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { columnTeacherName, columnLecturerAge, columnTeacherPhoneNr });
-            listViewLecturers.FullRowSelect = true;
-            listViewLecturers.Location = new System.Drawing.Point(18, 56);
-            listViewLecturers.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            listViewLecturers.Name = "listViewLecturers";
-            listViewLecturers.Size = new System.Drawing.Size(875, 408);
-            listViewLecturers.TabIndex = 1;
-            listViewLecturers.UseCompatibleStateImageBehavior = false;
-            listViewLecturers.View = System.Windows.Forms.View.Details;
-            // 
-            // columnTeacherName
-            // 
-            columnTeacherName.Text = "Name";
-            columnTeacherName.Width = 170;
-            // 
-            // columnLecturerAge
-            // 
-            columnLecturerAge.Text = "Age";
             pictureBoxStudents.Image = (System.Drawing.Image)resources.GetObject("pictureBoxStudents.Image");
             pictureBoxStudents.Location = new System.Drawing.Point(920, 0);
             pictureBoxStudents.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             pictureBoxStudents.Name = "pictureBoxStudents";
+            pictureBoxStudents.Size = new System.Drawing.Size(149, 164);
+            pictureBoxStudents.TabIndex = 0;
+            pictureBoxStudents.TabStop = false;
+            // 
+            // listViewStudents
+            // 
             listViewStudents.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { StudentNumber, StudentName, Class, PhoneNumber });
             listViewStudents.FullRowSelect = true;
             listViewStudents.Location = new System.Drawing.Point(18, 56);
@@ -333,19 +300,9 @@
             // 
             Sales.Text = "Sales";
             Sales.Width = 100;
-            // lblStudents
-            columnTeacherPhoneNr.Text = "Phone Number";
-            columnTeacherPhoneNr.Width = 120;
             // 
-            // labelLecturers
-            this.listViewStudents.Name = "listViewStudents";
-            labelLecturers.AutoSize = true;
-            labelLecturers.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            labelLecturers.Location = new System.Drawing.Point(15, 9);
-            labelLecturers.Name = "labelLecturers";
-            labelLecturers.Size = new System.Drawing.Size(138, 41);
-            labelLecturers.TabIndex = 0;
-            labelLecturers.Text = "Lecturers";
+            // lblDrinks
+            // 
             lblDrinks.AutoSize = true;
             lblDrinks.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             lblDrinks.Location = new System.Drawing.Point(15, 9);
@@ -353,24 +310,74 @@
             lblDrinks.Size = new System.Drawing.Size(101, 41);
             lblDrinks.TabIndex = 0;
             lblDrinks.Text = "Drinks";
-            lblStudents.AutoSize = true;
-            lblStudents.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            lblStudents.Location = new System.Drawing.Point(15, 9);
-            lblStudents.Name = "lblStudents";
-            lblStudents.Size = new System.Drawing.Size(134, 41);
-            lblStudents.TabIndex = 0;
-            lblStudents.Text = "Students";
-            this.pictureBoxStudents.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxStudents.Image")));
-            this.pictureBoxStudents.Location = new System.Drawing.Point(805, 0);
-            this.pictureBoxStudents.Name = "pictureBoxStudents";
+            // 
+            // panelLecturers
+            // 
+            panelLecturers.Controls.Add(pictureBoxLecturers);
+            panelLecturers.Controls.Add(listViewLecturers);
+            panelLecturers.Controls.Add(labelLecturers);
+            panelLecturers.Location = new System.Drawing.Point(13, 26);
+            panelLecturers.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            panelLecturers.Name = "panelLecturers";
+            panelLecturers.Size = new System.Drawing.Size(1072, 621);
+            panelLecturers.TabIndex = 3;
+            // 
+            // pictureBoxLecturers
+            // 
+            pictureBoxLecturers.Image = (System.Drawing.Image)resources.GetObject("pictureBoxLecturers.Image");
+            pictureBoxLecturers.Location = new System.Drawing.Point(920, 0);
+            pictureBoxLecturers.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            pictureBoxLecturers.Name = "pictureBoxLecturers";
+            pictureBoxLecturers.Size = new System.Drawing.Size(149, 164);
+            pictureBoxLecturers.TabIndex = 2;
+            pictureBoxLecturers.TabStop = false;
+            // 
+            // listViewLecturers
+            // 
+            listViewLecturers.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { columnTeacherName, columnLecturerAge, columnTeacherPhoneNr });
+            listViewLecturers.FullRowSelect = true;
+            listViewLecturers.Location = new System.Drawing.Point(18, 56);
+            listViewLecturers.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            listViewLecturers.Name = "listViewLecturers";
+            listViewLecturers.Size = new System.Drawing.Size(875, 408);
+            listViewLecturers.TabIndex = 1;
+            listViewLecturers.UseCompatibleStateImageBehavior = false;
+            listViewLecturers.View = System.Windows.Forms.View.Details;
+            // 
+            // columnTeacherName
+            // 
+            columnTeacherName.Text = "Name";
+            columnTeacherName.Width = 170;
+            // 
+            // columnLecturerAge
+            // 
+            columnLecturerAge.Text = "Age";
+            // 
+            // columnTeacherPhoneNr
+            // 
+            columnTeacherPhoneNr.Text = "Phone Number";
+            columnTeacherPhoneNr.Width = 120;
+            // 
+            // labelLecturers
+            // 
+            labelLecturers.AutoSize = true;
+            labelLecturers.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            labelLecturers.Location = new System.Drawing.Point(15, 9);
+            labelLecturers.Name = "labelLecturers";
+            labelLecturers.Size = new System.Drawing.Size(138, 41);
+            labelLecturers.TabIndex = 0;
+            labelLecturers.Text = "Lecturers";
+            // 
+            // SomerenUI
+            // 
             AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(1099, 673);
             Controls.Add(menuStrip1);
-            Controls.Add(panelLecturers);
-            Controls.Add(pnlDrinks);
             Controls.Add(pnlStudents);
             Controls.Add(pnlDashboard);
+            Controls.Add(panelLecturers);
+            Controls.Add(pnlDrinks);
             MainMenuStrip = menuStrip1;
             Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             Name = "SomerenUI";
@@ -390,12 +397,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBoxLecturers).EndInit();
             ResumeLayout(false);
             PerformLayout();
-            this.pnlStudents.ResumeLayout(false);
-            this.pnlStudents.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxStudents)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
         }
 
         #endregion
