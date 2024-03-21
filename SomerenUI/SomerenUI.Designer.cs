@@ -41,16 +41,16 @@
             pnlDashboard = new System.Windows.Forms.Panel();
             lblDashboard = new System.Windows.Forms.Label();
             pnlStudents = new System.Windows.Forms.Panel();
-            pictureBox1 = new System.Windows.Forms.PictureBox();
+            pictureBoxStudents = new System.Windows.Forms.PictureBox();
             listViewStudents = new System.Windows.Forms.ListView();
             StudentNumber = new System.Windows.Forms.ColumnHeader();
             StudentName = new System.Windows.Forms.ColumnHeader();
             Class = new System.Windows.Forms.ColumnHeader();
             PhoneNumber = new System.Windows.Forms.ColumnHeader();
-            label1 = new System.Windows.Forms.Label();
+            lblStudents = new System.Windows.Forms.Label();
             pnlDrinks = new System.Windows.Forms.Panel();
             btnEditDrinks = new System.Windows.Forms.Button();
-            pictureBox2 = new System.Windows.Forms.PictureBox();
+            pictureBoxDrinks = new System.Windows.Forms.PictureBox();
             listViewDrinks = new System.Windows.Forms.ListView();
             DrinkName = new System.Windows.Forms.ColumnHeader();
             Stock = new System.Windows.Forms.ColumnHeader();
@@ -63,9 +63,9 @@
             menuStrip1.SuspendLayout();
             pnlDashboard.SuspendLayout();
             pnlStudents.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxStudents).BeginInit();
             pnlDrinks.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxDrinks).BeginInit();
             SuspendLayout();
             // 
             // menuStrip1
@@ -152,24 +152,24 @@
             // 
             // pnlStudents
             // 
-            pnlStudents.Controls.Add(pictureBox1);
+            pnlStudents.Controls.Add(pictureBoxStudents);
             pnlStudents.Controls.Add(listViewStudents);
-            pnlStudents.Controls.Add(label1);
+            pnlStudents.Controls.Add(lblStudents);
             pnlStudents.Location = new System.Drawing.Point(14, 36);
             pnlStudents.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             pnlStudents.Name = "pnlStudents";
             pnlStudents.Size = new System.Drawing.Size(1072, 621);
             pnlStudents.TabIndex = 2;
             // 
-            // pictureBox1
+            // pictureBoxStudents
             // 
-            pictureBox1.Image = (System.Drawing.Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new System.Drawing.Point(920, 0);
-            pictureBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new System.Drawing.Size(149, 164);
-            pictureBox1.TabIndex = 2;
-            pictureBox1.TabStop = false;
+            pictureBoxStudents.Image = (System.Drawing.Image)resources.GetObject("pictureBoxStudents.Image");
+            pictureBoxStudents.Location = new System.Drawing.Point(920, 0);
+            pictureBoxStudents.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            pictureBoxStudents.Name = "pictureBoxStudents";
+            pictureBoxStudents.Size = new System.Drawing.Size(149, 164);
+            pictureBoxStudents.TabIndex = 2;
+            pictureBoxStudents.TabStop = false;
             // 
             // listViewStudents
             // 
@@ -202,20 +202,20 @@
             PhoneNumber.Text = "Phone Number";
             PhoneNumber.Width = 150;
             // 
-            // label1
+            // lblStudents
             // 
-            label1.AutoSize = true;
-            label1.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            label1.Location = new System.Drawing.Point(15, 9);
-            label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(134, 41);
-            label1.TabIndex = 0;
-            label1.Text = "Students";
+            lblStudents.AutoSize = true;
+            lblStudents.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            lblStudents.Location = new System.Drawing.Point(15, 9);
+            lblStudents.Name = "lblStudents";
+            lblStudents.Size = new System.Drawing.Size(134, 41);
+            lblStudents.TabIndex = 0;
+            lblStudents.Text = "Students";
             // 
             // pnlDrinks
             // 
             pnlDrinks.Controls.Add(btnEditDrinks);
-            pnlDrinks.Controls.Add(pictureBox2);
+            pnlDrinks.Controls.Add(pictureBoxDrinks);
             pnlDrinks.Controls.Add(listViewDrinks);
             pnlDrinks.Controls.Add(lblDrinks);
             pnlDrinks.Location = new System.Drawing.Point(14, 36);
@@ -235,15 +235,15 @@
             btnEditDrinks.UseVisualStyleBackColor = true;
             btnEditDrinks.Click += btnEditDrinks_Click;
             // 
-            // pictureBox2
+            // pictureBoxDrinks
             // 
-            pictureBox2.Image = (System.Drawing.Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new System.Drawing.Point(920, 0);
-            pictureBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new System.Drawing.Size(149, 164);
-            pictureBox2.TabIndex = 2;
-            pictureBox2.TabStop = false;
+            pictureBoxDrinks.Image = (System.Drawing.Image)resources.GetObject("pictureBoxDrinks.Image");
+            pictureBoxDrinks.Location = new System.Drawing.Point(920, 0);
+            pictureBoxDrinks.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            pictureBoxDrinks.Name = "pictureBoxDrinks";
+            pictureBoxDrinks.Size = new System.Drawing.Size(149, 164);
+            pictureBoxDrinks.TabIndex = 2;
+            pictureBoxDrinks.TabStop = false;
             // 
             // listViewDrinks
             // 
@@ -307,9 +307,9 @@
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(1099, 673);
             Controls.Add(menuStrip1);
+            Controls.Add(pnlDrinks);
             Controls.Add(pnlStudents);
             Controls.Add(pnlDashboard);
-            Controls.Add(pnlDrinks);
             MainMenuStrip = menuStrip1;
             Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             Name = "SomerenUI";
@@ -320,10 +320,10 @@
             pnlDashboard.PerformLayout();
             pnlStudents.ResumeLayout(false);
             pnlStudents.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxStudents).EndInit();
             pnlDrinks.ResumeLayout(false);
             pnlDrinks.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxDrinks).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -341,16 +341,16 @@
         private System.Windows.Forms.Panel pnlDashboard;
         private System.Windows.Forms.Label lblDashboard;
         private System.Windows.Forms.Panel pnlStudents;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBoxStudents;
         private System.Windows.Forms.ListView listViewStudents;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblStudents;
         private System.Windows.Forms.ColumnHeader StudentName;
         private System.Windows.Forms.ColumnHeader StudentNumber;
         private System.Windows.Forms.ColumnHeader Class;
         private System.Windows.Forms.ColumnHeader PhoneNumber;
         private System.Windows.Forms.ToolStripMenuItem drinksToolStripMenuItem;
         private System.Windows.Forms.Panel pnlDrinks;
-        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pictureBoxDrinks;
         private System.Windows.Forms.ListView listViewDrinks;
         private System.Windows.Forms.ColumnHeader DrinkName;
         private System.Windows.Forms.ColumnHeader Stock;

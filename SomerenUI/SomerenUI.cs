@@ -84,13 +84,13 @@ namespace SomerenUI
             listViewDrinks.Items.Clear();
 
             foreach (Drink drink in drinks)
-            { 
+            {
                 listViewDrinks.Items.Add(CreateDrinkListViewItem(drink));
             }
         }
         private ListViewItem CreateDrinkListViewItem(Drink drink)
         {
-            string[] subItems = new string[6] { 
+            string[] subItems = new string[6] {
                     drink.Name,
                     drink.StockAmount.ToString(),
                     "Stock " + drink.IsSufficient.ToString().Replace("_", " "),
