@@ -139,10 +139,5 @@ namespace SomerenUI
             drinkEditForm.ShowDialog();
             ShowDrinksPanel();
         }
-
-        private void listViewStudents_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

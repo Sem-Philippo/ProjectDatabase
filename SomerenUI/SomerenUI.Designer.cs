@@ -182,7 +182,6 @@
             listViewStudents.TabIndex = 1;
             listViewStudents.UseCompatibleStateImageBehavior = false;
             listViewStudents.View = System.Windows.Forms.View.Details;
-            listViewStudents.SelectedIndexChanged += listViewStudents_SelectedIndexChanged;
             // 
             // StudentNumber
             // 
