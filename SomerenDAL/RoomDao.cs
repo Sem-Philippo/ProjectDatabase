@@ -27,7 +27,7 @@ namespace SomerenDAL
 
         private Room CreateRoomFromDataRow(DataRow dr)
         {
-            // ....
+            // ...
             return new Room()
             {
                 Number = (int)dr["roomNr"],

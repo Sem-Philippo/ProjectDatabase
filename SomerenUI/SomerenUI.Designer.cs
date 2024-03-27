@@ -209,7 +209,7 @@
             RoomsPanel.Controls.Add(pictureBox2);
             RoomsPanel.Controls.Add(listViewRooms);
             RoomsPanel.Controls.Add(RoomsText);
-            RoomsPanel.Location = new System.Drawing.Point(12, 24);
+            RoomsPanel.Location = new System.Drawing.Point(12, 27);
             RoomsPanel.Name = "RoomsPanel";
             RoomsPanel.Size = new System.Drawing.Size(938, 466);
             RoomsPanel.TabIndex = 3;
