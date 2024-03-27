@@ -42,18 +42,8 @@ namespace SomerenUI
 
             foreach (Room room in rooms)
             {
-                // Determine the room type based on the number of beds
-                string roomType = room.Beds > 1 ? "Student" : "Lecturer";
-
-                // Include the room type in the subItems array
-                string[] subItems = new string[5] { room.Number.ToString(), room.Floor.ToString(), room.Building.ToString(), room.Beds.ToString(), roomType };
-
-                // Create a new ListViewItem with the subItems array
-                ListViewItem li = new ListViewItem(subItems);
-                li.Tag = room;   // link room object to listview item
-
                 // Add the new ListViewItem to the listViewRooms
-                listViewRooms.Items.Add(li);
+                listViewRooms.Items.Add(CreateRoomListViewItem(room));
             }
 
         }
@@ -65,9 +55,7 @@ namespace SomerenUI
         }
         private void ShowRoomsPanel()
         {
-            HideAllPanels();
-
-            RoomsPanel.Show();
+            ShowPanel(RoomsPanel);
 
             try
             {
@@ -146,6 +134,19 @@ namespace SomerenUI
             li.Tag = drink;   // link drink object to listview item
             return li;
         }
+        private ListViewItem CreateRoomListViewItem(Room room)
+        {
+            // Determine the room type based on the number of beds
+            string roomType = room.Beds > 1 ? "Student" : "Lecturer";
+
+            // Include the room type in the subItems array
+            string[] subItems = new string[5] { room.Number.ToString(), room.Floor.ToString(), room.Building.ToString(), room.Beds.ToString(), roomType };
+
+            // Create a new ListViewItem with the subItems array
+            ListViewItem li = new ListViewItem(subItems);
+            li.Tag = room;   // link room object to listview item
+            return li;
+        }
         private ListViewItem CreateStudentListViewItem(Student student)
         {
             string[] subItems = new string[4] { student.Number.ToString(), student.Name,
@@ -157,7 +158,7 @@ namespace SomerenUI
         private void DisplayStudents(List<Student> students)
         {
             // clear the listview before filling it
-            listViewStudents.Clear();
+            listViewStudents.Items.Clear();
 
             foreach (Student student in students)
             {
