@@ -21,11 +21,11 @@ namespace SomerenDAL
 
             foreach (DataRow dr in dataTable.Rows)
             {
-                teachers.Add(ReadTeacher(dr));
+                teachers.Add(CreateTeacherFromDataRow(dr));
             }
             return teachers;
         }
-        private Teacher ReadTeacher(DataRow dr)
+        private Teacher CreateTeacherFromDataRow(DataRow dr)
         {
             return new Teacher()
             {

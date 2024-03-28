@@ -1,12 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using SomerenModel;
+using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data;
-using SomerenModel;
-using System;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace SomerenDAL
 {
-    public class StudentDao : BaseDao
+    internal class ActivityDAO : BaseDao
     {
         public List<Student> GetAllStudents()
         {
@@ -21,11 +24,11 @@ namespace SomerenDAL
 
             foreach (DataRow dr in dataTable.Rows)
             {
-                students.Add(CreateStudentFromDataRow(dr));
+                students.Add(ReadStudent(dr));
             }
             return students;
         }
-        private Student CreateStudentFromDataRow(DataRow dr)
+        private Student ReadStudent(DataRow dr)
         {
             return new Student()
             {

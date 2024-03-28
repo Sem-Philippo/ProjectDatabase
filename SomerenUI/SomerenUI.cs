@@ -21,6 +21,7 @@ namespace SomerenUI
             RoomsPanel.Hide();
             //activity panel here
             pnlDrinks.Hide();
+            pnlSupervisors.Hide();
             //any other panels here
         }
         private void ShowPanel(Panel panel)
@@ -97,6 +98,11 @@ namespace SomerenUI
             {
                 MessageBox.Show("Something went wrong while loading the drinks: " + e.Message);
             }
+        }
+        private void ShowSupervisorsPanel()
+        {
+            ShowPanel(pnlSupervisors);
+
         }
         private List<Drink> GetDrinks()
         {
@@ -247,6 +253,11 @@ namespace SomerenUI
         private void roomsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShowRoomsPanel();
+        }
+
+        private void activitySupervisorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowSupervisorsPanel();
         }
     }
 }

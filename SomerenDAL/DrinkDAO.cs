@@ -48,11 +48,11 @@ namespace SomerenDAL
 
             foreach (DataRow dr in dataTable.Rows)
             {
-                drinks.Add(ReadDrink(dr));
+                drinks.Add(CreateDrinkFromDataRow(dr));
             }
             return drinks;
         }
-        private Drink ReadDrink (DataRow dr)
+        private Drink CreateDrinkFromDataRow(DataRow dr)
         {
             return new Drink()
             {
