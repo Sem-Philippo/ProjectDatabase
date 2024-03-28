@@ -9,34 +9,38 @@ using System.Threading.Tasks;
 
 namespace SomerenDAL
 {
-    internal class ActivityDAO : BaseDao
+    public class ActivityDAO : BaseDao
     {
-        public List<Student> GetAllStudents()
+        public List<Activity> GetAllActivities()
         {
-            string query = "SELECT StudentNr, studentName, studentPhoneNr, class, roomNr FROM Student";
+            string query = "SELECT activityId, activityName FROM Activity";
             SqlParameter[] sqlParameters = new SqlParameter[0];
             return ReadTables(ExecuteSelectQuery(query, sqlParameters));
         }
-
-        private List<Student> ReadTables(DataTable dataTable)
+        public Activity GetActivityById(int id)
         {
-            List<Student> students = new List<Student>();
+            string query = $"SELECT activityId, activityName FROM Activity WHERE activityId = {id}";
+            SqlParameter[] sqlParameters = new SqlParameter[0];
+            //not making seperate method until I only need 1 entry twice or more
+            return ReadTables(ExecuteSelectQuery(query, sqlParameters))[0];
+        }
+
+        private List<Activity> ReadTables(DataTable dataTable)
+        {
+            List<Activity> activities = new List<Activity>();
 
             foreach (DataRow dr in dataTable.Rows)
             {
-                students.Add(ReadStudent(dr));
+                activities.Add(CreateActivityFromDataRow(dr));
             }
-            return students;
+            return activities;
         }
-        private Student ReadStudent(DataRow dr)
+        private Activity CreateActivityFromDataRow(DataRow dr)
         {
-            return new Student()
+            return new Activity()
             {
-                Number = (int)dr["StudentNr"],
-                Name = dr["studentName"].ToString(),
-                PhoneNumber = dr["studentPhoneNr"].ToString(),
-                Class = dr["class"].ToString(),
-                RoomNumber = (int)dr["roomNr"]
+                Id = (int)dr["activityId"],
+                Name = dr["activityName"].ToString(),
             };
         }
     }

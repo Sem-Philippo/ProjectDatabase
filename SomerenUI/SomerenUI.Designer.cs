@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SomerenUI));
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Test");
             menuStrip1 = new System.Windows.Forms.MenuStrip();
             dashboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             dashboardToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -79,6 +80,9 @@
             Type = new System.Windows.Forms.ColumnHeader();
             RoomsText = new System.Windows.Forms.Label();
             pnlSupervisors = new System.Windows.Forms.Panel();
+            lblActivity = new System.Windows.Forms.Label();
+            lblNotSupervising = new System.Windows.Forms.Label();
+            lblSupervising = new System.Windows.Forms.Label();
             comboBoxActivities = new System.Windows.Forms.ComboBox();
             listViewNotSupervising = new System.Windows.Forms.ListView();
             LecturerId = new System.Windows.Forms.ColumnHeader();
@@ -470,6 +474,9 @@
             // 
             // pnlSupervisors
             // 
+            pnlSupervisors.Controls.Add(lblActivity);
+            pnlSupervisors.Controls.Add(lblNotSupervising);
+            pnlSupervisors.Controls.Add(lblSupervising);
             pnlSupervisors.Controls.Add(comboBoxActivities);
             pnlSupervisors.Controls.Add(listViewNotSupervising);
             pnlSupervisors.Controls.Add(pictureBoxSupervisor);
@@ -481,30 +488,59 @@
             pnlSupervisors.Size = new System.Drawing.Size(1072, 621);
             pnlSupervisors.TabIndex = 4;
             // 
+            // lblActivity
+            // 
+            lblActivity.AutoSize = true;
+            lblActivity.Location = new System.Drawing.Point(359, 70);
+            lblActivity.Name = "lblActivity";
+            lblActivity.Size = new System.Drawing.Size(61, 20);
+            lblActivity.TabIndex = 7;
+            lblActivity.Text = "Activity:";
+            // 
+            // lblNotSupervising
+            // 
+            lblNotSupervising.AutoSize = true;
+            lblNotSupervising.Location = new System.Drawing.Point(545, 70);
+            lblNotSupervising.Name = "lblNotSupervising";
+            lblNotSupervising.Size = new System.Drawing.Size(115, 20);
+            lblNotSupervising.TabIndex = 6;
+            lblNotSupervising.Text = "Not supervising:";
+            // 
+            // lblSupervising
+            // 
+            lblSupervising.AutoSize = true;
+            lblSupervising.Location = new System.Drawing.Point(21, 70);
+            lblSupervising.Name = "lblSupervising";
+            lblSupervising.Size = new System.Drawing.Size(88, 20);
+            lblSupervising.TabIndex = 5;
+            lblSupervising.Text = "Supervising:";
+            // 
             // comboBoxActivities
             // 
+            comboBoxActivities.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             comboBoxActivities.FormattingEnabled = true;
-            comboBoxActivities.Location = new System.Drawing.Point(359, 57);
+            comboBoxActivities.Location = new System.Drawing.Point(359, 97);
             comboBoxActivities.Name = "comboBoxActivities";
             comboBoxActivities.Size = new System.Drawing.Size(151, 28);
             comboBoxActivities.TabIndex = 4;
+            comboBoxActivities.SelectedIndexChanged += comboBoxActivities_SelectedIndexChanged;
             // 
             // listViewNotSupervising
             // 
             listViewNotSupervising.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { LecturerId, LecturerName });
             listViewNotSupervising.FullRowSelect = true;
-            listViewNotSupervising.Location = new System.Drawing.Point(545, 57);
+            listViewNotSupervising.Location = new System.Drawing.Point(545, 97);
             listViewNotSupervising.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             listViewNotSupervising.Name = "listViewNotSupervising";
             listViewNotSupervising.Size = new System.Drawing.Size(301, 407);
             listViewNotSupervising.TabIndex = 3;
             listViewNotSupervising.UseCompatibleStateImageBehavior = false;
             listViewNotSupervising.View = System.Windows.Forms.View.Details;
+            listViewNotSupervising.MouseDoubleClick += listViewNotSupervising_MouseDoubleClick;
             // 
             // LecturerId
             // 
             LecturerId.Text = "Id";
-            LecturerId.Width = 150;
             // 
             // LecturerName
             // 
@@ -525,18 +561,19 @@
             // 
             listViewSupervising.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { SupervisorId, SupervisorName });
             listViewSupervising.FullRowSelect = true;
-            listViewSupervising.Location = new System.Drawing.Point(18, 57);
+            listViewSupervising.Items.AddRange(new System.Windows.Forms.ListViewItem[] { listViewItem1 });
+            listViewSupervising.Location = new System.Drawing.Point(18, 97);
             listViewSupervising.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             listViewSupervising.Name = "listViewSupervising";
             listViewSupervising.Size = new System.Drawing.Size(301, 407);
             listViewSupervising.TabIndex = 1;
             listViewSupervising.UseCompatibleStateImageBehavior = false;
             listViewSupervising.View = System.Windows.Forms.View.Details;
+            listViewSupervising.MouseDoubleClick += listViewSupervising_MouseDoubleClick;
             // 
             // SupervisorId
             // 
             SupervisorId.Text = "Id";
-            SupervisorId.Width = 150;
             // 
             // SupervisorName
             // 
@@ -653,5 +690,8 @@
         private System.Windows.Forms.ColumnHeader LecturerId;
         private System.Windows.Forms.ColumnHeader LecturerName;
         private System.Windows.Forms.ComboBox comboBoxActivities;
+        private System.Windows.Forms.Label lblActivity;
+        private System.Windows.Forms.Label lblNotSupervising;
+        private System.Windows.Forms.Label lblSupervising;
     }
 }

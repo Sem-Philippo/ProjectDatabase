@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using SomerenService;
 using SomerenModel;
+using SomerenDAL;
+using static System.Windows.Forms.LinkLabel;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace SomerenUI
 {
@@ -102,7 +105,46 @@ namespace SomerenUI
         private void ShowSupervisorsPanel()
         {
             ShowPanel(pnlSupervisors);
+            UpdateActivityBox();
 
+        }
+        private void UpdateActivityBox()
+        {
+            ActivityDAO activityDao = new ActivityDAO();
+            List<Activity> activities = activityDao.GetAllActivities();
+            comboBoxActivities.Items.Clear();
+            foreach (Activity activity in activities)
+            {
+                comboBoxActivities.Items.Add(activity);
+            }
+            comboBoxActivities.SelectedIndex = 0;
+            //update the listviews just in case
+            UpdateSupervisors();
+        }
+        private void UpdateSupervisors()
+        {
+
+            Activity activity = ((Activity)comboBoxActivities.Items[comboBoxActivities.SelectedIndex]);
+            //get supervisor listview
+            //clear it
+            listViewSupervising.Items.Clear();
+            //get all supervisors for the activity
+            SupervisorDAO supervisorDAO = new SupervisorDAO();
+            List<Teacher> supervisors = supervisorDAO.GetSupervisorsByActivity(activity);
+            //add all supervisors for the activity
+            foreach (Teacher teacher in supervisors)
+            {
+                listViewSupervising.Items.Add(CreateSupervisorListViewItem(teacher));
+            }
+            //get other listview
+            //clear it too
+            listViewNotSupervising.Items.Clear();
+            //add all lecturers who arent supervising the activity
+            supervisors = supervisorDAO.GetNonSupervisorsByActivity(activity);
+            foreach (Teacher teacher in supervisors)
+            {
+                listViewNotSupervising.Items.Add(CreateSupervisorListViewItem(teacher));
+            }
         }
         private List<Drink> GetDrinks()
         {
@@ -216,6 +258,16 @@ namespace SomerenUI
             li.Tag = lecturer;   // link teacher object to listview item
             return li;
         }
+        private ListViewItem CreateSupervisorListViewItem(Teacher lecturer)
+        {
+            string[] subItems = new string[2] {
+                lecturer.Id.ToString(),
+                lecturer.Name,
+            };
+            ListViewItem li = new ListViewItem(subItems);
+            li.Tag = lecturer;
+            return li;
+        }
 
         private void dashboardToolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -258,6 +310,40 @@ namespace SomerenUI
         private void activitySupervisorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShowSupervisorsPanel();
+        }
+        private void comboBoxActivities_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateSupervisors();
+        }
+
+        private void listViewSupervising_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            //figuring out how to get the object from the double click is from the internet, the rest is mine
+            //also, its cooler this way
+            ListViewHitTestInfo info = listViewSupervising.HitTest(e.X, e.Y);
+            ListViewItem item = info.Item;
+            if (item != null)
+            {
+                int supervisorId = int.Parse(item.Text);
+                TeacherDao teacherDao = new TeacherDao();
+                Deletion_Confirmation deletionForm = new Deletion_Confirmation(teacherDao.GetTeacherById(supervisorId), (Activity)comboBoxActivities.Items[comboBoxActivities.SelectedIndex]);
+                deletionForm.ShowDialog();
+            }
+            UpdateSupervisors();
+        }
+        private void listViewNotSupervising_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            //figuring out how to get the object from the double click is from the internet, the rest is mine
+            //also, its cooler this way
+            ListViewHitTestInfo info = listViewNotSupervising.HitTest(e.X, e.Y);
+            ListViewItem item = info.Item;
+            if (item != null)
+            {
+                int supervisorId = int.Parse(item.Text);
+                SupervisorDAO supervisorDao = new SupervisorDAO();
+                supervisorDao.AddSupervisor(supervisorId, ((Activity)comboBoxActivities.Items[comboBoxActivities.SelectedIndex]));
+            }
+            UpdateSupervisors();
         }
     }
 }

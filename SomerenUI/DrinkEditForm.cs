@@ -24,6 +24,7 @@ namespace SomerenUI
             {
                 DrinkSelectBox.Items.Add(drink);
             }
+            DrinkSelectBox.SelectedIndex = 0;
             pnlEditDrink.Hide();
             pnlNewDrink.Hide();
         }

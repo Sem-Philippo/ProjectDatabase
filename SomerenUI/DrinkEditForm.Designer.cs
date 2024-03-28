@@ -58,13 +58,13 @@
             // 
             // DrinkSelectBox
             // 
+            DrinkSelectBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             DrinkSelectBox.FormattingEnabled = true;
             DrinkSelectBox.Items.AddRange(new object[] { "Add new drink" });
             DrinkSelectBox.Location = new System.Drawing.Point(225, 40);
             DrinkSelectBox.Name = "DrinkSelectBox";
             DrinkSelectBox.Size = new System.Drawing.Size(150, 28);
             DrinkSelectBox.TabIndex = 0;
-            DrinkSelectBox.Text = "Choose a drink";
             DrinkSelectBox.SelectedIndexChanged += DrinkSelectBox_SelectedIndexChanged;
             // 
             // pnlEditDrink
@@ -310,6 +310,5 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtNewName;
-        private System.Windows.Forms.ComboBox FormName;
     }
 }
