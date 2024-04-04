@@ -345,5 +345,10 @@ namespace SomerenUI
             }
             UpdateSupervisors();
         }
+
+        private void SomerenUI_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
