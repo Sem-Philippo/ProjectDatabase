@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SomerenUI));
             System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Test");
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("Test");
             menuStrip1 = new System.Windows.Forms.MenuStrip();
             dashboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             dashboardToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,6 +41,7 @@
             roomsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             drinksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             activitySupervisorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            orderADrinkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             pnlDashboard = new System.Windows.Forms.Panel();
             lblDashboard = new System.Windows.Forms.Label();
             pnlStudents = new System.Windows.Forms.Panel();
@@ -92,6 +94,19 @@
             SupervisorId = new System.Windows.Forms.ColumnHeader();
             SupervisorName = new System.Windows.Forms.ColumnHeader();
             lblSupervisors = new System.Windows.Forms.Label();
+            pnlOrder = new System.Windows.Forms.Panel();
+            label1 = new System.Windows.Forms.Label();
+            label2 = new System.Windows.Forms.Label();
+            label3 = new System.Windows.Forms.Label();
+            comboBox1 = new System.Windows.Forms.ComboBox();
+            listView1 = new System.Windows.Forms.ListView();
+            columnHeader1 = new System.Windows.Forms.ColumnHeader();
+            columnHeader2 = new System.Windows.Forms.ColumnHeader();
+            pictureBox1 = new System.Windows.Forms.PictureBox();
+            listView2 = new System.Windows.Forms.ListView();
+            columnHeader3 = new System.Windows.Forms.ColumnHeader();
+            columnHeader4 = new System.Windows.Forms.ColumnHeader();
+            label4 = new System.Windows.Forms.Label();
             menuStrip1.SuspendLayout();
             pnlDashboard.SuspendLayout();
             pnlStudents.SuspendLayout();
@@ -104,12 +119,14 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             pnlSupervisors.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxSupervisor).BeginInit();
+            pnlOrder.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { dashboardToolStripMenuItem, studentsToolStripMenuItem, lecturersToolStripMenuItem, activitiesToolStripMenuItem, roomsToolStripMenuItem, drinksToolStripMenuItem, activitySupervisorToolStripMenuItem });
+            menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { dashboardToolStripMenuItem, studentsToolStripMenuItem, lecturersToolStripMenuItem, activitiesToolStripMenuItem, roomsToolStripMenuItem, drinksToolStripMenuItem, activitySupervisorToolStripMenuItem, orderADrinkToolStripMenuItem });
             menuStrip1.Location = new System.Drawing.Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new System.Drawing.Size(962, 24);
@@ -177,6 +194,13 @@
             activitySupervisorToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
             activitySupervisorToolStripMenuItem.Text = "Supervisors";
             activitySupervisorToolStripMenuItem.Click += activitySupervisorToolStripMenuItem_Click;
+            // 
+            // orderADrinkToolStripMenuItem
+            // 
+            orderADrinkToolStripMenuItem.Name = "orderADrinkToolStripMenuItem";
+            orderADrinkToolStripMenuItem.Size = new System.Drawing.Size(92, 20);
+            orderADrinkToolStripMenuItem.Text = "Order a Drink!";
+            orderADrinkToolStripMenuItem.Click += orderADrinkToolStripMenuItem_Click;
             // 
             // pnlDashboard
             // 
@@ -581,11 +605,124 @@
             lblSupervisors.TabIndex = 0;
             lblSupervisors.Text = "Supervisors";
             // 
+            // pnlOrder
+            // 
+            pnlOrder.Controls.Add(label1);
+            pnlOrder.Controls.Add(label2);
+            pnlOrder.Controls.Add(label3);
+            pnlOrder.Controls.Add(comboBox1);
+            pnlOrder.Controls.Add(listView1);
+            pnlOrder.Controls.Add(pictureBox1);
+            pnlOrder.Controls.Add(listView2);
+            pnlOrder.Controls.Add(label4);
+            pnlOrder.Location = new System.Drawing.Point(12, 71);
+            pnlOrder.Name = "pnlOrder";
+            pnlOrder.Size = new System.Drawing.Size(938, 466);
+            pnlOrder.TabIndex = 5;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(314, 52);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(50, 15);
+            label1.TabIndex = 7;
+            label1.Text = "Activity:";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new System.Drawing.Point(477, 52);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(93, 15);
+            label2.TabIndex = 6;
+            label2.Text = "Not supervising:";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new System.Drawing.Point(18, 52);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(71, 15);
+            label3.TabIndex = 5;
+            label3.Text = "Supervising:";
+            // 
+            // comboBox1
+            // 
+            comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new System.Drawing.Point(314, 73);
+            comboBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new System.Drawing.Size(133, 23);
+            comboBox1.TabIndex = 4;
+            // 
+            // listView1
+            // 
+            listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { columnHeader1, columnHeader2 });
+            listView1.FullRowSelect = true;
+            listView1.Location = new System.Drawing.Point(477, 73);
+            listView1.Name = "listView1";
+            listView1.Size = new System.Drawing.Size(264, 306);
+            listView1.TabIndex = 3;
+            listView1.UseCompatibleStateImageBehavior = false;
+            listView1.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            columnHeader1.Text = "Id";
+            // 
+            // columnHeader2
+            // 
+            columnHeader2.Text = "Name";
+            columnHeader2.Width = 150;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (System.Drawing.Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new System.Drawing.Point(805, 0);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new System.Drawing.Size(130, 123);
+            pictureBox1.TabIndex = 2;
+            pictureBox1.TabStop = false;
+            // 
+            // listView2
+            // 
+            listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { columnHeader3, columnHeader4 });
+            listView2.FullRowSelect = true;
+            listView2.Items.AddRange(new System.Windows.Forms.ListViewItem[] { listViewItem2 });
+            listView2.Location = new System.Drawing.Point(16, 73);
+            listView2.Name = "listView2";
+            listView2.Size = new System.Drawing.Size(264, 306);
+            listView2.TabIndex = 1;
+            listView2.UseCompatibleStateImageBehavior = false;
+            listView2.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader3
+            // 
+            columnHeader3.Text = "Id";
+            // 
+            // columnHeader4
+            // 
+            columnHeader4.Text = "Name";
+            columnHeader4.Width = 150;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label4.Location = new System.Drawing.Point(13, 7);
+            label4.Name = "label4";
+            label4.Size = new System.Drawing.Size(124, 32);
+            label4.TabIndex = 0;
+            label4.Text = "Ordering...";
+            // 
             // SomerenUI
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(962, 505);
+            Controls.Add(pnlOrder);
             Controls.Add(menuStrip1);
             Controls.Add(pnlSupervisors);
             Controls.Add(RoomsPanel);
@@ -616,6 +753,9 @@
             pnlSupervisors.ResumeLayout(false);
             pnlSupervisors.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxSupervisor).EndInit();
+            pnlOrder.ResumeLayout(false);
+            pnlOrder.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -684,5 +824,19 @@
         private System.Windows.Forms.Label lblActivity;
         private System.Windows.Forms.Label lblNotSupervising;
         private System.Windows.Forms.Label lblSupervising;
+        private System.Windows.Forms.ToolStripMenuItem orderADrinkToolStripMenuItem;
+        private System.Windows.Forms.Panel pnlOrder;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ListView listView2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.Label label4;
     }
 }
