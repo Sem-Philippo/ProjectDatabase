@@ -10,11 +10,40 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 namespace SomerenUI
 {
     public partial class SomerenUI : Form
+
     {
+        StudentDao studentDao = new StudentDao();
+        DrinkDao drinkDao = new DrinkDao();
+        OrderDao orderDao = new OrderDao();
+
         public SomerenUI()
         {
             InitializeComponent();
             ShowDashboardPanel();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            PopulateStudentList();
+            PopulateDrinkList();
+        }
+        private void PopulateStudentList()
+        {
+            List<Student> studentsConsole = studentDao.GetAllStudents();
+            System.Diagnostics.Debug.WriteLine($"Number of students: {studentsConsole.Count}");
+            List<Student> students = studentDao.GetAllStudents();
+            foreach (Student student in students)
+            {
+                listView2.Items.Add(student.Name);
+            }
+        }
+        private void PopulateDrinkList()
+        {
+            List<Drink> drinks = drinkDao.GetAllDrinks();
+            foreach (Drink drink in drinks)
+            {
+                comboBox1.Items.Add(drink.Name);
+            }
         }
         private void HideAllPanels()
         {
@@ -278,6 +307,17 @@ namespace SomerenUI
             return li;
         }
 
+        private void PopulateStudentList(List<Student> students)
+        {
+            listView2.Items.Clear();
+
+            foreach (Student student in students)
+            {
+                listViewStudents.Items.Add(CreateStudentListViewItem(student));
+            }
+        }
+
+
         private void dashboardToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             ShowDashboardPanel();
@@ -354,6 +394,9 @@ namespace SomerenUI
             }
             UpdateSupervisors();
         }
+
+
+
 
         private void SomerenUI_Load(object sender, EventArgs e)
         {
