@@ -110,6 +110,7 @@
             listView2 = new System.Windows.Forms.ListView();
             columnHeader4 = new System.Windows.Forms.ColumnHeader();
             label4 = new System.Windows.Forms.Label();
+            comboBox2 = new System.Windows.Forms.ComboBox();
             menuStrip1.SuspendLayout();
             pnlDashboard.SuspendLayout();
             pnlStudents.SuspendLayout();
@@ -611,6 +612,7 @@
             // 
             // pnlOrder
             // 
+            pnlOrder.Controls.Add(comboBox2);
             pnlOrder.Controls.Add(label7);
             pnlOrder.Controls.Add(label6);
             pnlOrder.Controls.Add(label5);
@@ -632,7 +634,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new System.Drawing.Point(314, 175);
+            label7.Location = new System.Drawing.Point(314, 188);
             label7.Name = "label7";
             label7.Size = new System.Drawing.Size(60, 15);
             label7.TabIndex = 14;
@@ -641,7 +643,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new System.Drawing.Point(314, 149);
+            label6.Location = new System.Drawing.Point(314, 164);
             label6.Name = "label6";
             label6.Size = new System.Drawing.Size(39, 15);
             label6.TabIndex = 13;
@@ -650,7 +652,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new System.Drawing.Point(314, 126);
+            label5.Location = new System.Drawing.Point(314, 138);
             label5.Name = "label5";
             label5.Size = new System.Drawing.Size(36, 15);
             label5.TabIndex = 12;
@@ -659,7 +661,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(314, 215);
+            label1.Location = new System.Drawing.Point(314, 241);
             label1.Name = "label1";
             label1.Size = new System.Drawing.Size(86, 15);
             label1.TabIndex = 11;
@@ -667,7 +669,7 @@
             // 
             // numericUpDown1
             // 
-            numericUpDown1.Location = new System.Drawing.Point(314, 233);
+            numericUpDown1.Location = new System.Drawing.Point(314, 259);
             numericUpDown1.Name = "numericUpDown1";
             numericUpDown1.Size = new System.Drawing.Size(120, 23);
             numericUpDown1.TabIndex = 10;
@@ -675,7 +677,7 @@
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new System.Drawing.Point(314, 91);
+            comboBox1.Location = new System.Drawing.Point(314, 112);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new System.Drawing.Size(121, 23);
             comboBox1.TabIndex = 8;
@@ -766,6 +768,15 @@
             label4.Size = new System.Drawing.Size(124, 32);
             label4.TabIndex = 0;
             label4.Text = "Ordering...";
+            // 
+            // comboBox2
+            // 
+            comboBox2.FormattingEnabled = true;
+            comboBox2.Location = new System.Drawing.Point(313, 73);
+            comboBox2.Name = "comboBox2";
+            comboBox2.Size = new System.Drawing.Size(121, 23);
+            comboBox2.TabIndex = 15;
+            comboBox2.Text = "Select a student";
             // 
             // SomerenUI
             // 
@@ -893,5 +904,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox comboBox2;
     }
 }

@@ -50,7 +50,15 @@ namespace SomerenUI
                 comboBox1.Items.Add(drink.Name);
             }
         }
-
+        private void PopulateStudentBox()
+        {
+            comboBox2.Items.Clear();
+            List<Student> students = studentDao.GetAllStudents();
+            foreach (Student student in students)
+            {
+                comboBox2.Items.Add(student.Name);
+            }
+        }
 
 
 
@@ -424,6 +432,7 @@ namespace SomerenUI
         private void orderADrinkToolStripMenuItem_Click(object sender, EventArgs e)
         {
             PopulateStudentList();
+            PopulateStudentBox();
             PopulateDrinkList();
             ShowOrderPanel();
         }
@@ -433,21 +442,29 @@ namespace SomerenUI
             string selectedDrinkName = comboBox1.SelectedItem != null ? comboBox1.SelectedItem.ToString() : string.Empty;
             Drink selectedDrink = !string.IsNullOrEmpty(selectedDrinkName) ? orderDao.GetDrinkByName(selectedDrinkName) : null;
 
-            string selectedStudentName = listView2.SelectedItems.Count > 0 ? listView2.SelectedItems[0].SubItems[0].Text : string.Empty;
+            string selectedStudentName = comboBox2.SelectedItem != null ? comboBox2.SelectedItem.ToString() : string.Empty;
             Student selectedStudent = !string.IsNullOrEmpty(selectedStudentName) ? orderDao.GetStudentByName(selectedStudentName) : null;
 
             int selectedAmount = (int)numericUpDown1.Value;
 
-            // Create a new Order instance
-            Order newOrder = new Order();
-            newOrder.studentNr = selectedStudent.studentNr;
-            newOrder.DrinkID = selectedDrink.Id;
-            newOrder.orderAmount = selectedAmount;
+            if (selectedDrink != null && selectedStudent != null)
+            {
+                // Create a new Order instance
+                Order newOrder = new Order();
+                newOrder.studentNr = selectedStudent.studentNr;
+                newOrder.DrinkID = selectedDrink.Id;
+                newOrder.orderAmount = selectedAmount;
 
-            // Insert the new Order into the database
-            orderDao.InsertOrder(newOrder);
-            MessageBox.Show("Order placed successfully!");
+                // Insert the new Order into the database
+                orderDao.InsertOrder(newOrder);
+                MessageBox.Show("Order placed successfully!");
+            }
+            else
+            {
+                MessageBox.Show("Please select a valid student and drink.");
+            }
         }
+
 
 
 

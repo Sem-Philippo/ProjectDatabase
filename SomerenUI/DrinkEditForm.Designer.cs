@@ -70,6 +70,7 @@
             // 
             // pnlEditDrink
             // 
+            pnlEditDrink.Controls.Add(pnlNewDrink);
             pnlEditDrink.Controls.Add(btnDelete);
             pnlEditDrink.Controls.Add(txtDrinkPrice);
             pnlEditDrink.Controls.Add(lblPrice);
@@ -191,7 +192,7 @@
             pnlNewDrink.Controls.Add(label3);
             pnlNewDrink.Controls.Add(label4);
             pnlNewDrink.Controls.Add(txtNewName);
-            pnlNewDrink.Location = new System.Drawing.Point(0, 57);
+            pnlNewDrink.Location = new System.Drawing.Point(0, 2);
             pnlNewDrink.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             pnlNewDrink.Name = "pnlNewDrink";
             pnlNewDrink.Size = new System.Drawing.Size(509, 207);
@@ -283,7 +284,6 @@
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(511, 271);
-            Controls.Add(pnlNewDrink);
             Controls.Add(DrinkSelectBox);
             Controls.Add(pnlEditDrink);
             Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
