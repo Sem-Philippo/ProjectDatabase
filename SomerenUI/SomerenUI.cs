@@ -439,24 +439,24 @@ namespace SomerenUI
 
         private void button1_Click_1(object sender, EventArgs e)
         {
+            // Get all students and drinks
+            List<Student> students = studentDao.GetAllStudents();
+            List<Drink> drinks = drinkDao.GetAllDrinks();
+
             string selectedDrinkName = comboBox1.SelectedItem != null ? comboBox1.SelectedItem.ToString() : string.Empty;
-            Drink selectedDrink = !string.IsNullOrEmpty(selectedDrinkName) ? orderDao.GetDrinkByName(selectedDrinkName) : null;
+            // Find the drink by its name
+            Drink selectedDrink = drinks.Find(d => d.Name == selectedDrinkName);
 
             string selectedStudentName = comboBox2.SelectedItem != null ? comboBox2.SelectedItem.ToString() : string.Empty;
-            Student selectedStudent = !string.IsNullOrEmpty(selectedStudentName) ? orderDao.GetStudentByName(selectedStudentName) : null;
+            // Find the student by its name
+            Student selectedStudent = students.Find(s => s.Name == selectedStudentName);
 
             int selectedAmount = (int)numericUpDown1.Value;
 
             if (selectedDrink != null && selectedStudent != null)
             {
-                // Create a new Order instance
-                Order newOrder = new Order();
-                newOrder.studentNr = selectedStudent.studentNr;
-                newOrder.DrinkID = selectedDrink.Id;
-                newOrder.orderAmount = selectedAmount;
-
                 // Insert the new Order into the database
-                orderDao.InsertOrder(newOrder);
+                orderDao.InsertOrder(selectedStudent.studentNr, selectedDrink.Id, selectedAmount);
                 MessageBox.Show("Order placed successfully!");
             }
             else
@@ -464,6 +464,8 @@ namespace SomerenUI
                 MessageBox.Show("Please select a valid student and drink.");
             }
         }
+
+
 
 
 
@@ -503,10 +505,13 @@ namespace SomerenUI
                 // Get the orders for the selected student
                 List<Order> orders = orderDao.GetOrdersByStudent(selectedStudent.studentNr);
                 // Update the UI with the orders
+                List<Drink> drinks = drinkDao.GetAllDrinks();
                 listView1.Items.Clear();
                 foreach (Order order in orders)
                 {
-                    ListViewItem item = new ListViewItem(new string[] { order.DrinkID.ToString(), order.orderAmount.ToString() });
+                    // Find the drink by its ID
+                    Drink drink = drinks.Find(d => d.Id == order.DrinkID);
+                    ListViewItem item = new ListViewItem(new string[] { drink.Name, order.orderAmount.ToString() });
                     listView1.Items.Add(item);
                 }
             }

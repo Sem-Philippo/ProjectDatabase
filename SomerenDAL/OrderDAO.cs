@@ -26,15 +26,15 @@ namespace SomerenDAL
         }
 
 
-        public void InsertOrder(Order order)
+        public void InsertOrder(int studentNr, int drinkID, int orderAmount)
         {
             try
             {
                 string query = "INSERT INTO [dbo].[Orders] ([studentNr], [DrinkID], [orderAmount]) VALUES (@studentNr, @DrinkID, @orderAmount)";
                 SqlParameter[] sqlParameters = new SqlParameter[3];
-                sqlParameters[0] = new SqlParameter("@studentNr", SqlDbType.Int) { Value = order.studentNr };
-                sqlParameters[1] = new SqlParameter("@DrinkID", SqlDbType.Int) { Value = order.DrinkID };
-                sqlParameters[2] = new SqlParameter("@orderAmount", SqlDbType.Int) { Value = order.orderAmount };
+                sqlParameters[0] = new SqlParameter("@studentNr", SqlDbType.Int) { Value = studentNr };
+                sqlParameters[1] = new SqlParameter("@DrinkID", SqlDbType.Int) { Value = drinkID };
+                sqlParameters[2] = new SqlParameter("@orderAmount", SqlDbType.Int) { Value = orderAmount };
                 ExecuteEditQuery(query, sqlParameters);
             }
             catch (SqlException e)
@@ -42,6 +42,7 @@ namespace SomerenDAL
                 throw new Exception("SQL Error: " + e.ErrorCode);
             }
         }
+
 
 
         public Drink GetDrinkByName(string drinkName)
@@ -131,7 +132,7 @@ namespace SomerenDAL
                 {
                  //   OrderId = (int)dr["orderId"],
                     studentNr = (int)dr["studentNr"],
-                    DrinkID = dr["DrinkID"] != DBNull.Value ? (int)dr["DrinkID"] : 0,
+                    DrinkID = (int)dr["DrinkID"],
                     orderAmount = (int)dr["orderAmount"]
                 };
 
