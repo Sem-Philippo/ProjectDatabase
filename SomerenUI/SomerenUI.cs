@@ -14,37 +14,47 @@ namespace SomerenUI
     {
         StudentDao studentDao = new StudentDao();
         DrinkDao drinkDao = new DrinkDao();
-        OrderDao orderDao = new OrderDao();
+        // OrderDao orderDao = new OrderDao();
+        private OrderDao orderDao = new OrderDao();
+        private Student selectedStudent;
+        private Drink selectedDrink;
 
         public SomerenUI()
         {
             InitializeComponent();
             ShowDashboardPanel();
         }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            PopulateStudentList();
-            PopulateDrinkList();
-        }
         private void PopulateStudentList()
         {
+            //this here is just for error-hunting
             List<Student> studentsConsole = studentDao.GetAllStudents();
             System.Diagnostics.Debug.WriteLine($"Number of students: {studentsConsole.Count}");
             List<Student> students = studentDao.GetAllStudents();
             foreach (Student student in students)
             {
-                listView2.Items.Add(student.Name);
+                listView2.Items.Add(CreateStudentNAMEONLYListViewItem(student));
             }
+            listView2.Refresh();
         }
+
+
+
+
+
         private void PopulateDrinkList()
         {
+            comboBox1.Items.Clear();
             List<Drink> drinks = drinkDao.GetAllDrinks();
             foreach (Drink drink in drinks)
             {
                 comboBox1.Items.Add(drink.Name);
             }
         }
+
+
+
+
+
         private void HideAllPanels()
         {
             pnlStudents.Hide();
@@ -136,6 +146,8 @@ namespace SomerenUI
         private void ShowOrderPanel()
         {
             ShowPanel(pnlOrder);
+            List<Student> students = GetStudents();
+            DisplayStudents(students);
             UpdateActivityBox();
 
         }
@@ -207,6 +219,16 @@ namespace SomerenUI
                 listViewDrinks.Items.Add(CreateDrinkListViewItem(drink));
             }
         }
+        private void DisplayDrinkOrders(List<Drink> drinks)
+        {
+            //clear the listview before filling it
+            listView1.Items.Clear();
+
+            foreach (Drink drink in drinks)
+            {
+                listView1.Items.Add(CreateDrinkListViewItem(drink));
+            }
+        }
         private ListViewItem CreateDrinkListViewItem(Drink drink)
         {
             string[] subItems = new string[6] {
@@ -237,6 +259,13 @@ namespace SomerenUI
         {
             string[] subItems = new string[4] { student.Number.ToString(), student.Name,
                     student.Class, student.PhoneNumber };
+            ListViewItem li = new ListViewItem(subItems);
+            li.Tag = student;   // link student object to listview item
+            return li;
+        }
+        private ListViewItem CreateStudentNAMEONLYListViewItem(Student student)
+        {
+            string[] subItems = new string[2] { student.Name, student.Id.ToString() };
             ListViewItem li = new ListViewItem(subItems);
             li.Tag = student;   // link student object to listview item
             return li;
@@ -306,17 +335,6 @@ namespace SomerenUI
             li.Tag = lecturer;
             return li;
         }
-
-        private void PopulateStudentList(List<Student> students)
-        {
-            listView2.Items.Clear();
-
-            foreach (Student student in students)
-            {
-                listViewStudents.Items.Add(CreateStudentListViewItem(student));
-            }
-        }
-
 
         private void dashboardToolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -405,7 +423,76 @@ namespace SomerenUI
 
         private void orderADrinkToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            PopulateStudentList();
+            PopulateDrinkList();
             ShowOrderPanel();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            string selectedDrinkName = comboBox1.SelectedItem != null ? comboBox1.SelectedItem.ToString() : string.Empty;
+            Drink selectedDrink = !string.IsNullOrEmpty(selectedDrinkName) ? orderDao.GetDrinkByName(selectedDrinkName) : null;
+
+            string selectedStudentName = listView2.SelectedItems.Count > 0 ? listView2.SelectedItems[0].SubItems[0].Text : string.Empty;
+            Student selectedStudent = !string.IsNullOrEmpty(selectedStudentName) ? orderDao.GetStudentByName(selectedStudentName) : null;
+
+            int selectedAmount = (int)numericUpDown1.Value;
+
+            // Create a new Order object
+            Order newOrder = new Order()
+            {
+                StudentNr = selectedStudent.studentNr,
+                DrinkId = selectedDrink.Id,
+                OrderAmount = selectedAmount
+            };
+
+            // Insert the order
+            orderDao.InsertOrder(newOrder);
+            MessageBox.Show("Order placed successfully!");
+        }
+
+
+        private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            string selectedDrinkName = comboBox1.SelectedItem.ToString();
+            DrinkDao drinkDao = new DrinkDao();
+            List<Drink> allDrinks = drinkDao.GetAllDrinks();
+
+            // Find the selected drink in the list
+            Drink selectedDrink = allDrinks.Find(drink => drink.Name == selectedDrinkName);
+
+            if (selectedDrink != null)
+            {
+                label5.Text = "Price: " + selectedDrink.Price.ToString();
+                label6.Text = "Stock: " + selectedDrink.StockAmount.ToString();
+                label7.Text = "Alcoholic: " + (selectedDrink.Alcoholic ? "yes" : "no");
+            }
+            else
+            {
+                // Handle case where selected drink is not found in the list
+                label5.Text = "Price: N/A";
+                label6.Text = "Stock: N/A";
+                label7.Text = "Alcoholic: N/A";
+            }
+        }
+
+        private void listView2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listView2.SelectedItems.Count > 0)
+            {
+                ListViewItem selectedItem = listView2.SelectedItems[0];
+                string studentName = selectedItem.SubItems[0].Text;
+                selectedStudent = orderDao.GetStudentByName(studentName);
+                // Get the orders for the selected student
+                List<Order> orders = orderDao.GetOrdersByStudent(selectedStudent.studentNr);
+                // Update the UI with the orders
+                listView1.Items.Clear();
+                foreach (Order order in orders)
+                {
+                    ListViewItem item = new ListViewItem(new string[] { order.DrinkId.ToString(), order.OrderAmount.ToString() });
+                    listView1.Items.Add(item);
+                }
+            }
         }
     }
 }

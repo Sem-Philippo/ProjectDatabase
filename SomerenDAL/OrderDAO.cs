@@ -8,25 +8,12 @@ namespace SomerenDAL
 {
     public class OrderDao : BaseDao
     {
-        public void InsertOrder(int studentId, int drinkId)
-        {
-            try
-            {
-                string query = $"INSERT INTO Orders (studentId, drinkId) VALUES ({studentId}, {drinkId})";
-                SqlParameter[] sqlParameters = new SqlParameter[0];
-                ExecuteEditQuery(query, sqlParameters);
-            }
-            catch (SqlException e)
-            {
-                throw new Exception("SQL Error: " + e.ErrorCode);
-            }
-        }
 
-        public List<Order> GetOrdersByStudent(int studentId)
+        public List<Order> GetAllOrders()
         {
             try
             {
-                string query = $"SELECT orderId, studentId, drinkId FROM Orders WHERE studentId = {studentId}";
+                string query = "SELECT orderID, studentNr, drinkId, orderAmount FROM [dbo].[Orders]";
                 SqlParameter[] sqlParameters = new SqlParameter[0];
                 return ReadTables(ExecuteSelectQuery(query, sqlParameters));
             }
@@ -35,6 +22,97 @@ namespace SomerenDAL
                 throw new Exception("SQL Error: " + e.ErrorCode);
             }
         }
+
+
+        public void InsertOrder(Order order)
+        {
+            try
+            {
+                string query = $"INSERT INTO [dbo].[Orders] (studentNr, drinkId, orderAmount) VALUES ({order.StudentNr}, {order.DrinkId}, {order.OrderAmount})";
+                SqlParameter[] sqlParameters = new SqlParameter[0];
+                ExecuteEditQuery(query, sqlParameters);
+            }
+            catch (SqlException e)
+            {
+                throw new Exception("SQL Error: " + e.ErrorCode);
+            }
+        }
+        public Drink GetDrinkByName(string drinkName)
+        {
+            try
+            {
+                string query = $"SELECT * FROM Drink WHERE Name = @drinkName";
+                SqlParameter[] sqlParameters = new SqlParameter[1];
+                sqlParameters[0] = new SqlParameter("@drinkName", SqlDbType.NVarChar);
+                sqlParameters[0].Value = drinkName;
+
+                DataTable dataTable = ExecuteSelectQuery(query, sqlParameters);
+                if (dataTable.Rows.Count > 0)
+                {
+                    DataRow dr = dataTable.Rows[0];
+                    return new Drink()
+                    {
+                        DrinkID = (int)dr["DrinkID"],
+                        Name = (string)dr["Name"]
+                        // Add other properties as needed
+                    };
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (SqlException e)
+            {
+                throw new Exception("SQL Error: " + e.ErrorCode);
+            }
+        }
+
+
+        public List<Order> GetOrdersByStudent(int studentNr)
+        {
+            try
+            {
+                string query = $"SELECT orderId, studentNr, drinkId, orderAmount FROM Orders WHERE studentNr = {studentNr}";
+                SqlParameter[] sqlParameters = new SqlParameter[0];
+                return ReadTables(ExecuteSelectQuery(query, sqlParameters));
+            }
+            catch (SqlException e)
+            {
+                throw new Exception("SQL Error: " + e.ErrorCode);
+            }
+        }
+        public Student GetStudentByName(string studentName)
+        {
+            try
+            {
+                string query = $"SELECT * FROM Student WHERE studentName = @studentName";
+                SqlParameter[] sqlParameters = new SqlParameter[1];
+                sqlParameters[0] = new SqlParameter("@studentName", SqlDbType.NVarChar);
+                sqlParameters[0].Value = studentName;
+
+                DataTable dataTable = ExecuteSelectQuery(query, sqlParameters);
+                if (dataTable.Rows.Count > 0)
+                {
+                    DataRow dr = dataTable.Rows[0];
+                    return new Student()
+                    {
+                        studentNr = (int)dr["studentNr"],
+                        studentName = (string)dr["studentName"]
+                    };
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (SqlException e)
+            {
+                throw new Exception("SQL Error: " + e.ErrorCode);
+            }
+        }
+
+
 
         private List<Order> ReadTables(DataTable dataTable)
         {
@@ -45,8 +123,9 @@ namespace SomerenDAL
                 Order order = new Order()
                 {
                     OrderId = (int)dr["orderId"],
-                    StudentId = (int)dr["studentId"],
-                    DrinkId = (int)dr["drinkId"]
+                    StudentNr = (int)dr["studentNr"],
+                    DrinkId = (int)dr["drinkId"],
+                    OrderAmount = (int)dr["orderAmount"]
                 };
 
                 orders.Add(order);

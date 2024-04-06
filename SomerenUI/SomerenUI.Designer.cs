@@ -29,8 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SomerenUI));
-            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("Test");
-            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("Test");
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Test");
             menuStrip1 = new System.Windows.Forms.MenuStrip();
             dashboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             dashboardToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -95,6 +94,12 @@
             SupervisorName = new System.Windows.Forms.ColumnHeader();
             lblSupervisors = new System.Windows.Forms.Label();
             pnlOrder = new System.Windows.Forms.Panel();
+            label7 = new System.Windows.Forms.Label();
+            label6 = new System.Windows.Forms.Label();
+            label5 = new System.Windows.Forms.Label();
+            label1 = new System.Windows.Forms.Label();
+            numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            comboBox1 = new System.Windows.Forms.ComboBox();
             button1 = new System.Windows.Forms.Button();
             label2 = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
@@ -103,13 +108,8 @@
             columnHeader2 = new System.Windows.Forms.ColumnHeader();
             pictureBox1 = new System.Windows.Forms.PictureBox();
             listView2 = new System.Windows.Forms.ListView();
-            columnHeader3 = new System.Windows.Forms.ColumnHeader();
             columnHeader4 = new System.Windows.Forms.ColumnHeader();
             label4 = new System.Windows.Forms.Label();
-            comboBox1 = new System.Windows.Forms.ComboBox();
-            button2 = new System.Windows.Forms.Button();
-            numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            label1 = new System.Windows.Forms.Label();
             menuStrip1.SuspendLayout();
             pnlDashboard.SuspendLayout();
             pnlStudents.SuspendLayout();
@@ -123,8 +123,8 @@
             pnlSupervisors.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxSupervisor).BeginInit();
             pnlOrder.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // menuStrip1
@@ -581,7 +581,7 @@
             // 
             listViewSupervising.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { SupervisorId, SupervisorName });
             listViewSupervising.FullRowSelect = true;
-            listViewSupervising.Items.AddRange(new System.Windows.Forms.ListViewItem[] { listViewItem5 });
+            listViewSupervising.Items.AddRange(new System.Windows.Forms.ListViewItem[] { listViewItem1 });
             listViewSupervising.Location = new System.Drawing.Point(16, 73);
             listViewSupervising.Name = "listViewSupervising";
             listViewSupervising.Size = new System.Drawing.Size(264, 306);
@@ -611,9 +611,11 @@
             // 
             // pnlOrder
             // 
+            pnlOrder.Controls.Add(label7);
+            pnlOrder.Controls.Add(label6);
+            pnlOrder.Controls.Add(label5);
             pnlOrder.Controls.Add(label1);
             pnlOrder.Controls.Add(numericUpDown1);
-            pnlOrder.Controls.Add(button2);
             pnlOrder.Controls.Add(comboBox1);
             pnlOrder.Controls.Add(button1);
             pnlOrder.Controls.Add(label2);
@@ -627,14 +629,68 @@
             pnlOrder.Size = new System.Drawing.Size(938, 466);
             pnlOrder.TabIndex = 5;
             // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new System.Drawing.Point(314, 175);
+            label7.Name = "label7";
+            label7.Size = new System.Drawing.Size(60, 15);
+            label7.TabIndex = 14;
+            label7.Text = "Alcoholic:";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new System.Drawing.Point(314, 149);
+            label6.Name = "label6";
+            label6.Size = new System.Drawing.Size(39, 15);
+            label6.TabIndex = 13;
+            label6.Text = "Stock:";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new System.Drawing.Point(314, 126);
+            label5.Name = "label5";
+            label5.Size = new System.Drawing.Size(36, 15);
+            label5.TabIndex = 12;
+            label5.Text = "Price:";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(314, 215);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(86, 15);
+            label1.TabIndex = 11;
+            label1.Text = "Select amount:";
+            // 
+            // numericUpDown1
+            // 
+            numericUpDown1.Location = new System.Drawing.Point(314, 233);
+            numericUpDown1.Name = "numericUpDown1";
+            numericUpDown1.Size = new System.Drawing.Size(120, 23);
+            numericUpDown1.TabIndex = 10;
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new System.Drawing.Point(314, 91);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new System.Drawing.Size(121, 23);
+            comboBox1.TabIndex = 8;
+            comboBox1.Text = "Select a drink";
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged_1;
+            // 
             // button1
             // 
-            button1.Location = new System.Drawing.Point(381, 356);
+            button1.Location = new System.Drawing.Point(286, 355);
             button1.Name = "button1";
-            button1.Size = new System.Drawing.Size(90, 23);
+            button1.Size = new System.Drawing.Size(185, 23);
             button1.TabIndex = 7;
             button1.Text = "Place order";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click_1;
             // 
             // label2
             // 
@@ -685,19 +741,16 @@
             // 
             // listView2
             // 
-            listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { columnHeader3, columnHeader4 });
+            listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { columnHeader4 });
             listView2.FullRowSelect = true;
-            listView2.Items.AddRange(new System.Windows.Forms.ListViewItem[] { listViewItem6 });
             listView2.Location = new System.Drawing.Point(16, 73);
+            listView2.MultiSelect = false;
             listView2.Name = "listView2";
             listView2.Size = new System.Drawing.Size(264, 306);
             listView2.TabIndex = 1;
             listView2.UseCompatibleStateImageBehavior = false;
             listView2.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader3
-            // 
-            columnHeader3.Text = "Id";
+            listView2.SelectedIndexChanged += listView2_SelectedIndexChanged;
             // 
             // columnHeader4
             // 
@@ -713,41 +766,6 @@
             label4.Size = new System.Drawing.Size(124, 32);
             label4.TabIndex = 0;
             label4.Text = "Ordering...";
-            // 
-            // comboBox1
-            // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Cola", "Fanta", "OJ", "Wine", "Beer" });
-            comboBox1.Location = new System.Drawing.Point(314, 91);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new System.Drawing.Size(121, 23);
-            comboBox1.TabIndex = 8;
-            comboBox1.Text = "Select a drink";
-            // 
-            // button2
-            // 
-            button2.Location = new System.Drawing.Point(286, 356);
-            button2.Name = "button2";
-            button2.Size = new System.Drawing.Size(90, 23);
-            button2.TabIndex = 9;
-            button2.Text = "View orders";
-            button2.UseVisualStyleBackColor = true;
-            // 
-            // numericUpDown1
-            // 
-            numericUpDown1.Location = new System.Drawing.Point(314, 154);
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new System.Drawing.Size(120, 23);
-            numericUpDown1.TabIndex = 10;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(314, 136);
-            label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(86, 15);
-            label1.TabIndex = 11;
-            label1.Text = "Select amount:";
             // 
             // SomerenUI
             // 
@@ -787,8 +805,8 @@
             ((System.ComponentModel.ISupportInitialize)pictureBoxSupervisor).EndInit();
             pnlOrder.ResumeLayout(false);
             pnlOrder.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -866,13 +884,14 @@
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ListView listView2;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
     }
 }
