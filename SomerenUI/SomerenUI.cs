@@ -319,13 +319,21 @@ namespace SomerenUI
 
         private void listViewSupervising_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            ListViewItem item = DoHitTest(listViewNotSupervising, e);
+            ListViewItem item = DoHitTest(listViewSupervising, e);
             if (item != null)
             {
                 int supervisorId = int.Parse(item.Text);
                 TeacherDao teacherDao = new TeacherDao();
-                Deletion_Confirmation deletionForm = new Deletion_Confirmation(teacherDao.GetTeacherById(supervisorId), (Activity)comboBoxActivities.Items[comboBoxActivities.SelectedIndex]);
-                deletionForm.ShowDialog();
+                //Got this from internet... Anyways,
+                //the fields are as following: The text the box should show, the name of the messagebox (left empty in this case)
+                //and the buttons you want (normally you get 1 button)
+                DialogResult dialogResult = MessageBox.Show("Are you sure you wish to remove this supervisor?", "", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    //user confirmed the removal of supervisor, so remove it
+                    SupervisorDAO supervisorDAO = new SupervisorDAO();
+                    supervisorDAO.RemoveSupervisor(supervisorId, (Activity)comboBoxActivities.SelectedItem);
+                }
             }
             UpdateSupervisors();
         }
@@ -343,6 +351,7 @@ namespace SomerenUI
         private ListViewItem DoHitTest(System.Windows.Forms.ListView listView, MouseEventArgs e)
         {
             //HitTest is from the internet, the double click method I could probably have figured out myself
+            //This method can also be used for participants and is not exclusive to supervisors (if you do it the same way I did)!
             ListViewHitTestInfo info = listView.HitTest(e.X, e.Y);
             return info.Item;
         }

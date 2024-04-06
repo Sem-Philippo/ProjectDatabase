@@ -16,3 +16,10 @@ Assignment 3:
 	Alexandru
 	Variant C (To Be Added):
 	Roland
+Assignment 4:
+	Variant A:
+	Alexandru
+	Variant B:
+	Sem
+	Variant C:
+	Roland
