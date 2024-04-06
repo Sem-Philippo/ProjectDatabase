@@ -13,6 +13,13 @@ Assignment 3:
 	Variant A:
 	Sem
 	Variant B (To Be Added):
-	Roland
-	Variant C (To Be Added):
 	Alexandru
+	Variant C (To Be Added):
+	Roland
+Assignment 4:
+	Variant A:
+	Unknown
+	Variant B:
+	Sem
+	Variant C:
+	Unknown

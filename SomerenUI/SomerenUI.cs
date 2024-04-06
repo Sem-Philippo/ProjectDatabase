@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using SomerenService;
 using SomerenModel;
+using SomerenDAL;
+using static System.Windows.Forms.LinkLabel;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace SomerenUI
 {
@@ -21,6 +24,7 @@ namespace SomerenUI
             RoomsPanel.Hide();
             //activity panel here
             pnlDrinks.Hide();
+            pnlSupervisors.Hide();
             //any other panels here
         }
         private void ShowPanel(Panel panel)
@@ -96,6 +100,51 @@ namespace SomerenUI
             catch (Exception e)
             {
                 MessageBox.Show("Something went wrong while loading the drinks: " + e.Message);
+            }
+        }
+        private void ShowSupervisorsPanel()
+        {
+            ShowPanel(pnlSupervisors);
+            UpdateActivityBox();
+
+        }
+        private void UpdateActivityBox()
+        {
+            ActivityDAO activityDao = new ActivityDAO();
+            List<Activity> activities = activityDao.GetAllActivities();
+            comboBoxActivities.Items.Clear();
+            foreach (Activity activity in activities)
+            {
+                comboBoxActivities.Items.Add(activity);
+            }
+            comboBoxActivities.SelectedIndex = 0;
+            //update the listviews just in case
+            UpdateSupervisors();
+        }
+        private void UpdateSupervisors()
+        {
+
+            Activity activity = ((Activity)comboBoxActivities.Items[comboBoxActivities.SelectedIndex]);
+            //get supervisor listview
+            //clear it
+            listViewSupervising.Items.Clear();
+            //get all supervisors for the activity
+            SupervisorDAO supervisorDAO = new SupervisorDAO();
+            List<Teacher> supervisors = supervisorDAO.GetSupervisorsByActivity(activity);
+            //add all supervisors for the activity
+            foreach (Teacher teacher in supervisors)
+            {
+                listViewSupervising.Items.Add(CreateSupervisorListViewItem(teacher));
+            }
+            //get other listview
+            //clear it too
+            listViewNotSupervising.Items.Clear();
+            //add all lecturers who aren't supervising the activity
+            //the sql command only gets those who aren't already supervising the selected activity
+            supervisors = supervisorDAO.GetNonSupervisorsByActivity(activity);
+            foreach (Teacher teacher in supervisors)
+            {
+                listViewNotSupervising.Items.Add(CreateSupervisorListViewItem(teacher));
             }
         }
         private List<Drink> GetDrinks()
@@ -210,6 +259,16 @@ namespace SomerenUI
             li.Tag = lecturer;   // link teacher object to listview item
             return li;
         }
+        private ListViewItem CreateSupervisorListViewItem(Teacher lecturer)
+        {
+            string[] subItems = new string[2] {
+                lecturer.Id.ToString(),
+                lecturer.Name,
+            };
+            ListViewItem li = new ListViewItem(subItems);
+            li.Tag = lecturer;
+            return li;
+        }
 
         private void dashboardToolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -247,6 +306,54 @@ namespace SomerenUI
         private void roomsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShowRoomsPanel();
-        }//test
+        }
+
+        private void activitySupervisorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowSupervisorsPanel();
+        }
+        private void comboBoxActivities_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateSupervisors();
+        }
+
+        private void listViewSupervising_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            ListViewItem item = DoHitTest(listViewSupervising, e);
+            if (item != null)
+            {
+                int supervisorId = int.Parse(item.Text);
+                TeacherDao teacherDao = new TeacherDao();
+                //Got this from internet... Anyways,
+                //the fields are as following: The text the box should show, the name of the messagebox (left empty in this case)
+                //and the buttons you want (normally you get 1 button)
+                DialogResult dialogResult = MessageBox.Show("Are you sure you wish to remove this supervisor?", "", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    //user confirmed the removal of supervisor, so remove it
+                    SupervisorDAO supervisorDAO = new SupervisorDAO();
+                    supervisorDAO.RemoveSupervisor(supervisorId, (Activity)comboBoxActivities.SelectedItem);
+                }
+            }
+            UpdateSupervisors();
+        }
+        private void listViewNotSupervising_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            ListViewItem item = DoHitTest(listViewNotSupervising, e);
+            if (item != null)
+            {
+                int supervisorId = int.Parse(item.Text);
+                SupervisorDAO supervisorDao = new SupervisorDAO();
+                supervisorDao.AddSupervisor(supervisorId, ((Activity)comboBoxActivities.Items[comboBoxActivities.SelectedIndex]));
+            }
+            UpdateSupervisors();
+        }
+        private ListViewItem DoHitTest(System.Windows.Forms.ListView listView, MouseEventArgs e)
+        {
+            //HitTest is from the internet, the double click method I could probably have figured out myself
+            //This method can also be used for participants and is not exclusive to supervisors (if you do it the same way I did)!
+            ListViewHitTestInfo info = listView.HitTest(e.X, e.Y);
+            return info.Item;
+        }
     }
 }
