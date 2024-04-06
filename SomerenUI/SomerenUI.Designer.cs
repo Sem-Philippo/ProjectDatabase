@@ -38,6 +38,7 @@
             activitiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             roomsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             drinksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            revenueReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             pnlDashboard = new System.Windows.Forms.Panel();
             lblDashboard = new System.Windows.Forms.Label();
             pnlStudents = new System.Windows.Forms.Panel();
@@ -77,6 +78,20 @@
             Beds = new System.Windows.Forms.ColumnHeader();
             Type = new System.Windows.Forms.ColumnHeader();
             RoomsText = new System.Windows.Forms.Label();
+            panel1 = new System.Windows.Forms.Panel();
+            listViewRevenueReport = new System.Windows.Forms.ListView();
+            columnDateRange = new System.Windows.Forms.ColumnHeader();
+            columnTotalSales = new System.Windows.Forms.ColumnHeader();
+            columnTurnover = new System.Windows.Forms.ColumnHeader();
+            columnNumberOfCustomers = new System.Windows.Forms.ColumnHeader();
+            buttonGenerateReport = new System.Windows.Forms.Button();
+            groupBoxChooseDate = new System.Windows.Forms.GroupBox();
+            dateTimePickerEndDate = new System.Windows.Forms.DateTimePicker();
+            dateTimePickerStartDate = new System.Windows.Forms.DateTimePicker();
+            labelEndDate = new System.Windows.Forms.Label();
+            labelStartDate = new System.Windows.Forms.Label();
+            pictureBox1 = new System.Windows.Forms.PictureBox();
+            labelRevenueHeader = new System.Windows.Forms.Label();
             menuStrip1.SuspendLayout();
             pnlDashboard.SuspendLayout();
             pnlStudents.SuspendLayout();
@@ -87,12 +102,15 @@
             ((System.ComponentModel.ISupportInitialize)pictureBoxLecturers).BeginInit();
             RoomsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            panel1.SuspendLayout();
+            groupBoxChooseDate.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { dashboardToolStripMenuItem, studentsToolStripMenuItem, lecturersToolStripMenuItem, activitiesToolStripMenuItem, roomsToolStripMenuItem, drinksToolStripMenuItem });
+            menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { dashboardToolStripMenuItem, studentsToolStripMenuItem, lecturersToolStripMenuItem, activitiesToolStripMenuItem, roomsToolStripMenuItem, drinksToolStripMenuItem, revenueReportToolStripMenuItem });
             menuStrip1.Location = new System.Drawing.Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Padding = new System.Windows.Forms.Padding(7, 3, 0, 3);
@@ -154,6 +172,12 @@
             drinksToolStripMenuItem.Size = new System.Drawing.Size(124, 24);
             drinksToolStripMenuItem.Text = "Drinks Supplies";
             drinksToolStripMenuItem.Click += drinksToolStripMenuItem_Click;
+            // 
+            // revenueReportToolStripMenuItem
+            // 
+            revenueReportToolStripMenuItem.Name = "revenueReportToolStripMenuItem";
+            revenueReportToolStripMenuItem.Size = new System.Drawing.Size(128, 24);
+            revenueReportToolStripMenuItem.Text = "Revenue Report";
             // 
             // pnlDashboard
             // 
@@ -448,11 +472,127 @@
             RoomsText.TabIndex = 0;
             RoomsText.Text = "Rooms";
             // 
+            // panel1
+            // 
+            panel1.Controls.Add(listViewRevenueReport);
+            panel1.Controls.Add(buttonGenerateReport);
+            panel1.Controls.Add(groupBoxChooseDate);
+            panel1.Controls.Add(pictureBox1);
+            panel1.Controls.Add(labelRevenueHeader);
+            panel1.Location = new System.Drawing.Point(15, 38);
+            panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            panel1.Name = "panel1";
+            panel1.Size = new System.Drawing.Size(1075, 621);
+            panel1.TabIndex = 4;
+            // 
+            // listViewRevenueReport
+            // 
+            listViewRevenueReport.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { columnDateRange, columnTotalSales, columnTurnover, columnNumberOfCustomers });
+            listViewRevenueReport.Location = new System.Drawing.Point(34, 66);
+            listViewRevenueReport.Name = "listViewRevenueReport";
+            listViewRevenueReport.Size = new System.Drawing.Size(442, 208);
+            listViewRevenueReport.TabIndex = 9;
+            listViewRevenueReport.UseCompatibleStateImageBehavior = false;
+            // 
+            // columnDateRange
+            // 
+            columnDateRange.Text = "Date Range";
+            // 
+            // columnTotalSales
+            // 
+            columnTotalSales.Text = "Total Sales";
+            // 
+            // columnTurnover
+            // 
+            columnTurnover.Text = "Turnover";
+            // 
+            // columnNumberOfCustomers
+            // 
+            columnNumberOfCustomers.Text = "Number of Customers";
+            columnNumberOfCustomers.Width = 100;
+            // 
+            // buttonGenerateReport
+            // 
+            buttonGenerateReport.Location = new System.Drawing.Point(457, 386);
+            buttonGenerateReport.Name = "buttonGenerateReport";
+            buttonGenerateReport.Size = new System.Drawing.Size(118, 59);
+            buttonGenerateReport.TabIndex = 5;
+            buttonGenerateReport.Text = "Generate Report";
+            buttonGenerateReport.UseVisualStyleBackColor = true;
+            buttonGenerateReport.Click += buttonGenerateReport_Click;
+            // 
+            // groupBoxChooseDate
+            // 
+            groupBoxChooseDate.Controls.Add(dateTimePickerEndDate);
+            groupBoxChooseDate.Controls.Add(dateTimePickerStartDate);
+            groupBoxChooseDate.Controls.Add(labelEndDate);
+            groupBoxChooseDate.Controls.Add(labelStartDate);
+            groupBoxChooseDate.Location = new System.Drawing.Point(515, 46);
+            groupBoxChooseDate.Name = "groupBoxChooseDate";
+            groupBoxChooseDate.Size = new System.Drawing.Size(300, 228);
+            groupBoxChooseDate.TabIndex = 8;
+            groupBoxChooseDate.TabStop = false;
+            groupBoxChooseDate.Text = "Choose Time Period";
+            // 
+            // dateTimePickerEndDate
+            // 
+            dateTimePickerEndDate.Location = new System.Drawing.Point(20, 165);
+            dateTimePickerEndDate.Name = "dateTimePickerEndDate";
+            dateTimePickerEndDate.Size = new System.Drawing.Size(250, 27);
+            dateTimePickerEndDate.TabIndex = 11;
+            // 
+            // dateTimePickerStartDate
+            // 
+            dateTimePickerStartDate.Location = new System.Drawing.Point(20, 75);
+            dateTimePickerStartDate.Name = "dateTimePickerStartDate";
+            dateTimePickerStartDate.Size = new System.Drawing.Size(250, 27);
+            dateTimePickerStartDate.TabIndex = 10;
+            // 
+            // labelEndDate
+            // 
+            labelEndDate.AutoEllipsis = true;
+            labelEndDate.AutoSize = true;
+            labelEndDate.Location = new System.Drawing.Point(20, 131);
+            labelEndDate.Name = "labelEndDate";
+            labelEndDate.Size = new System.Drawing.Size(70, 20);
+            labelEndDate.TabIndex = 9;
+            labelEndDate.Text = "End Date";
+            // 
+            // labelStartDate
+            // 
+            labelStartDate.AutoSize = true;
+            labelStartDate.Location = new System.Drawing.Point(18, 39);
+            labelStartDate.Name = "labelStartDate";
+            labelStartDate.Size = new System.Drawing.Size(76, 20);
+            labelStartDate.TabIndex = 9;
+            labelStartDate.Text = "Start Date";
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (System.Drawing.Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new System.Drawing.Point(920, 0);
+            pictureBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new System.Drawing.Size(149, 164);
+            pictureBox1.TabIndex = 2;
+            pictureBox1.TabStop = false;
+            // 
+            // labelRevenueHeader
+            // 
+            labelRevenueHeader.AutoSize = true;
+            labelRevenueHeader.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            labelRevenueHeader.Location = new System.Drawing.Point(15, 9);
+            labelRevenueHeader.Name = "labelRevenueHeader";
+            labelRevenueHeader.Size = new System.Drawing.Size(228, 41);
+            labelRevenueHeader.TabIndex = 0;
+            labelRevenueHeader.Text = "Revenue Report";
+            // 
             // SomerenUI
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(1099, 673);
+            Controls.Add(panel1);
             Controls.Add(menuStrip1);
             Controls.Add(RoomsPanel);
             Controls.Add(pnlStudents);
@@ -479,6 +619,11 @@
             RoomsPanel.ResumeLayout(false);
             RoomsPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            groupBoxChooseDate.ResumeLayout(false);
+            groupBoxChooseDate.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -533,5 +678,20 @@
         private System.Windows.Forms.Panel pnlStudents;
         private System.Windows.Forms.PictureBox pictureBoxStudents;
         private System.Windows.Forms.ListView listViewStudents;
+        private System.Windows.Forms.ToolStripMenuItem revenueReportToolStripMenuItem;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label labelRevenueHeader;
+        private System.Windows.Forms.Button buttonGenerateReport;
+        private System.Windows.Forms.ListView listViewRevenueReport;
+        private System.Windows.Forms.ColumnHeader columnDateRange;
+        private System.Windows.Forms.ColumnHeader columnTotalSales;
+        private System.Windows.Forms.ColumnHeader columnTurnover;
+        private System.Windows.Forms.ColumnHeader columnNumberOfCustomers;
+        private System.Windows.Forms.GroupBox groupBoxChooseDate;
+        private System.Windows.Forms.DateTimePicker dateTimePickerEndDate;
+        private System.Windows.Forms.DateTimePicker dateTimePickerStartDate;
+        private System.Windows.Forms.Label labelEndDate;
+        private System.Windows.Forms.Label labelStartDate;
     }
 }

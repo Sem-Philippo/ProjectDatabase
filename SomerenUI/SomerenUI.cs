@@ -3,16 +3,24 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using SomerenService;
 using SomerenModel;
+using SomerenDAL;
 
 namespace SomerenUI
 {
     public partial class SomerenUI : Form
     {
+        // Declare an instance of SalesDao
+        private SalesDao salesDao;
+
         public SomerenUI()
         {
             InitializeComponent();
             ShowDashboardPanel();
+
+            // Initialize SalesDao instance
+            salesDao = new SalesDao();
         }
+
         private void HideAllPanels()
         {
             pnlStudents.Hide();
@@ -23,6 +31,7 @@ namespace SomerenUI
             pnlDrinks.Hide();
             //any other panels here
         }
+
         private void ShowPanel(Panel panel)
         {
             //hide all panels 
@@ -35,6 +44,7 @@ namespace SomerenUI
         {
             ShowPanel(pnlDashboard);
         }
+
         private void DisplayRooms(List<Room> rooms)
         {
             // clear the listview before filling it
@@ -45,14 +55,15 @@ namespace SomerenUI
                 // Add the new ListViewItem to the listViewRooms
                 listViewRooms.Items.Add(CreateRoomListViewItem(room));
             }
-
         }
+
         private List<Room> GetRooms()
         {
             RoomService roomService = new RoomService();
             List<Room> rooms = roomService.GetRooms();
             return rooms;
         }
+
         private void ShowRoomsPanel()
         {
             ShowPanel(RoomsPanel);
@@ -69,6 +80,7 @@ namespace SomerenUI
                 MessageBox.Show("Something went wrong while loading the rooms: " + e.Message);
             }
         }
+
         private void ShowStudentsPanel()
         {
             ShowPanel(pnlStudents);
@@ -84,6 +96,7 @@ namespace SomerenUI
                 MessageBox.Show("Something went wrong while loading the students: " + e.Message);
             }
         }
+
         private void ShowDrinksPanel()
         {
             ShowPanel(pnlDrinks);
@@ -98,6 +111,7 @@ namespace SomerenUI
                 MessageBox.Show("Something went wrong while loading the drinks: " + e.Message);
             }
         }
+
         private List<Drink> GetDrinks()
         {
             DrinkService drinkService = new DrinkService();
@@ -111,6 +125,7 @@ namespace SomerenUI
             List<Student> students = studentService.GetStudents();
             return students;
         }
+
         private void DisplayDrinks(List<Drink> drinks)
         {
             //clear the listview before filling it
@@ -121,6 +136,7 @@ namespace SomerenUI
                 listViewDrinks.Items.Add(CreateDrinkListViewItem(drink));
             }
         }
+
         private ListViewItem CreateDrinkListViewItem(Drink drink)
         {
             string[] subItems = new string[6] {
@@ -134,6 +150,7 @@ namespace SomerenUI
             li.Tag = drink;   // link drink object to listview item
             return li;
         }
+
         private ListViewItem CreateRoomListViewItem(Room room)
         {
             // Determine the room type based on the number of beds
@@ -147,6 +164,7 @@ namespace SomerenUI
             li.Tag = room;   // link room object to listview item
             return li;
         }
+
         private ListViewItem CreateStudentListViewItem(Student student)
         {
             string[] subItems = new string[4] { student.Number.ToString(), student.Name,
@@ -155,6 +173,7 @@ namespace SomerenUI
             li.Tag = student;   // link student object to listview item
             return li;
         }
+
         private void DisplayStudents(List<Student> students)
         {
             // clear the listview before filling it
@@ -248,5 +267,34 @@ namespace SomerenUI
         {
             ShowRoomsPanel();
         }//test
+
+        private void buttonGenerateReport_Click(object sender, EventArgs e)
+        {
+            // Get the selected start and end dates from the DateTimePicker controls
+            DateTime startDate = dateTimePickerStartDate.Value;
+            DateTime endDate = dateTimePickerEndDate.Value;
+
+            // Call the method to get revenue report data based on the selected date range
+            List<Order> orders = salesDao.GetOrdersByDateRange(startDate, endDate);
+
+            // Clear existing items in the ListView
+            listViewRevenueReport.Items.Clear();
+
+            // Iterate through each order and add it to the ListView
+            foreach (Order order in orders)
+            {
+                ListViewItem item = new ListViewItem(); // Create a new ListViewItem
+                item.Text = order.OrderDate.ToString("yyyy-MM-dd"); // Set the text of the first column
+
+                // Add sub-items for the remaining columns
+                item.SubItems.Add(order.TotalSales.ToString());
+                item.SubItems.Add(order.Turnover.ToString("C"));
+                item.SubItems.Add(order.NumberOfCustomers.ToString());
+
+                // Add the ListViewItem to the ListView
+                listViewRevenueReport.Items.Add(item);
+
+            }
+        }
     }
 }
