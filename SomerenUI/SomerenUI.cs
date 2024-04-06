@@ -139,7 +139,8 @@ namespace SomerenUI
             //get other listview
             //clear it too
             listViewNotSupervising.Items.Clear();
-            //add all lecturers who arent supervising the activity
+            //add all lecturers who aren't supervising the activity
+            //the sql command only gets those who aren't already supervising the selected activity
             supervisors = supervisorDAO.GetNonSupervisorsByActivity(activity);
             foreach (Teacher teacher in supervisors)
             {
@@ -318,10 +319,7 @@ namespace SomerenUI
 
         private void listViewSupervising_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            //figuring out how to get the object from the double click is from the internet, the rest is mine
-            //also, its cooler this way
-            ListViewHitTestInfo info = listViewSupervising.HitTest(e.X, e.Y);
-            ListViewItem item = info.Item;
+            ListViewItem item = DoHitTest(listViewNotSupervising, e);
             if (item != null)
             {
                 int supervisorId = int.Parse(item.Text);
@@ -333,10 +331,7 @@ namespace SomerenUI
         }
         private void listViewNotSupervising_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            //figuring out how to get the object from the double click is from the internet, the rest is mine
-            //also, its cooler this way
-            ListViewHitTestInfo info = listViewNotSupervising.HitTest(e.X, e.Y);
-            ListViewItem item = info.Item;
+            ListViewItem item = DoHitTest(listViewNotSupervising, e);
             if (item != null)
             {
                 int supervisorId = int.Parse(item.Text);
@@ -344,6 +339,12 @@ namespace SomerenUI
                 supervisorDao.AddSupervisor(supervisorId, ((Activity)comboBoxActivities.Items[comboBoxActivities.SelectedIndex]));
             }
             UpdateSupervisors();
+        }
+        private ListViewItem DoHitTest(System.Windows.Forms.ListView listView, MouseEventArgs e)
+        {
+            //HitTest is from the internet, the double click method I could probably have figured out myself
+            ListViewHitTestInfo info = listView.HitTest(e.X, e.Y);
+            return info.Item;
         }
     }
 }
