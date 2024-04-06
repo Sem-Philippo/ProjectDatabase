@@ -438,18 +438,18 @@ namespace SomerenUI
 
             int selectedAmount = (int)numericUpDown1.Value;
 
-            // Create a new Order object
-            Order newOrder = new Order()
-            {
-                StudentNr = selectedStudent.studentNr,
-                DrinkId = selectedDrink.Id,
-                OrderAmount = selectedAmount
-            };
+            // Create a new Order instance
+            Order newOrder = new Order();
+            newOrder.studentNr = selectedStudent.studentNr;
+            newOrder.DrinkID = selectedDrink.Id;
+            newOrder.orderAmount = selectedAmount;
 
-            // Insert the order
+            // Insert the new Order into the database
             orderDao.InsertOrder(newOrder);
             MessageBox.Show("Order placed successfully!");
         }
+
+
 
 
         private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
@@ -489,7 +489,7 @@ namespace SomerenUI
                 listView1.Items.Clear();
                 foreach (Order order in orders)
                 {
-                    ListViewItem item = new ListViewItem(new string[] { order.DrinkId.ToString(), order.OrderAmount.ToString() });
+                    ListViewItem item = new ListViewItem(new string[] { order.DrinkID.ToString(), order.orderAmount.ToString() });
                     listView1.Items.Add(item);
                 }
             }

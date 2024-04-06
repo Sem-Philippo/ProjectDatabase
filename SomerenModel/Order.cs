@@ -3,8 +3,8 @@
     public class Order
     {
         public int OrderId { get; set; }
-        public int DrinkId { get; set; }
-        public int OrderAmount { get; set; }
-        public int StudentNr { get; set; }
+        public int DrinkID { get; set; }
+        public int orderAmount { get; set; }
+        public int studentNr { get; set; }
     }
 }

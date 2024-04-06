@@ -3,6 +3,8 @@ using System.Data.SqlClient;
 using System.Data;
 using SomerenModel;
 using System;
+using Microsoft.VisualBasic;
+using System.Collections;
 
 namespace SomerenDAL
 {
@@ -13,7 +15,7 @@ namespace SomerenDAL
         {
             try
             {
-                string query = "SELECT orderID, studentNr, drinkId, orderAmount FROM [dbo].[Orders]";
+                string query = "SELECT studentNr, DrinkID, orderAmount FROM [dbo].[Orders]";
                 SqlParameter[] sqlParameters = new SqlParameter[0];
                 return ReadTables(ExecuteSelectQuery(query, sqlParameters));
             }
@@ -28,8 +30,11 @@ namespace SomerenDAL
         {
             try
             {
-                string query = $"INSERT INTO [dbo].[Orders] (studentNr, drinkId, orderAmount) VALUES ({order.StudentNr}, {order.DrinkId}, {order.OrderAmount})";
-                SqlParameter[] sqlParameters = new SqlParameter[0];
+                string query = "INSERT INTO [dbo].[Orders] ([studentNr], [DrinkID], [orderAmount]) VALUES (@studentNr, @DrinkID, @orderAmount)";
+                SqlParameter[] sqlParameters = new SqlParameter[3];
+                sqlParameters[0] = new SqlParameter("@studentNr", SqlDbType.Int) { Value = order.studentNr };
+                sqlParameters[1] = new SqlParameter("@DrinkID", SqlDbType.Int) { Value = order.DrinkID };
+                sqlParameters[2] = new SqlParameter("@orderAmount", SqlDbType.Int) { Value = order.orderAmount };
                 ExecuteEditQuery(query, sqlParameters);
             }
             catch (SqlException e)
@@ -37,6 +42,8 @@ namespace SomerenDAL
                 throw new Exception("SQL Error: " + e.ErrorCode);
             }
         }
+
+
         public Drink GetDrinkByName(string drinkName)
         {
             try
@@ -73,7 +80,7 @@ namespace SomerenDAL
         {
             try
             {
-                string query = $"SELECT orderId, studentNr, drinkId, orderAmount FROM Orders WHERE studentNr = {studentNr}";
+                string query = $"SELECT studentNr, DrinkID, orderAmount FROM Orders WHERE studentNr = {studentNr}";
                 SqlParameter[] sqlParameters = new SqlParameter[0];
                 return ReadTables(ExecuteSelectQuery(query, sqlParameters));
             }
@@ -122,10 +129,10 @@ namespace SomerenDAL
             {
                 Order order = new Order()
                 {
-                    OrderId = (int)dr["orderId"],
-                    StudentNr = (int)dr["studentNr"],
-                    DrinkId = (int)dr["drinkId"],
-                    OrderAmount = (int)dr["orderAmount"]
+                 //   OrderId = (int)dr["orderId"],
+                    studentNr = (int)dr["studentNr"],
+                    DrinkID = dr["DrinkID"] != DBNull.Value ? (int)dr["DrinkID"] : 0,
+                    orderAmount = (int)dr["orderAmount"]
                 };
 
                 orders.Add(order);
