@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SomerenUI));
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("Test");
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Test");
             menuStrip1 = new System.Windows.Forms.MenuStrip();
             dashboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             dashboardToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -112,6 +112,7 @@
             StudentsOrdering = new System.Windows.Forms.ListView();
             columnHeader4 = new System.Windows.Forms.ColumnHeader();
             label4 = new System.Windows.Forms.Label();
+            toViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             pnlDashboard.SuspendLayout();
             pnlStudents.SuspendLayout();
@@ -162,6 +163,7 @@
             // 
             // studentsToolStripMenuItem
             // 
+            studentsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { toViewToolStripMenuItem });
             studentsToolStripMenuItem.Name = "studentsToolStripMenuItem";
             studentsToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
             studentsToolStripMenuItem.Text = "Students";
@@ -583,7 +585,7 @@
             // 
             listViewSupervising.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { SupervisorId, SupervisorName });
             listViewSupervising.FullRowSelect = true;
-            listViewSupervising.Items.AddRange(new System.Windows.Forms.ListViewItem[] { listViewItem2 });
+            listViewSupervising.Items.AddRange(new System.Windows.Forms.ListViewItem[] { listViewItem1 });
             listViewSupervising.Location = new System.Drawing.Point(16, 73);
             listViewSupervising.Name = "listViewSupervising";
             listViewSupervising.Size = new System.Drawing.Size(264, 306);
@@ -783,6 +785,13 @@
             label4.TabIndex = 0;
             label4.Text = "Ordering...";
             // 
+            // toViewToolStripMenuItem
+            // 
+            toViewToolStripMenuItem.Name = "toViewToolStripMenuItem";
+            toViewToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            toViewToolStripMenuItem.Text = "To View";
+            toViewToolStripMenuItem.Click += toViewToolStripMenuItem_Click;
+            // 
             // SomerenUI
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -911,5 +920,6 @@
         private System.Windows.Forms.Label PriceLabel;
         private System.Windows.Forms.ComboBox StudentSelection;
         private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ToolStripMenuItem toViewToolStripMenuItem;
     }
 }

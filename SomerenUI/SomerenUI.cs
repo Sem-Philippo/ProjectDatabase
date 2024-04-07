@@ -356,7 +356,6 @@ namespace SomerenUI
 
         private void studentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ShowStudentsPanel();
         }
 
         private void lecturersToolStripMenuItem_Click(object sender, EventArgs e)
@@ -524,6 +523,9 @@ namespace SomerenUI
             }
         }
 
-
+        private void toViewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowStudentsPanel();
+        }
     }
 }
