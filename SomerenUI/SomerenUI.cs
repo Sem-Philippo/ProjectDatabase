@@ -256,11 +256,9 @@ namespace SomerenUI
             // Determine the room type based on the number of beds
             string roomType = room.Beds > 1 ? "Student" : "Lecturer";
 
-            // Include the room type in the subItems array
             string[] subItems = new string[5] { room.Number.ToString(), room.Floor.ToString(), room.Building.ToString(), room.Beds.ToString(), roomType };
 
-            // Create a new ListViewItem with the subItems array
-            ListViewItem li = new ListViewItem(subItems);
+           ListViewItem li = new ListViewItem(subItems);
             li.Tag = room;   // link room object to listview item
             return li;
         }
