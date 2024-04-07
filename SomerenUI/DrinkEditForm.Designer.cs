@@ -30,16 +30,6 @@
         {
             DrinkSelectBox = new System.Windows.Forms.ComboBox();
             pnlEditDrink = new System.Windows.Forms.Panel();
-            btnDelete = new System.Windows.Forms.Button();
-            txtDrinkPrice = new System.Windows.Forms.TextBox();
-            lblPrice = new System.Windows.Forms.Label();
-            lblAlcoholic = new System.Windows.Forms.Label();
-            ComboBoxAlcoholic = new System.Windows.Forms.ComboBox();
-            btnSave = new System.Windows.Forms.Button();
-            numStock = new System.Windows.Forms.NumericUpDown();
-            lblAmount = new System.Windows.Forms.Label();
-            lblDrinkName = new System.Windows.Forms.Label();
-            txtDrinkName = new System.Windows.Forms.TextBox();
             pnlNewDrink = new System.Windows.Forms.Panel();
             btnSaveNewDrink = new System.Windows.Forms.Button();
             txtNewPrice = new System.Windows.Forms.TextBox();
@@ -50,10 +40,20 @@
             label3 = new System.Windows.Forms.Label();
             label4 = new System.Windows.Forms.Label();
             txtNewName = new System.Windows.Forms.TextBox();
+            btnDelete = new System.Windows.Forms.Button();
+            txtDrinkPrice = new System.Windows.Forms.TextBox();
+            lblPrice = new System.Windows.Forms.Label();
+            lblAlcoholic = new System.Windows.Forms.Label();
+            ComboBoxAlcoholic = new System.Windows.Forms.ComboBox();
+            btnSave = new System.Windows.Forms.Button();
+            numStock = new System.Windows.Forms.NumericUpDown();
+            lblAmount = new System.Windows.Forms.Label();
+            lblDrinkName = new System.Windows.Forms.Label();
+            txtDrinkName = new System.Windows.Forms.TextBox();
             pnlEditDrink.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numStock).BeginInit();
             pnlNewDrink.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numNewStock).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numStock).BeginInit();
             SuspendLayout();
             // 
             // DrinkSelectBox
@@ -86,6 +86,104 @@
             pnlEditDrink.Name = "pnlEditDrink";
             pnlEditDrink.Size = new System.Drawing.Size(509, 207);
             pnlEditDrink.TabIndex = 1;
+            // 
+            // pnlNewDrink
+            // 
+            pnlNewDrink.Controls.Add(btnSaveNewDrink);
+            pnlNewDrink.Controls.Add(txtNewPrice);
+            pnlNewDrink.Controls.Add(label1);
+            pnlNewDrink.Controls.Add(label2);
+            pnlNewDrink.Controls.Add(ComboBoxNewAlcoholic);
+            pnlNewDrink.Controls.Add(numNewStock);
+            pnlNewDrink.Controls.Add(label3);
+            pnlNewDrink.Controls.Add(label4);
+            pnlNewDrink.Controls.Add(txtNewName);
+            pnlNewDrink.Location = new System.Drawing.Point(39, 193);
+            pnlNewDrink.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            pnlNewDrink.Name = "pnlNewDrink";
+            pnlNewDrink.Size = new System.Drawing.Size(509, 207);
+            pnlNewDrink.TabIndex = 3;
+            // 
+            // btnSaveNewDrink
+            // 
+            btnSaveNewDrink.Location = new System.Drawing.Point(170, 150);
+            btnSaveNewDrink.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            btnSaveNewDrink.Name = "btnSaveNewDrink";
+            btnSaveNewDrink.Size = new System.Drawing.Size(170, 44);
+            btnSaveNewDrink.TabIndex = 9;
+            btnSaveNewDrink.Text = "Save Drink";
+            btnSaveNewDrink.UseVisualStyleBackColor = true;
+            btnSaveNewDrink.Click += btnSaveNewDrink_Click;
+            // 
+            // txtNewPrice
+            // 
+            txtNewPrice.Location = new System.Drawing.Point(306, 35);
+            txtNewPrice.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            txtNewPrice.Name = "txtNewPrice";
+            txtNewPrice.Size = new System.Drawing.Size(122, 23);
+            txtNewPrice.TabIndex = 8;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(241, 38);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(36, 15);
+            label1.TabIndex = 7;
+            label1.Text = "Price:";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new System.Drawing.Point(236, 88);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(60, 15);
+            label2.TabIndex = 6;
+            label2.Text = "Alcoholic:";
+            // 
+            // ComboBoxNewAlcoholic
+            // 
+            ComboBoxNewAlcoholic.FormattingEnabled = true;
+            ComboBoxNewAlcoholic.Items.AddRange(new object[] { "Alcoholic", "Not Alcoholic" });
+            ComboBoxNewAlcoholic.Location = new System.Drawing.Point(306, 86);
+            ComboBoxNewAlcoholic.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            ComboBoxNewAlcoholic.Name = "ComboBoxNewAlcoholic";
+            ComboBoxNewAlcoholic.Size = new System.Drawing.Size(122, 23);
+            ComboBoxNewAlcoholic.TabIndex = 5;
+            // 
+            // numNewStock
+            // 
+            numNewStock.Location = new System.Drawing.Point(108, 87);
+            numNewStock.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            numNewStock.Name = "numNewStock";
+            numNewStock.Size = new System.Drawing.Size(109, 23);
+            numNewStock.TabIndex = 3;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new System.Drawing.Point(53, 88);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(39, 15);
+            label3.TabIndex = 2;
+            label3.Text = "Stock:";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new System.Drawing.Point(53, 38);
+            label4.Name = "label4";
+            label4.Size = new System.Drawing.Size(45, 15);
+            label4.TabIndex = 1;
+            label4.Text = "Name: ";
+            // 
+            // txtNewName
+            // 
+            txtNewName.Location = new System.Drawing.Point(108, 36);
+            txtNewName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            txtNewName.Name = "txtNewName";
+            txtNewName.Size = new System.Drawing.Size(110, 23);
+            txtNewName.TabIndex = 0;
             // 
             // btnDelete
             // 
@@ -181,104 +279,6 @@
             txtDrinkName.Size = new System.Drawing.Size(110, 23);
             txtDrinkName.TabIndex = 0;
             // 
-            // pnlNewDrink
-            // 
-            pnlNewDrink.Controls.Add(btnSaveNewDrink);
-            pnlNewDrink.Controls.Add(txtNewPrice);
-            pnlNewDrink.Controls.Add(label1);
-            pnlNewDrink.Controls.Add(label2);
-            pnlNewDrink.Controls.Add(ComboBoxNewAlcoholic);
-            pnlNewDrink.Controls.Add(numNewStock);
-            pnlNewDrink.Controls.Add(label3);
-            pnlNewDrink.Controls.Add(label4);
-            pnlNewDrink.Controls.Add(txtNewName);
-            pnlNewDrink.Location = new System.Drawing.Point(0, 2);
-            pnlNewDrink.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            pnlNewDrink.Name = "pnlNewDrink";
-            pnlNewDrink.Size = new System.Drawing.Size(509, 207);
-            pnlNewDrink.TabIndex = 3;
-            // 
-            // btnSaveNewDrink
-            // 
-            btnSaveNewDrink.Location = new System.Drawing.Point(170, 150);
-            btnSaveNewDrink.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            btnSaveNewDrink.Name = "btnSaveNewDrink";
-            btnSaveNewDrink.Size = new System.Drawing.Size(170, 44);
-            btnSaveNewDrink.TabIndex = 9;
-            btnSaveNewDrink.Text = "Save Drink";
-            btnSaveNewDrink.UseVisualStyleBackColor = true;
-            btnSaveNewDrink.Click += btnSaveNewDrink_Click;
-            // 
-            // txtNewPrice
-            // 
-            txtNewPrice.Location = new System.Drawing.Point(306, 35);
-            txtNewPrice.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            txtNewPrice.Name = "txtNewPrice";
-            txtNewPrice.Size = new System.Drawing.Size(122, 23);
-            txtNewPrice.TabIndex = 8;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(241, 38);
-            label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(36, 15);
-            label1.TabIndex = 7;
-            label1.Text = "Price:";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new System.Drawing.Point(236, 88);
-            label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(60, 15);
-            label2.TabIndex = 6;
-            label2.Text = "Alcoholic:";
-            // 
-            // ComboBoxNewAlcoholic
-            // 
-            ComboBoxNewAlcoholic.FormattingEnabled = true;
-            ComboBoxNewAlcoholic.Items.AddRange(new object[] { "Alcoholic", "Not Alcoholic" });
-            ComboBoxNewAlcoholic.Location = new System.Drawing.Point(306, 86);
-            ComboBoxNewAlcoholic.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            ComboBoxNewAlcoholic.Name = "ComboBoxNewAlcoholic";
-            ComboBoxNewAlcoholic.Size = new System.Drawing.Size(122, 23);
-            ComboBoxNewAlcoholic.TabIndex = 5;
-            // 
-            // numNewStock
-            // 
-            numNewStock.Location = new System.Drawing.Point(108, 87);
-            numNewStock.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            numNewStock.Name = "numNewStock";
-            numNewStock.Size = new System.Drawing.Size(109, 23);
-            numNewStock.TabIndex = 3;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new System.Drawing.Point(53, 88);
-            label3.Name = "label3";
-            label3.Size = new System.Drawing.Size(39, 15);
-            label3.TabIndex = 2;
-            label3.Text = "Stock:";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new System.Drawing.Point(53, 38);
-            label4.Name = "label4";
-            label4.Size = new System.Drawing.Size(45, 15);
-            label4.TabIndex = 1;
-            label4.Text = "Name: ";
-            // 
-            // txtNewName
-            // 
-            txtNewName.Location = new System.Drawing.Point(108, 36);
-            txtNewName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            txtNewName.Name = "txtNewName";
-            txtNewName.Size = new System.Drawing.Size(110, 23);
-            txtNewName.TabIndex = 0;
-            // 
             // DrinkEditForm
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -294,10 +294,10 @@
             Text = "Edit Drinks";
             pnlEditDrink.ResumeLayout(false);
             pnlEditDrink.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numStock).EndInit();
             pnlNewDrink.ResumeLayout(false);
             pnlNewDrink.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)numNewStock).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numStock).EndInit();
             ResumeLayout(false);
         }
 

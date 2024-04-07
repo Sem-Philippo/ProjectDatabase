@@ -122,7 +122,7 @@ namespace SomerenUI
                 MessageBox.Show("Something went wrong while loading the rooms: " + e.Message);
             }
         }
-        private void ShowStudentsPanel()
+        public void ShowStudentsPanel()
         {
             ShowPanel(pnlStudents);
 
@@ -444,7 +444,9 @@ namespace SomerenUI
 
             int selectedAmount = (int)AmountSelection.Value;
 
-            int selectedStudentNr = StudentSelection.SelectedIndex + 1;
+            string selectedStudentName = StudentSelection.SelectedItem != null ? StudentSelection.SelectedItem.ToString() : string.Empty;
+            StudentDao studentDao = new StudentDao();
+            int selectedStudentNr = studentDao.GetStudentNrByStudentName(selectedStudentName);
 
             DateTime orderTime = DateTime.Now;
 
@@ -462,17 +464,6 @@ namespace SomerenUI
                 MessageBox.Show("Please select a student and drink first.");
             }
         }
-
-
-
-
-
-
-
-
-
-
-
 
 
         private void DrinkSelection_SelectedIndexChanged_1(object sender, EventArgs e)
@@ -526,6 +517,16 @@ namespace SomerenUI
         private void toViewToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShowStudentsPanel();
+        }
+
+        
+
+        private void toEditToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ManagingStudent form = new ManagingStudent(this);
+            form.Show();
+            ShowStudentsPanel();
+
         }
     }
 }

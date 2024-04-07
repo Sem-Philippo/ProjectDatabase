@@ -35,6 +35,7 @@
             dashboardToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             studentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            toViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             lecturersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             activitiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             roomsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -112,7 +113,7 @@
             StudentsOrdering = new System.Windows.Forms.ListView();
             columnHeader4 = new System.Windows.Forms.ColumnHeader();
             label4 = new System.Windows.Forms.Label();
-            toViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            toEditToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             pnlDashboard.SuspendLayout();
             pnlStudents.SuspendLayout();
@@ -163,11 +164,18 @@
             // 
             // studentsToolStripMenuItem
             // 
-            studentsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { toViewToolStripMenuItem });
+            studentsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { toViewToolStripMenuItem, toEditToolStripMenuItem });
             studentsToolStripMenuItem.Name = "studentsToolStripMenuItem";
             studentsToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
             studentsToolStripMenuItem.Text = "Students";
             studentsToolStripMenuItem.Click += studentsToolStripMenuItem_Click;
+            // 
+            // toViewToolStripMenuItem
+            // 
+            toViewToolStripMenuItem.Name = "toViewToolStripMenuItem";
+            toViewToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            toViewToolStripMenuItem.Text = "To View";
+            toViewToolStripMenuItem.Click += toViewToolStripMenuItem_Click;
             // 
             // lecturersToolStripMenuItem
             // 
@@ -785,12 +793,12 @@
             label4.TabIndex = 0;
             label4.Text = "Ordering...";
             // 
-            // toViewToolStripMenuItem
+            // toEditToolStripMenuItem
             // 
-            toViewToolStripMenuItem.Name = "toViewToolStripMenuItem";
-            toViewToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            toViewToolStripMenuItem.Text = "To View";
-            toViewToolStripMenuItem.Click += toViewToolStripMenuItem_Click;
+            toEditToolStripMenuItem.Name = "toEditToolStripMenuItem";
+            toEditToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            toEditToolStripMenuItem.Text = "To Edit";
+            toEditToolStripMenuItem.Click += toEditToolStripMenuItem_Click;
             // 
             // SomerenUI
             // 
@@ -921,5 +929,6 @@
         private System.Windows.Forms.ComboBox StudentSelection;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ToolStripMenuItem toViewToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toEditToolStripMenuItem;
     }
 }
