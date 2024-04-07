@@ -75,7 +75,7 @@ namespace SomerenUI
                 return;
             }
 
-           Student newStudent = new Student();
+            Student newStudent = new Student();
             newStudent.Name = StudentNameBox.Text;
             newStudent.PhoneNumber = PhoneNumberBox.Text;
             newStudent.Class = ClassNameBox.Text;
@@ -83,14 +83,65 @@ namespace SomerenUI
 
             StudentDao dao = new StudentDao();
 
-             dao.InsertStudent(newStudent);
+            dao.InsertStudent(newStudent);
 
             MessageBox.Show("Student added successfully!");
             somerenUI.ShowStudentsPanel();
             this.Close();
-            
+
+        }
+
+        private void DeleteStudentButton_Click(object sender, EventArgs e)
+        {
+            // Check if all the controls are filled out
+            if (string.IsNullOrWhiteSpace(StudentNameBox.Text) ||
+                string.IsNullOrWhiteSpace(PhoneNumberBox.Text) ||
+                string.IsNullOrWhiteSpace(ClassNameBox.Text) ||
+                string.IsNullOrWhiteSpace(RoomNrBox.Text))
+            {
+                MessageBox.Show("Please fill out all the boxes correctly");
+                return;
+            }
+
+            // Create a new Student object
+            Student studentToDelete = new Student();
+
+            // Set the properties of the student to delete from the controls
+            studentToDelete.Name = StudentNameBox.Text;
+            studentToDelete.PhoneNumber = PhoneNumberBox.Text;
+            studentToDelete.Class = ClassNameBox.Text;
+            studentToDelete.RoomNumber = int.Parse(RoomNrBox.Text);
+
+            // Create an instance of your DAO
+            StudentDao dao = new StudentDao();
+
+            // Get the student number by the student's name
+            int selectedStudentNr = dao.GetStudentNrByStudentName(studentToDelete.Name);
+
+            // Check if the student has any orders
+            if (dao.StudentHasOrders(selectedStudentNr))
+            {
+                MessageBox.Show("This student has orders, delete their order first, and then you can delete the student.");
+                return;
+            }
+
+            try
+            {
+                // Call the DeleteStudent method to delete the student
+                dao.DeleteStudent(studentToDelete);
+
+                MessageBox.Show("Student deleted successfully!");
+                this.Close();
+                somerenUI.ShowStudentsPanel();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
     }
-
 }
+
+

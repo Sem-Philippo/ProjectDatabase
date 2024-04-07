@@ -40,6 +40,35 @@ namespace SomerenDAL
             ExecuteEditQuery(query, sqlParameters);
         }
 
+        public void DeleteStudent(Student student)
+        {
+            string query = "DELETE FROM Student WHERE studentName = @Name AND studentPhoneNr = @PhoneNumber AND class = @Class AND roomNr = @RoomNumber";
+            SqlParameter[] sqlParameters = new SqlParameter[4];
+            sqlParameters[0] = new SqlParameter("@Name", student.Name);
+            sqlParameters[1] = new SqlParameter("@PhoneNumber", student.PhoneNumber);
+            sqlParameters[2] = new SqlParameter("@Class", student.Class);
+            sqlParameters[3] = new SqlParameter("@RoomNumber", student.RoomNumber);
+            int rowsAffected = ExecuteDeleteQuery(query, sqlParameters);
+
+            if (rowsAffected == 0)
+            {
+                throw new Exception("No such student exists, please check the data you entered");
+            }
+        }
+
+        public bool StudentHasOrders(int studentNr)
+        {
+            string query = "SELECT COUNT(*) FROM Orders WHERE studentNr = @StudentNr";
+            SqlParameter[] sqlParameters = new SqlParameter[1];
+            sqlParameters[0] = new SqlParameter("@StudentNr", studentNr);
+            DataTable dataTable = ExecuteSelectQuery(query, sqlParameters);
+
+            int orderCount = (int)dataTable.Rows[0][0];
+            return orderCount > 0;
+        }
+
+
+
         public int GetStudentNrByStudentName(string studentName)
         {
             string query = "SELECT StudentNr FROM Student WHERE studentName = @Name";
