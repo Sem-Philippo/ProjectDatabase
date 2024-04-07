@@ -14,6 +14,8 @@ namespace SomerenUI
         public SomerenUI()
         {
             InitializeComponent();
+            comboBoxActivitiesForParticipants.SelectedIndexChanged += comboBoxActivitiesForParticipants_SelectedIndexChanged;
+
             ShowDashboardPanel();
         }
         private void HideAllPanels()
@@ -415,6 +417,11 @@ namespace SomerenUI
         private void participantsToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             ShowParticipantsPanel();
+        }
+
+        private void comboBoxActivitiesForParticipants_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateParticipants();
         }
 
     }
