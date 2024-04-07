@@ -359,6 +359,8 @@ namespace SomerenUI
             ListViewHitTestInfo info = listView.HitTest(e.X, e.Y);
             return info.Item;
         }
+
+
         private void ShowParticipantsPanel()
         {
             ShowPanel(pnlParticipants);

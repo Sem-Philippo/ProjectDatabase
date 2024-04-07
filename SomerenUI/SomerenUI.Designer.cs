@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SomerenUI));
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Test");
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("Test");
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("Test");
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("Test");
             menuStrip1 = new System.Windows.Forms.MenuStrip();
             dashboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             dashboardToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -95,14 +95,14 @@
             SupervisorName = new System.Windows.Forms.ColumnHeader();
             lblSupervisors = new System.Windows.Forms.Label();
             pnlParticipants = new System.Windows.Forms.Panel();
-            label1 = new System.Windows.Forms.Label();
-            label2 = new System.Windows.Forms.Label();
-            label3 = new System.Windows.Forms.Label();
+            labelactivityparticip = new System.Windows.Forms.Label();
+            labelnotparticipating = new System.Windows.Forms.Label();
+            labelparticipating = new System.Windows.Forms.Label();
             comboBoxActivitiesForParticipants = new System.Windows.Forms.ComboBox();
             listViewNonParticipants = new System.Windows.Forms.ListView();
             columnHeader1 = new System.Windows.Forms.ColumnHeader();
             columnHeader2 = new System.Windows.Forms.ColumnHeader();
-            pictureBox1 = new System.Windows.Forms.PictureBox();
+            pictureBoxparticipp = new System.Windows.Forms.PictureBox();
             listViewParticipants = new System.Windows.Forms.ListView();
             columnHeader3 = new System.Windows.Forms.ColumnHeader();
             columnHeader4 = new System.Windows.Forms.ColumnHeader();
@@ -120,7 +120,7 @@
             pnlSupervisors.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxSupervisor).BeginInit();
             pnlParticipants.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxparticipp).BeginInit();
             SuspendLayout();
             // 
             // menuStrip1
@@ -585,7 +585,7 @@
             // 
             listViewSupervising.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { SupervisorId, SupervisorName });
             listViewSupervising.FullRowSelect = true;
-            listViewSupervising.Items.AddRange(new System.Windows.Forms.ListViewItem[] { listViewItem1 });
+            listViewSupervising.Items.AddRange(new System.Windows.Forms.ListViewItem[] { listViewItem3 });
             listViewSupervising.Location = new System.Drawing.Point(18, 97);
             listViewSupervising.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             listViewSupervising.Name = "listViewSupervising";
@@ -616,12 +616,12 @@
             // 
             // pnlParticipants
             // 
-            pnlParticipants.Controls.Add(label1);
-            pnlParticipants.Controls.Add(label2);
-            pnlParticipants.Controls.Add(label3);
+            pnlParticipants.Controls.Add(labelactivityparticip);
+            pnlParticipants.Controls.Add(labelnotparticipating);
+            pnlParticipants.Controls.Add(labelparticipating);
             pnlParticipants.Controls.Add(comboBoxActivitiesForParticipants);
             pnlParticipants.Controls.Add(listViewNonParticipants);
-            pnlParticipants.Controls.Add(pictureBox1);
+            pnlParticipants.Controls.Add(pictureBoxparticipp);
             pnlParticipants.Controls.Add(listViewParticipants);
             pnlParticipants.Controls.Add(labelParticipants);
             pnlParticipants.Location = new System.Drawing.Point(12, 32);
@@ -630,32 +630,32 @@
             pnlParticipants.Size = new System.Drawing.Size(1072, 621);
             pnlParticipants.TabIndex = 8;
             // 
-            // label1
+            // labelactivityparticip
             // 
-            label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(359, 70);
-            label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(61, 20);
-            label1.TabIndex = 7;
-            label1.Text = "Activity:";
+            labelactivityparticip.AutoSize = true;
+            labelactivityparticip.Location = new System.Drawing.Point(359, 70);
+            labelactivityparticip.Name = "labelactivityparticip";
+            labelactivityparticip.Size = new System.Drawing.Size(61, 20);
+            labelactivityparticip.TabIndex = 7;
+            labelactivityparticip.Text = "Activity:";
             // 
-            // label2
+            // labelnotparticipating
             // 
-            label2.AutoSize = true;
-            label2.Location = new System.Drawing.Point(545, 70);
-            label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(121, 20);
-            label2.TabIndex = 6;
-            label2.Text = "Not Participating";
+            labelnotparticipating.AutoSize = true;
+            labelnotparticipating.Location = new System.Drawing.Point(545, 70);
+            labelnotparticipating.Name = "labelnotparticipating";
+            labelnotparticipating.Size = new System.Drawing.Size(121, 20);
+            labelnotparticipating.TabIndex = 6;
+            labelnotparticipating.Text = "Not Participating";
             // 
-            // label3
+            // labelparticipating
             // 
-            label3.AutoSize = true;
-            label3.Location = new System.Drawing.Point(21, 70);
-            label3.Name = "label3";
-            label3.Size = new System.Drawing.Size(92, 20);
-            label3.TabIndex = 5;
-            label3.Text = "Participating";
+            labelparticipating.AutoSize = true;
+            labelparticipating.Location = new System.Drawing.Point(21, 70);
+            labelparticipating.Name = "labelparticipating";
+            labelparticipating.Size = new System.Drawing.Size(92, 20);
+            labelparticipating.TabIndex = 5;
+            labelparticipating.Text = "Participating";
             // 
             // comboBoxActivitiesForParticipants
             // 
@@ -687,21 +687,21 @@
             columnHeader2.Text = "Name";
             columnHeader2.Width = 150;
             // 
-            // pictureBox1
+            // pictureBoxparticipp
             // 
-            pictureBox1.Image = (System.Drawing.Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new System.Drawing.Point(920, 0);
-            pictureBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new System.Drawing.Size(149, 164);
-            pictureBox1.TabIndex = 2;
-            pictureBox1.TabStop = false;
+            pictureBoxparticipp.Image = (System.Drawing.Image)resources.GetObject("pictureBoxparticipp.Image");
+            pictureBoxparticipp.Location = new System.Drawing.Point(920, 0);
+            pictureBoxparticipp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            pictureBoxparticipp.Name = "pictureBoxparticipp";
+            pictureBoxparticipp.Size = new System.Drawing.Size(149, 164);
+            pictureBoxparticipp.TabIndex = 2;
+            pictureBoxparticipp.TabStop = false;
             // 
             // listViewParticipants
             // 
             listViewParticipants.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { columnHeader3, columnHeader4 });
             listViewParticipants.FullRowSelect = true;
-            listViewParticipants.Items.AddRange(new System.Windows.Forms.ListViewItem[] { listViewItem2 });
+            listViewParticipants.Items.AddRange(new System.Windows.Forms.ListViewItem[] { listViewItem4 });
             listViewParticipants.Location = new System.Drawing.Point(18, 97);
             listViewParticipants.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             listViewParticipants.Name = "listViewParticipants";
@@ -767,7 +767,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBoxSupervisor).EndInit();
             pnlParticipants.ResumeLayout(false);
             pnlParticipants.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxparticipp).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -838,14 +838,14 @@
         private System.Windows.Forms.Label lblSupervising;
         private System.Windows.Forms.ToolStripMenuItem participantsToolStripMenuItem;
         private System.Windows.Forms.Panel pnlParticipants;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label labelactivityparticip;
+        private System.Windows.Forms.Label labelnotparticipating;
+        private System.Windows.Forms.Label labelparticipating;
         private System.Windows.Forms.ComboBox comboBoxActivitiesForParticipants;
         private System.Windows.Forms.ListView listViewNonParticipants;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBoxparticipp;
         private System.Windows.Forms.ListView listViewParticipants;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
