@@ -33,9 +33,9 @@ namespace SomerenUI
             List<Student> students = studentDao.GetAllStudents();
             foreach (Student student in students)
             {
-                listView2.Items.Add(CreateStudentNAMEONLYListViewItem(student));
+                StudentsOrdering.Items.Add(CreateStudentNAMEONLYListViewItem(student));
             }
-            listView2.Refresh();
+            StudentsOrdering.Refresh();
         }
 
 
@@ -44,20 +44,20 @@ namespace SomerenUI
 
         private void PopulateDrinkList()
         {
-            comboBox1.Items.Clear();
+            DrinkSelection.Items.Clear();
             List<Drink> drinks = drinkDao.GetAllDrinks();
             foreach (Drink drink in drinks)
             {
-                comboBox1.Items.Add(drink.Name);
+                DrinkSelection.Items.Add(drink.Name);
             }
         }
         private void PopulateStudentBox()
         {
-            comboBox2.Items.Clear();
+            StudentSelection.Items.Clear();
             List<Student> students = studentDao.GetAllStudents();
             foreach (Student student in students)
             {
-                comboBox2.Items.Add(student.Name);
+                StudentSelection.Items.Add(student.Name);
             }
         }
 
@@ -231,11 +231,11 @@ namespace SomerenUI
         private void DisplayDrinkOrders(List<Drink> drinks)
         {
             //clear the listview before filling it
-            listView1.Items.Clear();
+            OrdersList.Items.Clear();
 
             foreach (Drink drink in drinks)
             {
-                listView1.Items.Add(CreateDrinkListViewItem(drink));
+                OrdersList.Items.Add(CreateDrinkListViewItem(drink));
             }
         }
         private ListViewItem CreateDrinkListViewItem(Drink drink)
@@ -258,7 +258,7 @@ namespace SomerenUI
 
             string[] subItems = new string[5] { room.Number.ToString(), room.Floor.ToString(), room.Building.ToString(), room.Beds.ToString(), roomType };
 
-           ListViewItem li = new ListViewItem(subItems);
+            ListViewItem li = new ListViewItem(subItems);
             li.Tag = room;   // link room object to listview item
             return li;
         }
@@ -436,16 +436,16 @@ namespace SomerenUI
             ShowOrderPanel();
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        private void PlaceOrderButton_Click_1(object sender, EventArgs e)
         {
             List<Drink> drinks = drinkDao.GetAllDrinks();
 
-            string selectedDrinkName = comboBox1.SelectedItem != null ? comboBox1.SelectedItem.ToString() : string.Empty;
+            string selectedDrinkName = DrinkSelection.SelectedItem != null ? DrinkSelection.SelectedItem.ToString() : string.Empty;
             Drink selectedDrink = drinks.Find(d => d.Name == selectedDrinkName);
 
-            int selectedAmount = (int)numericUpDown1.Value;
+            int selectedAmount = (int)AmountSelection.Value;
 
-            int selectedStudentNr = comboBox2.SelectedIndex + 1;
+            int selectedStudentNr = StudentSelection.SelectedIndex + 1;
 
             DateTime orderTime = DateTime.Now;
 
@@ -476,9 +476,9 @@ namespace SomerenUI
 
 
 
-        private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
+        private void DrinkSelection_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            string selectedDrinkName = comboBox1.SelectedItem.ToString();
+            string selectedDrinkName = DrinkSelection.SelectedItem.ToString();
             DrinkDao drinkDao = new DrinkDao();
             List<Drink> allDrinks = drinkDao.GetAllDrinks();
 
@@ -487,24 +487,24 @@ namespace SomerenUI
 
             if (selectedDrink != null)
             {
-                label5.Text = "Price: " + selectedDrink.Price.ToString();
-                label6.Text = "Stock: " + selectedDrink.StockAmount.ToString();
-                label7.Text = "Alcoholic: " + (selectedDrink.Alcoholic ? "yes" : "no");
+                PriceLabel.Text = "Price: " + selectedDrink.Price.ToString();
+                StockLabel.Text = "Stock: " + selectedDrink.StockAmount.ToString();
+                AlcoholicLabel.Text = "Alcoholic: " + (selectedDrink.Alcoholic ? "yes" : "no");
             }
             else
             {
                 // Handle case where selected drink is not found in the list
-                label5.Text = "Price: N/A";
-                label6.Text = "Stock: N/A";
-                label7.Text = "Alcoholic: N/A";
+                PriceLabel.Text = "Price: N/A";
+                StockLabel.Text = "Stock: N/A";
+                AlcoholicLabel.Text = "Alcoholic: N/A";
             }
         }
 
-        private void listView2_SelectedIndexChanged(object sender, EventArgs e)
+        private void StudentsOrdering_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listView2.SelectedItems.Count > 0)
+            if (StudentsOrdering.SelectedItems.Count > 0)
             {
-                ListViewItem selectedItem = listView2.SelectedItems[0];
+                ListViewItem selectedItem = StudentsOrdering.SelectedItems[0];
                 string studentName = selectedItem.SubItems[0].Text;
                 selectedStudent = orderDao.GetStudentByName(studentName);
                 // Get all the orders
@@ -513,13 +513,13 @@ namespace SomerenUI
                 List<Order> orders = allOrders.Where(order => order.studentNr == selectedStudent.studentNr).ToList();
                 // Update the UI with the orders
                 List<Drink> drinks = drinkDao.GetAllDrinks();
-                listView1.Items.Clear();
+                OrdersList.Items.Clear();
                 foreach (Order order in orders)
                 {
                     // Find the drink by its ID
                     Drink drink = drinks.Find(d => d.Id == order.DrinkID);
                     ListViewItem item = new ListViewItem(new string[] { drink.Name, order.orderAmount.ToString(), order.OrderTime.ToString("yyyy-MM-dd HH:mm:ss") });
-                    listView1.Items.Add(item);
+                    OrdersList.Items.Add(item);
                 }
             }
         }
