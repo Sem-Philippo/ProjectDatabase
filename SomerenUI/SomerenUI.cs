@@ -6,16 +6,64 @@ using SomerenModel;
 using SomerenDAL;
 using static System.Windows.Forms.LinkLabel;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Linq;
 
 namespace SomerenUI
 {
     public partial class SomerenUI : Form
+
     {
+        StudentDao studentDao = new StudentDao();
+        DrinkDao drinkDao = new DrinkDao();
+        // OrderDao orderDao = new OrderDao();
+        private OrderDao orderDao = new OrderDao();
+        private Student selectedStudent;
+        private Drink selectedDrink;
+
         public SomerenUI()
         {
             InitializeComponent();
             ShowDashboardPanel();
         }
+        private void PopulateStudentList()
+        {
+            //this here is just for error-hunting
+            List<Student> studentsConsole = studentDao.GetAllStudents();
+            System.Diagnostics.Debug.WriteLine($"Number of students: {studentsConsole.Count}");
+            List<Student> students = studentDao.GetAllStudents();
+            foreach (Student student in students)
+            {
+                StudentsOrdering.Items.Add(CreateStudentNAMEONLYListViewItem(student));
+            }
+            StudentsOrdering.Refresh();
+        }
+
+
+
+
+
+        private void PopulateDrinkList()
+        {
+            DrinkSelection.Items.Clear();
+            List<Drink> drinks = drinkDao.GetAllDrinks();
+            foreach (Drink drink in drinks)
+            {
+                DrinkSelection.Items.Add(drink.Name);
+            }
+        }
+        private void PopulateStudentBox()
+        {
+            StudentSelection.Items.Clear();
+            List<Student> students = studentDao.GetAllStudents();
+            foreach (Student student in students)
+            {
+                StudentSelection.Items.Add(student.Name);
+            }
+        }
+
+
+
+
         private void HideAllPanels()
         {
             pnlStudents.Hide();
@@ -24,6 +72,7 @@ namespace SomerenUI
             RoomsPanel.Hide();
             //activity panel here
             pnlDrinks.Hide();
+            pnlOrder.Hide();
             pnlSupervisors.Hide();
             //any other panels here
         }
@@ -73,7 +122,7 @@ namespace SomerenUI
                 MessageBox.Show("Something went wrong while loading the rooms: " + e.Message);
             }
         }
-        private void ShowStudentsPanel()
+        public void ShowStudentsPanel()
         {
             ShowPanel(pnlStudents);
 
@@ -102,6 +151,16 @@ namespace SomerenUI
                 MessageBox.Show("Something went wrong while loading the drinks: " + e.Message);
             }
         }
+
+        private void ShowOrderPanel()
+        {
+            ShowPanel(pnlOrder);
+            List<Student> students = GetStudents();
+            DisplayStudents(students);
+            UpdateActivityBox();
+
+        }
+
         private void ShowSupervisorsPanel()
         {
             ShowPanel(pnlSupervisors);
@@ -170,6 +229,16 @@ namespace SomerenUI
                 listViewDrinks.Items.Add(CreateDrinkListViewItem(drink));
             }
         }
+        private void DisplayDrinkOrders(List<Drink> drinks)
+        {
+            //clear the listview before filling it
+            OrdersList.Items.Clear();
+
+            foreach (Drink drink in drinks)
+            {
+                OrdersList.Items.Add(CreateDrinkListViewItem(drink));
+            }
+        }
         private ListViewItem CreateDrinkListViewItem(Drink drink)
         {
             string[] subItems = new string[6] {
@@ -188,10 +257,8 @@ namespace SomerenUI
             // Determine the room type based on the number of beds
             string roomType = room.Beds > 1 ? "Student" : "Lecturer";
 
-            // Include the room type in the subItems array
             string[] subItems = new string[5] { room.Number.ToString(), room.Floor.ToString(), room.Building.ToString(), room.Beds.ToString(), roomType };
 
-            // Create a new ListViewItem with the subItems array
             ListViewItem li = new ListViewItem(subItems);
             li.Tag = room;   // link room object to listview item
             return li;
@@ -200,6 +267,13 @@ namespace SomerenUI
         {
             string[] subItems = new string[4] { student.Number.ToString(), student.Name,
                     student.Class, student.PhoneNumber };
+            ListViewItem li = new ListViewItem(subItems);
+            li.Tag = student;   // link student object to listview item
+            return li;
+        }
+        private ListViewItem CreateStudentNAMEONLYListViewItem(Student student)
+        {
+            string[] subItems = new string[2] { student.Name, student.Id.ToString() };
             ListViewItem li = new ListViewItem(subItems);
             li.Tag = student;   // link student object to listview item
             return li;
@@ -283,7 +357,6 @@ namespace SomerenUI
 
         private void studentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ShowStudentsPanel();
         }
 
         private void lecturersToolStripMenuItem_Click(object sender, EventArgs e)
@@ -354,6 +427,111 @@ namespace SomerenUI
             //This method can also be used for participants and is not exclusive to supervisors (if you do it the same way I did)!
             ListViewHitTestInfo info = listView.HitTest(e.X, e.Y);
             return info.Item;
+        }
+
+
+
+
+        private void orderADrinkToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PopulateStudentList();
+            PopulateStudentBox();
+            PopulateDrinkList();
+            ShowOrderPanel();
+        }
+
+        private void PlaceOrderButton_Click_1(object sender, EventArgs e)
+        {
+            List<Drink> drinks = drinkDao.GetAllDrinks();
+
+            string selectedDrinkName = DrinkSelection.SelectedItem != null ? DrinkSelection.SelectedItem.ToString() : string.Empty;
+            Drink selectedDrink = drinks.Find(d => d.Name == selectedDrinkName);
+
+            int selectedAmount = (int)AmountSelection.Value;
+
+            string selectedStudentName = StudentSelection.SelectedItem != null ? StudentSelection.SelectedItem.ToString() : string.Empty;
+            StudentDao studentDao = new StudentDao();
+            int selectedStudentNr = studentDao.GetStudentNrByStudentName(selectedStudentName);
+
+            DateTime orderTime = DateTime.Now;
+
+            if (selectedDrink != null && selectedStudentNr > 0 && selectedAmount > 0)
+            {
+                orderDao.InsertOrder(selectedStudentNr, selectedDrink.Id, selectedAmount, orderTime);
+                MessageBox.Show("Order placed successfully!");
+            }
+            else if (selectedAmount <= 0)
+            {
+                MessageBox.Show("Please enter a valid amount.");
+            }
+            else
+            {
+                MessageBox.Show("Please select a student and drink first.");
+            }
+        }
+
+
+        private void DrinkSelection_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            string selectedDrinkName = DrinkSelection.SelectedItem.ToString();
+            DrinkDao drinkDao = new DrinkDao();
+            List<Drink> allDrinks = drinkDao.GetAllDrinks();
+
+            // Find the selected drink in the list
+            Drink selectedDrink = allDrinks.Find(drink => drink.Name == selectedDrinkName);
+
+            if (selectedDrink != null)
+            {
+                PriceLabel.Text = "Price: " + selectedDrink.Price.ToString();
+                StockLabel.Text = "Stock: " + selectedDrink.StockAmount.ToString();
+                AlcoholicLabel.Text = "Alcoholic: " + (selectedDrink.Alcoholic ? "yes" : "no");
+            }
+            else
+            {
+                // Handle case where selected drink is not found in the list
+                PriceLabel.Text = "Price: N/A";
+                StockLabel.Text = "Stock: N/A";
+                AlcoholicLabel.Text = "Alcoholic: N/A";
+            }
+        }
+
+        private void StudentsOrdering_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (StudentsOrdering.SelectedItems.Count > 0)
+            {
+                ListViewItem selectedItem = StudentsOrdering.SelectedItems[0];
+                string studentName = selectedItem.SubItems[0].Text;
+                selectedStudent = orderDao.GetStudentByName(studentName);
+                // Get all the orders
+                List<Order> allOrders = orderDao.GetAllOrders();
+                // Filter the orders for the selected student
+                List<Order> orders = allOrders.Where(order => order.studentNr == selectedStudent.studentNr).ToList();
+                // Update the UI with the orders
+                List<Drink> drinks = drinkDao.GetAllDrinks();
+                OrdersList.Items.Clear();
+                foreach (Order order in orders)
+                {
+                    // Find the drink by its ID
+                    Drink drink = drinks.Find(d => d.Id == order.DrinkID);
+                    ListViewItem item = new ListViewItem(new string[] { drink.Name, order.orderAmount.ToString(), order.OrderTime.ToString("yyyy-MM-dd HH:mm:ss") });
+                    OrdersList.Items.Add(item);
+                }
+            }
+        }
+
+        private void toViewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowStudentsPanel();
+        }
+
+        
+
+        private void toEditToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ManagingStudent form = new ManagingStudent(this);
+            form.Show();
+            ShowStudentsPanel();
+
         }
     }
 }

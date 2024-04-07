@@ -48,6 +48,9 @@ namespace SomerenModel
                 }
             } 
         }
+
+        public int DrinkID { get; set; }
+
         public override string ToString()
         {
             return Name;

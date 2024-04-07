@@ -49,6 +49,7 @@ namespace SomerenDAL
             foreach (DataRow dr in dataTable.Rows)
             {
                 drinks.Add(CreateDrinkFromDataRow(dr));
+
             }
             return drinks;
         }
