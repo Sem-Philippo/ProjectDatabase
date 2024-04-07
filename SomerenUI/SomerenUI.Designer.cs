@@ -100,12 +100,12 @@
             labelparticipating = new System.Windows.Forms.Label();
             comboBoxActivitiesForParticipants = new System.Windows.Forms.ComboBox();
             listViewNonParticipants = new System.Windows.Forms.ListView();
-            columnHeader1 = new System.Windows.Forms.ColumnHeader();
-            columnHeader2 = new System.Windows.Forms.ColumnHeader();
+            columnHeaderstudnetnotparticip = new System.Windows.Forms.ColumnHeader();
+            columnHeaderstudentnamenotparticipating = new System.Windows.Forms.ColumnHeader();
             pictureBoxparticipp = new System.Windows.Forms.PictureBox();
             listViewParticipants = new System.Windows.Forms.ListView();
-            columnHeader3 = new System.Windows.Forms.ColumnHeader();
-            columnHeader4 = new System.Windows.Forms.ColumnHeader();
+            columnHeaderparticipstudentid = new System.Windows.Forms.ColumnHeader();
+            columnHeaderparticipantname = new System.Windows.Forms.ColumnHeader();
             labelParticipants = new System.Windows.Forms.Label();
             menuStrip1.SuspendLayout();
             pnlDashboard.SuspendLayout();
@@ -668,7 +668,7 @@
             // 
             // listViewNonParticipants
             // 
-            listViewNonParticipants.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { columnHeader1, columnHeader2 });
+            listViewNonParticipants.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { columnHeaderstudnetnotparticip, columnHeaderstudentnamenotparticipating });
             listViewNonParticipants.FullRowSelect = true;
             listViewNonParticipants.Location = new System.Drawing.Point(545, 97);
             listViewNonParticipants.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -678,14 +678,14 @@
             listViewNonParticipants.UseCompatibleStateImageBehavior = false;
             listViewNonParticipants.View = System.Windows.Forms.View.Details;
             // 
-            // columnHeader1
+            // columnHeaderstudnetnotparticip
             // 
-            columnHeader1.Text = "Id";
+            columnHeaderstudnetnotparticip.Text = "Id";
             // 
-            // columnHeader2
+            // columnHeaderstudentnamenotparticipating
             // 
-            columnHeader2.Text = "Name";
-            columnHeader2.Width = 150;
+            columnHeaderstudentnamenotparticipating.Text = "Name";
+            columnHeaderstudentnamenotparticipating.Width = 150;
             // 
             // pictureBoxparticipp
             // 
@@ -699,7 +699,7 @@
             // 
             // listViewParticipants
             // 
-            listViewParticipants.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { columnHeader3, columnHeader4 });
+            listViewParticipants.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { columnHeaderparticipstudentid, columnHeaderparticipantname });
             listViewParticipants.FullRowSelect = true;
             listViewParticipants.Items.AddRange(new System.Windows.Forms.ListViewItem[] { listViewItem4 });
             listViewParticipants.Location = new System.Drawing.Point(18, 97);
@@ -710,14 +710,14 @@
             listViewParticipants.UseCompatibleStateImageBehavior = false;
             listViewParticipants.View = System.Windows.Forms.View.Details;
             // 
-            // columnHeader3
+            // columnHeaderparticipstudentid
             // 
-            columnHeader3.Text = "Id";
+            columnHeaderparticipstudentid.Text = "Id";
             // 
-            // columnHeader4
+            // columnHeaderparticipantname
             // 
-            columnHeader4.Text = "Name";
-            columnHeader4.Width = 150;
+            columnHeaderparticipantname.Text = "Name";
+            columnHeaderparticipantname.Width = 150;
             // 
             // labelParticipants
             // 
@@ -843,12 +843,12 @@
         private System.Windows.Forms.Label labelparticipating;
         private System.Windows.Forms.ComboBox comboBoxActivitiesForParticipants;
         private System.Windows.Forms.ListView listViewNonParticipants;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeaderstudnetnotparticip;
+        private System.Windows.Forms.ColumnHeader columnHeaderstudentnamenotparticipating;
         private System.Windows.Forms.PictureBox pictureBoxparticipp;
         private System.Windows.Forms.ListView listViewParticipants;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeaderparticipstudentid;
+        private System.Windows.Forms.ColumnHeader columnHeaderparticipantname;
         private System.Windows.Forms.Label labelParticipants;
     }
 }
