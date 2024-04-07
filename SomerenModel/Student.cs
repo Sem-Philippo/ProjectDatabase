@@ -11,5 +11,6 @@ namespace SomerenModel
         public string Class { get; set; } //which class the student is in
         public int RoomNumber { get; set; } //which room the student sleeps in
         public DateTime BirthDate { get; set; }
+        public string AttendedActivity { get; set; }
     }
 }

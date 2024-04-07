@@ -25,6 +25,7 @@ namespace SomerenUI
             //activity panel here
             pnlDrinks.Hide();
             pnlSupervisors.Hide();
+            pnlParticipants.Hide();
             //any other panels here
         }
         private void ShowPanel(Panel panel)
@@ -270,6 +271,7 @@ namespace SomerenUI
             return li;
         }
 
+
         private void dashboardToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             ShowDashboardPanel();
@@ -355,5 +357,65 @@ namespace SomerenUI
             ListViewHitTestInfo info = listView.HitTest(e.X, e.Y);
             return info.Item;
         }
+        private void ShowParticipantsPanel()
+        {
+            ShowPanel(pnlParticipants);
+            UpdateActivityBoxForParticipants();
+        }
+        private void UpdateActivityBoxForParticipants()
+        {
+            ActivityDAO activityDao = new ActivityDAO();
+            List<Activity> activities = activityDao.GetAllActivities();
+            comboBoxActivitiesForParticipants.Items.Clear();
+            foreach (Activity activity in activities)
+            {
+                comboBoxActivitiesForParticipants.Items.Add(activity);
+            }
+            comboBoxActivitiesForParticipants.SelectedIndex = 0;
+            //update the listviews just in case
+            UpdateParticipants();
+        }
+        private void UpdateParticipants()
+        {
+            Activity activity = ((Activity)comboBoxActivitiesForParticipants.Items[comboBoxActivitiesForParticipants.SelectedIndex]);
+            //clear the listviews
+            listViewParticipants.Items.Clear();
+            listViewNonParticipants.Items.Clear();
+
+            ParticipantDAO participantDAO = new ParticipantDAO();
+            List<Student> participants = participantDAO.GetParticipantsByActivity(activity);
+            foreach (Student student in participants)
+            {
+                listViewParticipants.Items.Add(CreateParticipantListViewItem(student));
+            }
+
+            List<Student> nonParticipants = participantDAO.GetNonParticipantsByActivity(activity);
+            foreach (Student student in nonParticipants)
+            {
+                listViewNonParticipants.Items.Add(CreateParticipantListViewItem(student));
+            }
+        }
+
+        private ListViewItem CreateParticipantListViewItem(Student student)
+        {
+            string[] subItems = new string[2] {
+        student.Number.ToString(),
+        student.Name,
+    };
+            ListViewItem li = new ListViewItem(subItems);
+            li.Tag = student;
+            return li;
+        }
+
+        private void participantsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void participantsToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            ShowParticipantsPanel();
+        }
+
     }
 }

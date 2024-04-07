@@ -2,7 +2,6 @@
 using System.Data.SqlClient;
 using System.Data;
 using SomerenModel;
-using System;
 
 namespace SomerenDAL
 {
@@ -10,9 +9,21 @@ namespace SomerenDAL
     {
         public List<Student> GetAllStudents()
         {
-            string query = "SELECT StudentNr, studentName, studentPhoneNr, class, roomNr FROM Student";
+            string query = "SELECT StudentNr, studentName, studentPhoneNr, class, roomNr, attendedActivity FROM Student";
             SqlParameter[] sqlParameters = new SqlParameter[0];
             return ReadTables(ExecuteSelectQuery(query, sqlParameters));
+        }
+
+        public Student GetStudentById(int id)
+        {
+            string query = $"SELECT StudentNr, studentName, studentPhoneNr, class, roomNr, attendedActivity FROM Student WHERE StudentNr = {id}";
+            SqlParameter[] sqlParameters = new SqlParameter[0];
+            List<Student> students = ReadTables(ExecuteSelectQuery(query, sqlParameters));
+            if (students.Count > 0)
+            {
+                return students[0];
+            }
+            return null;
         }
 
         private List<Student> ReadTables(DataTable dataTable)
@@ -25,6 +36,7 @@ namespace SomerenDAL
             }
             return students;
         }
+
         private Student CreateStudentFromDataRow(DataRow dr)
         {
             return new Student()
@@ -33,7 +45,8 @@ namespace SomerenDAL
                 Name = dr["studentName"].ToString(),
                 PhoneNumber = dr["studentPhoneNr"].ToString(),
                 Class = dr["class"].ToString(),
-                RoomNumber = (int)dr["roomNr"]
+                RoomNumber = (int)dr["roomNr"],
+                AttendedActivity = dr["attendedActivity"].ToString().Trim()
             };
         }
     }
