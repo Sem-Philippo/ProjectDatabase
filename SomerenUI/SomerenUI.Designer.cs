@@ -94,6 +94,7 @@
             SupervisorName = new System.Windows.Forms.ColumnHeader();
             lblSupervisors = new System.Windows.Forms.Label();
             pnlOrder = new System.Windows.Forms.Panel();
+            comboBox2 = new System.Windows.Forms.ComboBox();
             label7 = new System.Windows.Forms.Label();
             label6 = new System.Windows.Forms.Label();
             label5 = new System.Windows.Forms.Label();
@@ -106,11 +107,11 @@
             listView1 = new System.Windows.Forms.ListView();
             columnHeader1 = new System.Windows.Forms.ColumnHeader();
             columnHeader2 = new System.Windows.Forms.ColumnHeader();
+            columnHeader3 = new System.Windows.Forms.ColumnHeader();
             pictureBox1 = new System.Windows.Forms.PictureBox();
             listView2 = new System.Windows.Forms.ListView();
             columnHeader4 = new System.Windows.Forms.ColumnHeader();
             label4 = new System.Windows.Forms.Label();
-            comboBox2 = new System.Windows.Forms.ComboBox();
             menuStrip1.SuspendLayout();
             pnlDashboard.SuspendLayout();
             pnlStudents.SuspendLayout();
@@ -631,6 +632,15 @@
             pnlOrder.Size = new System.Drawing.Size(938, 466);
             pnlOrder.TabIndex = 5;
             // 
+            // comboBox2
+            // 
+            comboBox2.FormattingEnabled = true;
+            comboBox2.Location = new System.Drawing.Point(313, 73);
+            comboBox2.Name = "comboBox2";
+            comboBox2.Size = new System.Drawing.Size(121, 23);
+            comboBox2.TabIndex = 15;
+            comboBox2.Text = "Select a student";
+            // 
             // label7
             // 
             label7.AutoSize = true;
@@ -714,23 +724,27 @@
             // 
             // listView1
             // 
-            listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { columnHeader1, columnHeader2 });
+            listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3 });
             listView1.FullRowSelect = true;
             listView1.Location = new System.Drawing.Point(477, 73);
             listView1.Name = "listView1";
-            listView1.Size = new System.Drawing.Size(264, 306);
+            listView1.Size = new System.Drawing.Size(305, 306);
             listView1.TabIndex = 3;
             listView1.UseCompatibleStateImageBehavior = false;
             listView1.View = System.Windows.Forms.View.Details;
             // 
             // columnHeader1
             // 
-            columnHeader1.Text = "Id";
+            columnHeader1.Text = "Drink";
             // 
             // columnHeader2
             // 
-            columnHeader2.Text = "Name";
+            columnHeader2.Text = "Amount";
             columnHeader2.Width = 150;
+            // 
+            // columnHeader3
+            // 
+            columnHeader3.Text = "Time";
             // 
             // pictureBox1
             // 
@@ -768,15 +782,6 @@
             label4.Size = new System.Drawing.Size(124, 32);
             label4.TabIndex = 0;
             label4.Text = "Ordering...";
-            // 
-            // comboBox2
-            // 
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new System.Drawing.Point(313, 73);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new System.Drawing.Size(121, 23);
-            comboBox2.TabIndex = 15;
-            comboBox2.Text = "Select a student";
             // 
             // SomerenUI
             // 
@@ -905,5 +910,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
     }
 }

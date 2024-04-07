@@ -6,6 +6,7 @@ using SomerenModel;
 using SomerenDAL;
 using static System.Windows.Forms.LinkLabel;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Linq;
 
 namespace SomerenUI
 {
@@ -439,31 +440,37 @@ namespace SomerenUI
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            // Get all students and drinks
-            List<Student> students = studentDao.GetAllStudents();
             List<Drink> drinks = drinkDao.GetAllDrinks();
 
             string selectedDrinkName = comboBox1.SelectedItem != null ? comboBox1.SelectedItem.ToString() : string.Empty;
-            // Find the drink by its name
             Drink selectedDrink = drinks.Find(d => d.Name == selectedDrinkName);
-
-            string selectedStudentName = comboBox2.SelectedItem != null ? comboBox2.SelectedItem.ToString() : string.Empty;
-            // Find the student by its name
-            Student selectedStudent = students.Find(s => s.Name == selectedStudentName);
 
             int selectedAmount = (int)numericUpDown1.Value;
 
-            if (selectedDrink != null && selectedStudent != null)
+            int selectedStudentNr = comboBox2.SelectedIndex + 1;
+
+            DateTime orderTime = DateTime.Now;
+
+            if (selectedDrink != null && selectedStudentNr > 0 && selectedAmount > 0)
             {
-                // Insert the new Order into the database
-                orderDao.InsertOrder(selectedStudent.studentNr, selectedDrink.Id, selectedAmount);
+                orderDao.InsertOrder(selectedStudentNr, selectedDrink.Id, selectedAmount, orderTime);
                 MessageBox.Show("Order placed successfully!");
+            }
+            else if (selectedAmount <= 0)
+            {
+                MessageBox.Show("Please enter a valid amount.");
             }
             else
             {
-                MessageBox.Show("Please select a valid student and drink.");
+                MessageBox.Show("Please select a student and drink first.");
             }
         }
+
+
+
+
+
+
 
 
 
@@ -502,8 +509,10 @@ namespace SomerenUI
                 ListViewItem selectedItem = listView2.SelectedItems[0];
                 string studentName = selectedItem.SubItems[0].Text;
                 selectedStudent = orderDao.GetStudentByName(studentName);
-                // Get the orders for the selected student
-                List<Order> orders = orderDao.GetOrdersByStudent(selectedStudent.studentNr);
+                // Get all the orders
+                List<Order> allOrders = orderDao.GetAllOrders();
+                // Filter the orders for the selected student
+                List<Order> orders = allOrders.Where(order => order.studentNr == selectedStudent.studentNr).ToList();
                 // Update the UI with the orders
                 List<Drink> drinks = drinkDao.GetAllDrinks();
                 listView1.Items.Clear();
@@ -511,10 +520,12 @@ namespace SomerenUI
                 {
                     // Find the drink by its ID
                     Drink drink = drinks.Find(d => d.Id == order.DrinkID);
-                    ListViewItem item = new ListViewItem(new string[] { drink.Name, order.orderAmount.ToString() });
+                    ListViewItem item = new ListViewItem(new string[] { drink.Name, order.orderAmount.ToString(), order.OrderTime.ToString("yyyy-MM-dd HH:mm:ss") });
                     listView1.Items.Add(item);
                 }
             }
         }
+
+
     }
 }

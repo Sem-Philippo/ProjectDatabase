@@ -15,7 +15,7 @@ namespace SomerenDAL
         {
             try
             {
-                string query = "SELECT studentNr, DrinkID, orderAmount FROM [dbo].[Orders]";
+                string query = "SELECT studentNr, DrinkID, orderAmount, orderTime FROM [dbo].[Orders]";
                 SqlParameter[] sqlParameters = new SqlParameter[0];
                 return ReadTables(ExecuteSelectQuery(query, sqlParameters));
             }
@@ -26,15 +26,17 @@ namespace SomerenDAL
         }
 
 
-        public void InsertOrder(int studentNr, int drinkID, int orderAmount)
+
+        public void InsertOrder(int studentNr, int drinkID, int orderAmount, DateTime orderTime)
         {
             try
             {
-                string query = "INSERT INTO [dbo].[Orders] ([studentNr], [DrinkID], [orderAmount]) VALUES (@studentNr, @DrinkID, @orderAmount)";
-                SqlParameter[] sqlParameters = new SqlParameter[3];
+                string query = "INSERT INTO [dbo].[Orders] ([studentNr], [DrinkID], [orderAmount], [orderTime]) VALUES (@studentNr, @DrinkID, @orderAmount, @orderTime)";
+                SqlParameter[] sqlParameters = new SqlParameter[4];
                 sqlParameters[0] = new SqlParameter("@studentNr", SqlDbType.Int) { Value = studentNr };
                 sqlParameters[1] = new SqlParameter("@DrinkID", SqlDbType.Int) { Value = drinkID };
                 sqlParameters[2] = new SqlParameter("@orderAmount", SqlDbType.Int) { Value = orderAmount };
+                sqlParameters[3] = new SqlParameter("@orderTime", SqlDbType.DateTime) { Value = orderTime };
                 ExecuteEditQuery(query, sqlParameters);
             }
             catch (SqlException e)
@@ -42,6 +44,7 @@ namespace SomerenDAL
                 throw new Exception("SQL Error: " + e.ErrorCode);
             }
         }
+
 
 
 
@@ -130,10 +133,11 @@ namespace SomerenDAL
             {
                 Order order = new Order()
                 {
-                 //   OrderId = (int)dr["orderId"],
+                    // OrderId = (int)dr["orderId"],
                     studentNr = (int)dr["studentNr"],
                     DrinkID = (int)dr["DrinkID"],
-                    orderAmount = (int)dr["orderAmount"]
+                    orderAmount = (int)dr["orderAmount"],
+                    OrderTime = (DateTime)dr["orderTime"]
                 };
 
                 orders.Add(order);
@@ -141,5 +145,6 @@ namespace SomerenDAL
 
             return orders;
         }
+
     }
 }
